@@ -1,6 +1,9 @@
-from Bio import Entrez
-from Bio import SeqIO
 import os
+import re
+from Bio import Entrez
+from Bio.Seq import Seq
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
 
 """Begins a NCBI connection using your e-mail address.
 	INPUTS: email --> e-mail address"""
@@ -16,7 +19,7 @@ def close(data):
 	INPUTS: database  --> is an string that specifies the database where you want to search.		Ex.: "nucleotide"
 					term --> it's the name of the term that we want to search.		Ex.: "Human papillomavirus"
 					email --> it's your e-mail address for begining the NCBI connection
-	OUTPUTS: a list of sequence identifiers""""
+	OUTPUTS: a list of sequence identifiers"""
 def search(database,term,email):
 	init(email)
 	handle = Entrez.esearch(db=database, term=term)
@@ -72,4 +75,45 @@ def format(records_list):
 		if i+1 != len(records_list):
 			cadena = cadena + ","		
 	return cadena
+
+"""Gets the Open Reading Frame of a sequence.
+	INPUTS: record_list --> it's a list of sequences (they usually are gotten by parse method)
+					type_seq --> it's an string that specifies the search data. 		Ex.: "gene"
+					ident --> it's an string that specifies the Open Reading Frame.		Ex.: "E6"""
+def get_ORF(record_list,type_seq,ident):
+	dicc = {type_seq : [ident]}
+	seq_list = []
+	for record in record_list:
+		for feature in record.features:
+			if feature.qualifiers == dicc:
+				pos = str(feature.location)
+				match = re.search('<?(\d+):>?(\d+)', pos)
+				lower = int(match.group(1))
+				uper = int(match.group(2))
+				new = record[lower:uper].seq
+				print("Locus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
+				print(new)
+				print("**********************************************************************")
+				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)
+				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)
+				seq_list.append(new_record)
+	return seq_list	
+				
+
+"""Crates a new sequence based on the data_sequence input
+	INPUTS: data_sequence --> a string data
+	OUTPUTS: sequence --> a new sequence created based the data_sequence input"""
+def newSequence(data,ident,name,description,references):
+	sequence = SeqRecord(data,ident,name,description,references)
+	return sequence
+
+def writeFile(sequence_list,filename,file_format):
+	SeqIO.write(sequence_list, filename, file_format)
+	print("Successfully saved")
+
+
+
+
+
+
 
