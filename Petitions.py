@@ -94,8 +94,8 @@ def get_ORF(record_list,type_seq,ident):
 				print("Locus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
 				print(new)
 				print("**********************************************************************")
-				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)
-				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)
+				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)#en descripcion se pone la sección del gen
+				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)#se pasa tal cual la descripción de la secuencia
 				seq_list.append(new_record)
 	return seq_list	
 				
@@ -107,11 +107,22 @@ def newSequence(data,ident,name,description,references):
 	sequence = SeqRecord(data,ident,name,description,references)
 	return sequence
 
+"""Saves a SeqRecord list into a file.
+	INPUTS: sequence_list --> SeqRecord list
+					filename --> a string that specifies the filename
+					format --> a string that specifies the format of the file. """
 def writeFile(sequence_list,filename,file_format):
 	SeqIO.write(sequence_list, filename, file_format)
 	print("Successfully saved")
 
-
+"""Checks if a list is empty.
+	INPUTS: record_list --> a list
+	OUTPUTS: boolean--> TRUE if is empty and False if it's not."""
+def is_empty(record_list):
+	if len(record_list) == 0:
+		return True
+	else:
+		return False
 
 
 
