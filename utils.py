@@ -1,19 +1,18 @@
 import re;
-# Agregar un campo para pasar el valor de CDS
-# Agregar la posibilidad de que se se llame 'gene' or 'product'
-def validateORFs(record_list, type_seq, idents):
-	for record in record_list:
+def validateORFs(sequence_records, feature_to_filter, feature_tag, tag_value):
+	sequences_filtered = [];
+	for record in sequence_records:
 		print ("--------------------\n");
 		print (record.name);
 		for feature in record.features:
-			if feature.type == 'CDS':
+			if re.search(feature_to_filter, feature.type) is not None:
 				qualifiers = feature.qualifiers;
 				qualifiersStr = '|'.join(qualifiers.keys());
-				m = re.search(type_seq,qualifiersStr);
+				m = re.search(feature_tag, qualifiersStr);
 				if m is not None:
-					#print(m.group(0))
 					str = "|".join(qualifiers[m.group(0)]);	
-					#print(str);
-					m2 = re.match(idents,str);
+					m2 = re.match(tag_value,str);
 					if m2 is not None:
-						print(m2.group());	 
+						sequences_filtered.append(record);	
+						print(m2.group());
+	return sequences_filtered; 

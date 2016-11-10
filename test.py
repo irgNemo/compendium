@@ -17,7 +17,9 @@ def main():
 	#save(file_name_extension, handler);
 	records = parse(file_name_extension, file_format);
 	print("Calculando estadisticas ...");
-	validateORFs(records, "gene|product", "E6|E7");
+	sequences_filtered = validateORFs(records, "CDS", "gene|product", "E6|E7");
+	print("Longitud leidos :" + str(len(records)));
+	print("Longitud filtrados :" + str(len(sequences_filtered)));
 
 
 if __name__ == "__main__":
