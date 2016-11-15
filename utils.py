@@ -1,18 +1,25 @@
 import re;
-def validateORFs(sequence_records, feature_to_filter, feature_tag, tag_value):
+def validateORFs(sequence_records, feature_name, feature_tag, tag_value):
 	sequences_filtered = [];
+	feature_tag_regex = '(' + '|'.join(feature_tag) + ')'; # Se construye la expresion regular para no dejar la responsabilidad al usuario.
+	tag_value_regex = '(' + '|'.join(tag_value) + ')'; # Se construye la expresion regular para no dejar la responsabilidad al usuario
 	for record in sequence_records:
-		print ("--------------------\n");
-		print (record.name);
+		print ("---------------------");
+		print(record.name);
+		tag_value_found = "";
 		for feature in record.features:
-			if re.search(feature_to_filter, feature.type) is not None:
+			n = re.search(feature_name,feature.type);
+			if n is not None:
 				qualifiers = feature.qualifiers;
-				qualifiersStr = '|'.join(qualifiers.keys());
-				m = re.search(feature_tag, qualifiersStr);
+				qualifiersStr = ','.join(qualifiers.keys());
+				m = re.search(feature_tag_regex, qualifiersStr);
 				if m is not None:
-					str = "|".join(qualifiers[m.group(0)]);	
-					m2 = re.match(tag_value,str);
-					if m2 is not None:
-						sequences_filtered.append(record);	
-						print(m2.group());
+					tag_value_found += ','.join(qualifiers[m.group(0)]) + ',';
+		values_found = re.findall(tag_value_regex, tag_value_found);
+		save = True;
+		for value in tag_value:
+			save = save and (value in values_found);
+		print ('Salvar?: ' + str(save));
+		if save :
+			sequences_filtered.append(record);
 	return sequences_filtered; 

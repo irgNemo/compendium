@@ -46,12 +46,6 @@ FEATURES             Location/Qualifiers
                      /translation="MESANASTSATTIDQLCKTFNLSMHTLQINCVFCKNALTTAEIY
                      SYAYKQLKVLFRGGYPYAACACCLEFHGKINQYRHFDYAGYATTVEEETKQDILDVLI
                      RCYLCHKPLCEVEKVKHILTKARFIKLNCTWKGRCLHCWTTCMEDMLP"
-     CDS             531..827
-                     /codon_start=1
-                     /product="E7"
-                     /protein_id="ALT54570.1"
-                     /translation="MHGRHVTLKDIVLDLQPPDPVGLHCYEQLVDSSEDEVDEVDGQD
-                     SQPLKQHFQIVTCCCGCDSNVRLVVQCTETDIREVQQLLLGTLDIVCPICAPKT"
      CDS             833..2782
                      /codon_start=1
                      /product="E1"
