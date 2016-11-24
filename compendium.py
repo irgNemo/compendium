@@ -35,7 +35,7 @@ def alignSequences(file_name, file_format, aligner_path):
 	records = parse(file_name + '.' + file_format, file_format);
 	selected_records = get_ORF(records, 'gene', 'E6');
 	output_fasta_file = file_name + '.' + 'fasta'; # Eliminar el archivo del disco 
-	clustal_align(output_fasta_file, clustalw2_path);
+	clustal_align(output_fasta_file, aligner_path);
 	show_align(file_name + '.' + 'aln', 'clustal');
 	show_tree(file_name + '.' + 'dnd');
 	return 1;
