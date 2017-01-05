@@ -107,9 +107,10 @@ def newSequence(data,ident,name,description,references):
 	sequence = SeqRecord(data,ident,name,description,references)
 	return sequence
 
-def writeFile(sequence_list,filename,file_format):
-	SeqIO.write(sequence_list, filename, file_format)
-	#print("Successfully saved")
+def writeFile(sequence_list,file_name,file_format):
+	fasta_filename = file_name + "." + file_format;
+	SeqIO.write(sequence_list, fasta_filename, file_format)
+	return fasta_filename;
 
 
 

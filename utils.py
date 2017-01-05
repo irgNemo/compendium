@@ -1,11 +1,9 @@
 import re;
-def validateORFs(sequence_records, feature_name, feature_tag, tag_value):
+def filterByNCBITagValue(sequence_records, feature_name, feature_tag, tag_value):
 	sequences_filtered = [];
 	feature_tag_regex = '(' + '|'.join(feature_tag) + ')'; # Se construye la expresion regular para no dejar la responsabilidad al usuario.
 	tag_value_regex = '(' + '|'.join(tag_value) + ')'; # Se construye la expresion regular para no dejar la responsabilidad al usuario
 	for record in sequence_records:
-		print ("---------------------");
-		print(record.name);
 		tag_value_found = "";
 		for feature in record.features:
 			n = re.search(feature_name,feature.type);
@@ -19,7 +17,6 @@ def validateORFs(sequence_records, feature_name, feature_tag, tag_value):
 		save = True;
 		for value in tag_value:
 			save = save and (value in values_found);
-		print ('Salvar?: ' + str(save));
 		if save :
 			sequences_filtered.append(record);
 	return sequences_filtered; 

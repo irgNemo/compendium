@@ -8,7 +8,7 @@ from Bio.Align.Applications import ClustalwCommandline
 """Generates the aling file (*.aln) and the PhyloTree file (*.dnd) using ClustalW
 	INPUTS: input_file --> it's the name of a FASTA sequence(s) file.	Ex.:"opuntia.fasta"
 					path-->it's the ubication of ClustalW CommanLine Ex.:"/home/user/Desktop/clustalw2"""
-def clustal_align(input_file,path):
+def clustal_align(input_file, path):
 	assert os.path.isfile(path), "Clustal W executable missing"
 	cline = ClustalwCommandline(path, infile=input_file)
 	cline()
