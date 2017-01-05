@@ -8,7 +8,6 @@ def main():
 	clustalw2_path = "./aligners/clustalw/clustalw2";
 	sequence_file_path = "";
 	alignment_file_name = "";
-	tree_file_name = "";
 	database = "nucleotide";
 	email = "irg_nemo@hotmail.com";
 	file_format = "gb";
@@ -31,7 +30,6 @@ def downloadSequences(database,term, file_name, file_format, email):
 	return 1;
 	
 def alignSequences(file_name, file_format, aligner_path):
-
 	records = parse(file_name + '.' + file_format, file_format);
 	selected_records = get_ORF(records, 'gene', 'E6');
 	output_fasta_file = file_name + '.' + 'fasta'; # Eliminar el archivo del disco 
