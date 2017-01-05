@@ -1,11 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from utils import *;
 from Petitions import *;
 from Alignments import *;
+from Bio import Phylo;
+from Bio import AlignIO;
+from IO import *;
 
 def main():
 	# Configuration parameters
-	clustalw2_path = "./aligners/clustalw/clustalw2";
+	clustalw2_path = "./aligners/clustalw/ios/clustalw2";
 	sequence_file_path = "";
 	alignment_file_name = "";
 	tree_file_name = "";
@@ -16,7 +19,11 @@ def main():
 	term = "Human Papillomavirus type 6 complete genome isolate";
 
 	#downloadSequences(database, term, file_name, file_format, email);
-	alignSequences(file_name, file_format, clustalw2_path);
+	#alignSequences(file_name, file_format, clustalw2_path);
+	alignment = get_align(file_name + '.aln', 'clustal');
+	strAlignment = alignment.format("clustal");
+	strTree = tree_to_str(file_name + '.dnd');
+	pdf_save(strAlignment, file_name + ".pdf"); 
 
 def downloadSequences(database,term, file_name, file_format, email):
 	print ("Searching ...");
@@ -35,9 +42,10 @@ def alignSequences(file_name, file_format, aligner_path):
 	records = parse(file_name + '.' + file_format, file_format);
 	selected_records = get_ORF(records, 'gene', 'E6');
 	output_fasta_file = file_name + '.' + 'fasta'; # Eliminar el archivo del disco 
+	writeFile(selected_records, output_fasta_file,'fasta');
 	clustal_align(output_fasta_file, aligner_path);
-	show_align(file_name + '.' + 'aln', 'clustal');
-	show_tree(file_name + '.' + 'dnd');
+	#show_align(file_name + ".aln", "clustal");
+	#show_tree(file_name + ".dnd");
 	return 1;
 	
 
