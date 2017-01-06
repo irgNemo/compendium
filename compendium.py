@@ -5,6 +5,7 @@ from Alignments import *;
 from Bio import Phylo;
 from Bio import AlignIO;
 from IO import *;
+from time import time;
 
 def main():
 	# Configuration parameters
@@ -16,11 +17,16 @@ def main():
 	file_format = "gb";
 	file_name = "hpv_type6";
 	term = "Human Papillomavirus type 6 complete genome isolate";
+	
+	filename_path = downloadSequences(database, term, file_name, file_format, email, "./output"); # Descarga las secuencias con base en el parametro 'term'
+	#filename_path = "./output/hpv_type6/hpv_type6.gb" # Hardcode para realizar pruebas rapidas
+	sequence_to_align_file_path = filterSequences(filename_path, file_format, "fasta", "CDS", ['gene', 'product'], ['E6']); # Filtra la secuencia para quedarse con aquellas que cumplan con un valor especifico del tag
+	initial_time = time(); # Comienza el conteo del tiempo de alineamiento
+	clustal_align(sequence_to_align_file_path, clustalw2_path); # TODO: Agregar una barra de avance para saber si esta trabajando o no, se podra?
+	final_time = time(); # Termina el tiempo de alieamiento
+	elapsed_time = final_time - initial_time; # Calculo del tiempo transcurrido
+	print("Alignment elapsed time: " + str(elapsed_time));
 
-	#filename_path = downloadSequences(database, term, file_name, file_format, email, "./output");
-	filename_path = "./output/hpv_type6/hpv_type6.gb"
-	fasta_filename = filterSequences(filename_path, file_format, "CDS", ['gene', 'product'], ['E6']); 
-	clustal_align(fasta_filename, clustalw2_path); # TODO: Agregar una barra de avance para saber si esta trabajando o no, se podra?
 	alignment = get_align(filename_path + '.aln', 'clustal');
 	strAlignment = alignment.format("clustal");
 	strTree = tree_to_str(filename_path + '.dnd'); # TODO: Ver como podemos imprimir el arbol, puede ser una imagen y ponerla en el documento
@@ -43,10 +49,12 @@ def downloadSequences(database,term, file_name, file_format, email, saving_path)
 	print("Sequences stored in file " + saving_path);
 	return saving_path;
 	
-def filterSequences(file_name, file_format, feature_name, feature_tag, tag_value):
-	records = parse(file_name, file_format);
+def filterSequences(filename_path, file_format, output_file_extension, feature_name, feature_tag, tag_value):
+	records = parse(filename_path, file_format);
 	records_filtered = filterByNCBITagValue(records, feature_name, feature_tag, tag_value);
-	return writeFile(records_filtered, file_name, "fasta");	
+	return writeFile(records_filtered, filename_path, output_file_extension);
+
+
 
 if __name__ == "__main__":
 	main();
