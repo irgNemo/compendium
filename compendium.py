@@ -15,13 +15,14 @@ def main():
 	database = "nucleotide";
 	email = "irg_nemo@hotmail.com";
 	file_format = "gb";
-	file_name = "hpv_type6";
-	term = "Human Papillomavirus type 6 complete genome isolate";
+	file_name = "hpv_type42";
+	term = "Human Papillomavirus type 42 complete genome isolate";
 	
 	filename_path = downloadSequences(database, term, file_name, file_format, email, "./output"); # Descarga las secuencias con base en el parametro 'term'
 	#filename_path = "./output/hpv_type6/hpv_type6.gb" # Hardcode para realizar pruebas rapidas
 	sequence_to_align_file_path = filterSequences(filename_path, file_format, "fasta", "CDS", ['gene', 'product'], ['E6']); # Filtra la secuencia para quedarse con aquellas que cumplan con un valor especifico del tag
 	initial_time = time(); # Comienza el conteo del tiempo de alineamiento
+	print("Aligning sequences ...");
 	clustal_align(sequence_to_align_file_path, clustalw2_path); # TODO: Agregar una barra de avance para saber si esta trabajando o no, se podra?
 	final_time = time(); # Termina el tiempo de alieamiento
 	elapsed_time = final_time - initial_time; # Calculo del tiempo transcurrido
@@ -30,7 +31,8 @@ def main():
 	alignment = get_align(filename_path + '.aln', 'clustal');
 	strAlignment = alignment.format("clustal");
 	strTree = tree_to_str(filename_path + '.dnd'); # TODO: Ver como podemos imprimir el arbol, puede ser una imagen y ponerla en el documento
-	pdf_save(strAlignment, filename_path + ".pdf"); 
+	pdf_save(strAlignment, filename_path + ".pdf");
+	print("PDF stored as " + filename_path + ".pdf");
 
 def downloadSequences(database,term, file_name, file_format, email, saving_path):
 	print ("Searching ...");
