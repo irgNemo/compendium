@@ -91,11 +91,11 @@ def get_ORF(record_list,type_seq,ident):
 				lower = int(match.group(1))
 				uper = int(match.group(2))
 				new = record[lower:uper].seq
-				print("Locus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
-				print(new)
-				print("**********************************************************************")
-				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)#en descripcion se pone la sección del gen
-				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)#se pasa tal cual la descripción de la secuencia
+				#print("Locus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
+				#print(new)
+				#print("**********************************************************************")
+				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)
+				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)
 				seq_list.append(new_record)
 	return seq_list	
 				
@@ -111,9 +111,10 @@ def newSequence(data,ident,name,description,references):
 	INPUTS: sequence_list --> SeqRecord list
 					filename --> a string that specifies the filename
 					format --> a string that specifies the format of the file. """
-def writeFile(sequence_list,filename,file_format):
-	SeqIO.write(sequence_list, filename, file_format)
-	print("Successfully saved")
+def writeFile(sequence_list,file_name,file_format):
+	fasta_filename = file_name + "." + file_format;
+	SeqIO.write(sequence_list, fasta_filename, file_format)
+	return fasta_filename;
 
 """Checks if a list is empty.
 	INPUTS: record_list --> a list

@@ -1,4 +1,5 @@
-import os
+import os;
+from io import StringIO;
 from Bio import AlignIO
 from Bio import Phylo
 from Bio.Align.Applications import MuscleCommandline
@@ -7,7 +8,7 @@ from Bio.Align.Applications import ClustalwCommandline
 """Generates the aling file (*.aln) and the PhyloTree file (*.dnd) using ClustalW
 	INPUTS: input_file --> it's the name of a FASTA sequence(s) file.	Ex.:"opuntia.fasta"
 					path-->it's the ubication of ClustalW CommanLine Ex.:"/home/user/Desktop/clustalw2"""
-def clustal_align(input_file,path):
+def clustal_align(input_file, path):
 	assert os.path.isfile(path), "Clustal W executable missing"
 	cline = ClustalwCommandline(path, infile=input_file)
 	cline()
@@ -44,10 +45,13 @@ def get_align(input_file,file_type):
 """Shows the tree based in PhyloTree file (*.dnd) 
 	INPUTS: input_file --> it's the name of a PhyloTree file. Ex.: "opuntia.dnd" """
 def show_tree(input_file):
-	tree = Phylo.read(input_file, "newick")
-	Phylo.draw_ascii(tree)
+	tree = Phylo.read(input_file, "newick");
+	Phylo.draw_ascii(tree);
 
-
-	
-
-
+def tree_to_str(input_file):
+	tree = Phylo.read(input_file, "newick");
+	out_handle_str = StringIO();
+	Phylo.draw_ascii(tree, out_handle_str);
+	str = out_handle_str.getvalue();
+	out_handle_str.close();
+	return str;
