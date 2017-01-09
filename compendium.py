@@ -11,7 +11,6 @@ import sys
 def main():
 	# Configuration parameters
 	platform = sys.platform;
-	print(platform);	
 	clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
 	sequence_file_path = "";
 	alignment_file_name = "";
