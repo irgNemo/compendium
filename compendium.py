@@ -6,10 +6,13 @@ from Bio import Phylo;
 from Bio import AlignIO;
 from IO import *;
 from time import time;
+import sys
 
 def main():
 	# Configuration parameters
-	clustalw2_path = "./aligners/clustalw/linux/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
+	platform = sys.platform;
+	print(platform);	
+	clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
 	sequence_file_path = "";
 	alignment_file_name = "";
 	database = "nucleotide";
