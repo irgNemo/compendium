@@ -44,8 +44,5 @@ def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
 					sequence_grouped_by_ORFs[orf].append(orf_seqRecord);
 	return sequence_grouped_by_ORFs;
 
-def filterSequences(filename_path, file_format, output_file_extension, feature_name, feature_tag, tag_value):
-	records = parse(filename_path, file_format);
-	records_filtered = filterByNCBITagValue(records, feature_name, feature_tag, tag_value);
-	return writeFile(records_filtered, filename_path, output_file_extension);
+
 
