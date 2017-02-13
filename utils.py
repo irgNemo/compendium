@@ -20,3 +20,32 @@ def filterByNCBITagValue(sequence_records, feature_name, feature_tag, tag_value)
 		if save :
 			sequences_filtered.append(record);
 	return sequences_filtered; 
+
+def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
+	sequence_grouped_by_ORFs = {}; # Este diccionario tendra dos niveles: identificado de ORF y  Arreglo de ORFs
+	for tag in tag_values: # Se inicializa el diccionario para que tenga los tag_values que requiere (E6, E7, ..., L1)
+		sequence_grouped_by_ORFs[tag] = [];
+	for sequence in sequence_data:
+		id_sequence = sequence.id;
+		for feature in sequence.features:
+			if feature.type == feature_tag:
+				orf = feature.qualifiers.get('product'); #pasar product como parametro y ver como preguntamos por gene
+				orf = ''.join(orf); # Se cambia de arreglo a string para poder compararlo contra arreglo tag_values
+				if orf in tag_values:
+					pos = str(feature.location);
+					match = re.search('<?(\d+):>?(\d+)', pos);
+					lower = int(match.group(1));
+					uper = int(match.group(2));
+					orf_sequence = sequence[lower:uper].seq;
+					orf_seqRecord = SeqRecord(orf_sequence);
+					orf_seqRecord.id = sequence.id;
+					orf_seqRecord.description = sequence.description;
+					orf_seqRecord.name = orf
+					sequence_grouped_by_ORFs[orf].append(orf_seqRecord);
+	return sequence_grouped_by_ORFs;
+
+def filterSequences(filename_path, file_format, output_file_extension, feature_name, feature_tag, tag_value):
+	records = parse(filename_path, file_format);
+	records_filtered = filterByNCBITagValue(records, feature_name, feature_tag, tag_value);
+	return writeFile(records_filtered, filename_path, output_file_extension);
+
