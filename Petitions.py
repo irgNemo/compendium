@@ -124,8 +124,23 @@ def is_empty(record_list):
 		return True
 	else:
 		return False
-
-
+"""Searches and downloads sequences by the term and database. Returns the file path they were saved."""
+def downloadSequences(database,term, file_name, file_format, email, saving_path):
+	print ("Searching ...");
+	records = search(database, term, email);
+	print("Search finished");
+	print("Downloading " + str(len(records)) + " sequences ...");
+	records_str = format(records);
+	record_handler = download(database, records_str, file_format, email);
+	file_name_extension = file_name + '.' + file_format;
+	if not os.path.exists(saving_path):
+		os.makedirs(saving_path);
+	if not os.path.exists(saving_path + "/" + file_name):
+		os.makedirs(saving_path + "/" + file_name);
+	saving_path += "/" + file_name + "/" + file_name_extension;
+	save(saving_path, record_handler);
+	print("Sequences stored in file " + saving_path);
+return saving_path;
 
 
 
