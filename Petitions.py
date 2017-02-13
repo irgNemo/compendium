@@ -123,7 +123,8 @@ def is_empty(record_list):
 	if len(record_list) == 0:
 		return True
 	else:
-return False
+		return False
+	
 """Searches and downloads sequences by the term and database. Returns the file path they were saved."""
 def downloadSequences(database, term, file_name, file_format, email, saving_path, retmax = 20):
 	print ("Searching ...");
