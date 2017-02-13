@@ -20,11 +20,11 @@ def close(data):
 					term --> it's the name of the term that we want to search.		Ex.: "Human papillomavirus"
 					email --> it's your e-mail address for begining the NCBI connection
 	OUTPUTS: a list of sequence identifiers"""
-def search(database,term,email):
-	init(email)
-	handle = Entrez.esearch(db=database, term=term)
-	record = Entrez.read(handle)
-	return record["IdList"]
+def search(database, term, email, retmax=20):
+	init(email);
+	handle = Entrez.esearch(db=database, term=term, retmax=retmax);
+	record = Entrez.read(handle);
+	return record["IdList"];
 
 """Downloads the data based on sequence identifiers
 	INPUTS: database  --> it's an string that specifies the database where you want to search.		Ex.: "nucleotide"
@@ -32,9 +32,9 @@ def search(database,term,email):
 					file_format --> it's a string that specifies the data format.
 					email --> it's your e-mail address for begining the NCBI connection
 	OUTPUTS: a handle object"""
-def download(database,identifier,file_format,email):
+def download(database, identifier, file_format, email, retmax):
 	init(email)
-	handle = Entrez.efetch(db=database, id=identifier, rettype=file_format, retmode="text")
+	handle = Entrez.efetch(db=database, id=identifier, rettype=file_format, retmode="text", retMax = 20)
 	return handle
 
 """Parses a handle data.
@@ -123,7 +123,7 @@ def is_empty(record_list):
 	if len(record_list) == 0:
 		return True
 	else:
-		return False
+return False
 """Searches and downloads sequences by the term and database. Returns the file path they were saved."""
 def downloadSequences(database, term, file_name, file_format, email, saving_path, retmax = 20):
 	print ("Searching ...");
