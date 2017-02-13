@@ -140,7 +140,7 @@ def downloadSequences(database,term, file_name, file_format, email, saving_path)
 	saving_path += "/" + file_name + "/" + file_name_extension;
 	save(saving_path, record_handler);
 	print("Sequences stored in file " + saving_path);
-return saving_path;
+	return saving_path;
 
 
 
