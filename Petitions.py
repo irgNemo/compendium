@@ -47,7 +47,7 @@ def parse(data,type_file):
 
 """Saves the handle data into a file.
 	INPUTS: filename --> it's the name which we want to save the file.
-					data --> it's a handle data """
+			data --> it's a handle data """
 def save(filename,data):	
 	if not os.path.isfile(filename):
 		out_handle = open(filename, "w")
