@@ -1,4 +1,6 @@
 import re;
+from Bio.SeqRecord import SeqRecord;
+
 def filterByNCBITagValue(sequence_records, feature_name, feature_tag, tag_value):
 	sequences_filtered = [];
 	feature_tag_regex = '(' + '|'.join(feature_tag) + ')'; # Se construye la expresion regular para no dejar la responsabilidad al usuario.
