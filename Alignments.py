@@ -39,7 +39,8 @@ def show_complite_align(input_file,file_type):
 
 """Gets the aling data form the input file
 	INPUTS: input_file --> it's the name of a alignment file. Ex.: "opuntia.aln"
-					file_type --> it's an string refering to the alignment type. Ex.: "clustal" """
+					file_type --> it's an string refering to the alignment type. Ex.: "clustal" 
+	OUTPUTS: MultipleSeqAlignment"""
 def get_align(input_file,file_type):
 	align = AlignIO.read(input_file, file_type)
 	return align

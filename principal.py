@@ -65,12 +65,17 @@ def main():
 		elapsed_time = final_time - initial_time; 
 		print("Alignment " + key + " elapsed time: " + str(elapsed_time));
 		print ("Getting " + key + " consensus ...")
+		#Obteniendo MultipleSeqAlignment object
 		alignment = get_align(new_file_name + "_" + key + output_aling_format, "clustal")
 		#Obteniendo secuencia consenso
 		consensus_seq_record = SeqRecord(get_consensus(alignment,threshold), id = term + " " +key, description = " Consensus sequence ")
 		print ("Saving " + key + " consensus ...")		
 		writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
-	
+		#Generando reporte
+		report_filename = new_file_name + "_" + key + ".pdf"
+		strAlignment = alignment.format("clustal")
+		print report_filename
+		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
 
 if __name__ == "__main__":
 	main();
