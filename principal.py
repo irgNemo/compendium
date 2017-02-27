@@ -38,7 +38,9 @@ def main():
 	#Filtrando secuencias que contengan las secciones buscadas
 	records_filtered = filterByNCBITagValue(record, "CDS", ['gene', 'product'], tag_values_list);
 	#Filtrando por secciones 
-	orfs = separate_ORFs_per_sequence(records_filtered, "CDS", tag_values_list);
+	orfs = separate_ORFs_per_sequence(records_filtered, "CDS", tag_values_list, 10, 10, False);
+	print(orfs);
+	'''
 	#Generando base para nuevo nombre de archivo filtrado
 	new_file_name = main_folder + file_name + "/" + file_name
 	#Guardando secciones filtradas 
@@ -76,7 +78,7 @@ def main():
 		strAlignment = alignment.format("clustal")
 		print (report_filename);
 		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
-
+	'''
 if __name__ == "__main__":
 	main();
 

@@ -23,7 +23,7 @@ def filterByNCBITagValue(sequence_records, feature_name, feature_tag, tag_value)
 			sequences_filtered.append(record);
 	return sequences_filtered; 
 
-def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
+def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values, lower_offset = 0, upper_offset = 0, is_circular = False): # Agregar las variable: lower_offset, upper_offset, is_cicular
 	sequence_grouped_by_ORFs = {}; # Este diccionario tendra dos niveles: identificado de ORF y  Arreglo de ORFs
 	for tag in tag_values: # Se inicializa el diccionario para que tenga los tag_values que requiere (E6, E7, ..., L1)
 		sequence_grouped_by_ORFs[tag] = [];
@@ -38,13 +38,28 @@ def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
 					match = re.search('<?(\d+):>?(\d+)', pos);
 					lower = int(match.group(1));
 					uper = int(match.group(2));
-					orf_sequence = sequence[lower:uper].seq;
+					
+					if is_circular: # Verifica si la secuencia es circular, si lo es se podra concatenar pedazos del final y del principio de la secuencia
+						if (lower - lower_offset) < 0:
+							# Completar con la parte que corresponde del final de la secuencia y concatenarla a la secuencia final
+							lower_segment_len = abs(lower - lower_offset) + 1;
+						
+						if (upper + upper_offset) > len(sequence.seq):
+							upper_segment_len = len(sequence.seq) - (upper + upper_offset);
+
+						orf_sequence = sequence[(len(sequence.seq) - lower_segment_len) + 1: len(sequence.seq)].seq; # La parte que se agrega del extremo izquierdo (downstream)	
+						orf_sequence += sequence[lower:upper].seq; # La parte de la secuenia intermedia 
+						orf_sequence += sequence[1:upper_segment_len].seq; # La parte que se agrega de extremo derecho (upstream)
+						
+					else: # Si no lo es, los limites maximo y minimo de las secuencias son los establecidos.
+						new_lower = if (lower < lower_offset)
+						orf_sequence = sequence[lower:uper].seq;
+						
 					orf_seqRecord = SeqRecord(orf_sequence);
 					orf_seqRecord.id = sequence.id;
 					orf_seqRecord.description = sequence.description;
 					orf_seqRecord.name = orf
 					sequence_grouped_by_ORFs[orf].append(orf_seqRecord);
 	return sequence_grouped_by_ORFs;
-
 
 
