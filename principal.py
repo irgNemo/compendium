@@ -12,8 +12,8 @@ import sys
 def main():
 	# Configuration parameters
 	platform = sys.platform;
-	clustalw2_path = "/home/karla/Desktop/mis_repositorios/compendioBioPython/compendium/aligners/clustalw/linux/clustalw2"
-	#clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
+	#clustalw2_path = "/home/karla/Desktop/mis_repositorios/compendioBioPython/compendium/aligners/clustalw/linux/clustalw2"
+	clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
 	sequence_file_path = "";
 	alignment_file_name = "";
 	database = "nucleotide";
@@ -69,12 +69,12 @@ def main():
 		alignment = get_align(new_file_name + "_" + key + output_aling_format, "clustal")
 		#Obteniendo secuencia consenso
 		consensus_seq_record = SeqRecord(get_consensus(alignment,threshold), id = term + " " +key, description = " Consensus sequence ")
-		print ("Saving " + key + " consensus ...")		
+		print ("Saving " + key + " consensus ...");
 		writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
 		#Generando reporte
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")
-		print report_filename
+		print (report_filename);
 		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
 
 if __name__ == "__main__":
