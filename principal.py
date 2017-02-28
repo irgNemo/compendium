@@ -18,18 +18,21 @@ def main():
 	alignment_file_name = "";
 	database = "nucleotide";
 	email = "irg_nemo@hotmail.com";
-	tag_values_list = ['E6', 'E7']
+	tag_values_list = ['E6', 'E7', 'E1', 'E2', 'E4', 'E5', 'L2', 'L1'];
 	file_format = "gb";
 	alinging_format = "fasta"
 	output_aling_format = ".aln"
 	philo_format = ".dnd"
-	image_format = ".jpg"
+	image_format = ".png"
 	file_name = "hpv_type18";
 	term = "Human Papillomavirus type 18 complete genome isolate";
 	retmax = 50; # Total number of UID from the retrieved set to be shown
 	main_folder = "./output/"
 	tool = "clustalw"
-	threshold = 0.6
+	threshold = 0.7
+	lower_offset = 100;
+	upper_offset = 100;
+	is_circular = False;
 	
 	#Buscando y descargando las secuencias correspondientes
 	filename_path = downloadSequences(database, term, file_name, file_format, email, "./output", retmax); 
@@ -38,9 +41,7 @@ def main():
 	#Filtrando secuencias que contengan las secciones buscadas
 	records_filtered = filterByNCBITagValue(record, "CDS", ['gene', 'product'], tag_values_list);
 	#Filtrando por secciones 
-	orfs = separate_ORFs_per_sequence(records_filtered, "CDS", tag_values_list, 10, 10, False);
-	print(orfs);
-	'''
+	orfs = separate_ORFs_per_sequence(records_filtered, "CDS", tag_values_list, lower_offset, upper_offset, is_circular);
 	#Generando base para nuevo nombre de archivo filtrado
 	new_file_name = main_folder + file_name + "/" + file_name
 	#Guardando secciones filtradas 
@@ -78,7 +79,8 @@ def main():
 		strAlignment = alignment.format("clustal")
 		print (report_filename);
 		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
-	'''
+
+
 if __name__ == "__main__":
 	main();
 

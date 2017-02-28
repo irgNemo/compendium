@@ -37,8 +37,9 @@ def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values, lower_off
 					pos = str(feature.location);
 					match = re.search('<?(\d+):>?(\d+)', pos);
 					lower = int(match.group(1));
-					uper = int(match.group(2));
-					
+					upper = int(match.group(2));
+					#print("Secuencia sin offset");
+					#print(sequence[lower:upper].seq);
 					if is_circular: # Verifica si la secuencia es circular, si lo es se podra concatenar pedazos del final y del principio de la secuencia
 						if (lower - lower_offset) < 0:
 							# Completar con la parte que corresponde del final de la secuencia y concatenarla a la secuencia final
@@ -52,9 +53,12 @@ def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values, lower_off
 						orf_sequence += sequence[1:upper_segment_len].seq; # La parte que se agrega de extremo derecho (upstream)
 						
 					else: # Si no lo es, los limites maximo y minimo de las secuencias son los establecidos.
-						new_lower = if (lower < lower_offset)
-						orf_sequence = sequence[lower:uper].seq;
-						
+						new_lower = (lower - lower_offset) if ((lower - lower_offset) > 1) else 1;
+						new_upper = (upper + upper_offset) if (upper + upper_offset) < len(sequence.seq) else len(sequence.seq);
+						orf_sequence = sequence[new_lower:new_upper].seq;
+					
+					#print("Secuencia con offset");
+					#print(orf_sequence);
 					orf_seqRecord = SeqRecord(orf_sequence);
 					orf_seqRecord.id = sequence.id;
 					orf_seqRecord.description = sequence.description;
