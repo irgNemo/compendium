@@ -28,11 +28,12 @@ def main():
 	term = "Human Papillomavirus type 18 complete genome isolate";
 	retmax = 50; # Total number of UID from the retrieved set to be shown
 	main_folder = "./output/"
+	primers_folder = "/primers/"
 	tool = "clustalw"
 	threshold = 0.6
-	
+
 	#Buscando y descargando las secuencias correspondientes
-	filename_path = downloadSequences(database, term, file_name, file_format, email, "./output", retmax); 
+	filename_path = downloadSequences(database, term, file_name, file_format, email, main_folder, retmax); 
 	#Leyendo secuencias descargadas	
 	record = parse(filename_path, file_format);
 	#Filtrando secuencias que contengan las secciones buscadas
@@ -64,18 +65,22 @@ def main():
 		# Calculo del tiempo transcurrido
 		elapsed_time = final_time - initial_time; 
 		print("Alignment " + key + " elapsed time: " + str(elapsed_time));
-		print ("Getting " + key + " consensus ...")
-		#Obteniendo MultipleSeqAlignment object
-		alignment = get_align(new_file_name + "_" + key + output_aling_format, "clustal")
-		#Obteniendo secuencia consenso
-		consensus_seq_record = SeqRecord(get_consensus(alignment,threshold), id = term + " " +key, description = " Consensus sequence ")
-		print ("Saving " + key + " consensus ...")		
-		writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
-		#Generando reporte
-		report_filename = new_file_name + "_" + key + ".pdf"
-		strAlignment = alignment.format("clustal")
-		print report_filename
-		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
+	print ("Getting " + key + " consensus ...")
+	#Obteniendo MultipleSeqAlignment object
+	alignment = get_align(new_file_name + "_" + key + output_aling_format, "clustal")
+	#Obteniendo secuencia consenso
+	consensus_seq_record = SeqRecord(get_consensus(alignment,threshold), id = term + " " +key, description = " Consensus sequence ")
+	print ("Saving " + key + " consensus ...")		
+	writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
+	primers_folder_path = new_file_name + primers_folder
+	print primers_folder_path
+
+
+	#Generando reporte
+	report_filename = new_file_name + "_" + key + ".pdf"
+	strAlignment = alignment.format("clustal")
+	print report_filename
+	generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
 
 if __name__ == "__main__":
 	main();
