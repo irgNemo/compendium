@@ -47,6 +47,8 @@ def main():
 	#Guardando secciones filtradas 
 	for key in orfs.keys():
 		writeFile(orfs[key],new_file_name + "_" + key , alinging_format);
+	
+	#Creando carpeta para primers
 	p3_filename = main_folder + file_name
 	primers_folder  = 	make_primers_dir(p3_filename)
 	print (primers_folder + '\n.............................')
@@ -80,19 +82,22 @@ def main():
 		print ("Saving " + key + " consensus ...")		
 		writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
 		
-		full_primers_input_filename = primers_folder + PRIMERS_INPUT_FILENAME
+		full_primers_input_filename = primers_folder + PRIMERS_INPUT_FILENAME + "_" + key
 		print full_primers_input_filename
 		seq_id = primers_folder+ 'primers_' +key
 		generate_basic_primers_input(full_primers_input_filename, seq_id, str(consensus_seq_record.seq),seq_target)
 		print 'Generated' + key +' primers input file'
-
+		get_primers(full_primers_input_filename) 
+		print 'Reading generated primers'
+		data = read_primers(seq_id)
+		
+		
 		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")
 		print report_filename
-		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
-	
-	get_primers(full_primers_input_filename)
+		generate_report(strAlignment,consensus_seq_record,tree_filename,data,report_filename)
+
 
 if __name__ == "__main__":
 	main();
