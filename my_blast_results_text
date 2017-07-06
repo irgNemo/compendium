@@ -1,0 +1,764 @@
+<p><!--
+QBlastInfoBegin
+	Status=READY
+QBlastInfoEnd
+--><p>
+<PRE>
+BLASTN 2.6.1+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro
+A. Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and
+David J. Lipman (1997), "Gapped BLAST and PSI-BLAST: a new
+generation of protein database search programs", Nucleic
+Acids Res. 25:3389-3402.
+
+
+RID: NXFMXVEN015
+
+
+Database: Nucleotide collection (nt)
+           43,316,432 sequences; 149,875,683,954 total letters
+Query= 
+Length=20
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+KY457840.1  Human papillomavirus type 18 strain 18CNTZ36 E6 (E...  37.4    2.5  
+KY457839.1  Human papillomavirus type 18 strain 18CNTZ35 E6 (E...  37.4    2.5  
+KY457838.1  Human papillomavirus type 18 strain 18CNTZ34 E6 (E...  37.4    2.5  
+KY457837.1  Human papillomavirus type 18 strain 18CNTZ33 E6 (E...  37.4    2.5  
+KY457836.1  Human papillomavirus type 18 strain 18CNTZ32 E6 (E...  37.4    2.5  
+KY457835.1  Human papillomavirus type 18 strain 18CNTZ31 E6 (E...  37.4    2.5  
+KY457834.1  Human papillomavirus type 18 strain 18CNTZ30 E6 (E...  37.4    2.5  
+KY457833.1  Human papillomavirus type 18 strain 18CNTZ29 E6 (E...  37.4    2.5  
+KY457832.1  Human papillomavirus type 18 strain 18CNTZ28 E6 (E...  37.4    2.5  
+KY457831.1  Human papillomavirus type 18 strain 18CNTZ27 E6 (E...  37.4    2.5  
+KY457830.1  Human papillomavirus type 18 strain 18CNTZ26 E6 (E...  37.4    2.5  
+KY457829.1  Human papillomavirus type 18 strain 18CNTZ25 E6 (E...  37.4    2.5  
+KY457828.1  Human papillomavirus type 18 strain 18CNTZ24 E6 (E...  37.4    2.5  
+KY457827.1  Human papillomavirus type 18 strain 18CNTZ23 E6 (E...  37.4    2.5  
+KY457826.1  Human papillomavirus type 18 strain 18CNTZ22 E6 (E...  37.4    2.5  
+KY457825.1  Human papillomavirus type 18 strain 18CNTZ21 E6 (E...  37.4    2.5  
+KY457824.1  Human papillomavirus type 18 strain 18CNTZ20 E6 (E...  37.4    2.5  
+KY457823.1  Human papillomavirus type 18 strain 18CNTZ19 E6 (E...  37.4    2.5  
+KY457822.1  Human papillomavirus type 18 strain 18CNTZ18 E6 (E...  37.4    2.5  
+KY457821.1  Human papillomavirus type 18 strain 18CNTZ17 E6 (E...  37.4    2.5  
+KY457820.1  Human papillomavirus type 18 strain 18CNTZ16 E6 (E...  37.4    2.5  
+KY457819.1  Human papillomavirus type 18 strain 18CNTZ15 E6 (E...  37.4    2.5  
+KY457818.1  Human papillomavirus type 18 strain 18CNTZ14 E6 (E...  37.4    2.5  
+KY457817.1  Human papillomavirus type 18 strain 18CNTZ13 E6 (E...  37.4    2.5  
+KY457816.1  Human papillomavirus type 18 strain 18CNTZ12 E6 (E...  37.4    2.5  
+KY457815.1  Human papillomavirus type 18 strain 18CNTZ11 E6 (E...  37.4    2.5  
+KY457814.1  Human papillomavirus type 18 strain 18CNTZ10 E6 (E...  37.4    2.5  
+KY457813.1  Human papillomavirus type 18 strain 18CNTZ09 E6 (E...  37.4    2.5  
+KY457812.1  Human papillomavirus type 18 strain 18CNTZ08 E6 (E...  37.4    2.5  
+KY457811.1  Human papillomavirus type 18 strain 18CNTZ07 E6 (E...  37.4    2.5  
+KY457810.1  Human papillomavirus type 18 strain 18CNTZ06 E6 (E...  37.4    2.5  
+KY457809.1  Human papillomavirus type 18 strain 18CNTZ05 E6 (E...  37.4    2.5  
+KY457808.1  Human papillomavirus type 18 strain 18CNTZ04 E6 (E...  37.4    2.5  
+KY457807.1  Human papillomavirus type 18 strain 18CNTZ03 E6 (E...  37.4    2.5  
+KY457806.1  Human papillomavirus type 18 strain 18CNTZ02 E6 (E...  37.4    2.5  
+KY457805.1  Human papillomavirus type 18 strain 18CNTZ01 E6 (E...  37.4    2.5  
+KX514433.1  Human papillomavirus type 18 isolate pam9, complet...  37.4    2.5  
+KY502096.1  Human papillomavirus isolate HPV18 P2-50 transform...  37.4    2.5  
+KY502095.1  Human papillomavirus isolate HPV18 P2-40 transform...  37.4    2.5  
+KY502094.1  Human papillomavirus isolate HPV18 P2-30 transform...  37.4    2.5  
+KY502093.1  Human papillomavirus isolate HPV18 P2-20 transform...  37.4    2.5  
+KY502092.1  Human papillomavirus isolate HPV18 P2-10 transform...  37.4    2.5  
+KY502091.1  Human papillomavirus isolate HPV18 P2 transforming...  37.4    2.5  
+KY502090.1  Human papillomavirus isolate HPV18 P1-50 transform...  37.4    2.5  
+KY502089.1  Human papillomavirus isolate HPV18 P1-40 transform...  37.4    2.5  
+KY502088.1  Human papillomavirus isolate HPV18 P1-30 transform...  37.4    2.5  
+KY502087.1  Human papillomavirus isolate HPV18 P1-20 transform...  37.4    2.5  
+KY502086.1  Human papillomavirus isolate HPV18 P1-10 transform...  37.4    2.5  
+KY502085.1  Human papillomavirus isolate HPV18 P1 transforming...  37.4    2.5  
+KY427058.1  Human papillomavirus type 18 strain RKAH02 E6 prot...  37.4    2.5  
+
+ALIGNMENTS
+>KY457840.1 Human papillomavirus type 18 strain 18CNTZ36 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457839.1 Human papillomavirus type 18 strain 18CNTZ35 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457838.1 Human papillomavirus type 18 strain 18CNTZ34 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457837.1 Human papillomavirus type 18 strain 18CNTZ33 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457836.1 Human papillomavirus type 18 strain 18CNTZ32 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457835.1 Human papillomavirus type 18 strain 18CNTZ31 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457834.1 Human papillomavirus type 18 strain 18CNTZ30 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457833.1 Human papillomavirus type 18 strain 18CNTZ29 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457832.1 Human papillomavirus type 18 strain 18CNTZ28 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457831.1 Human papillomavirus type 18 strain 18CNTZ27 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457830.1 Human papillomavirus type 18 strain 18CNTZ26 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457829.1 Human papillomavirus type 18 strain 18CNTZ25 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457828.1 Human papillomavirus type 18 strain 18CNTZ24 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457827.1 Human papillomavirus type 18 strain 18CNTZ23 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457826.1 Human papillomavirus type 18 strain 18CNTZ22 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457825.1 Human papillomavirus type 18 strain 18CNTZ21 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457824.1 Human papillomavirus type 18 strain 18CNTZ20 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457823.1 Human papillomavirus type 18 strain 18CNTZ19 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457822.1 Human papillomavirus type 18 strain 18CNTZ18 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457821.1 Human papillomavirus type 18 strain 18CNTZ17 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457820.1 Human papillomavirus type 18 strain 18CNTZ16 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457819.1 Human papillomavirus type 18 strain 18CNTZ15 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457818.1 Human papillomavirus type 18 strain 18CNTZ14 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457817.1 Human papillomavirus type 18 strain 18CNTZ13 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457816.1 Human papillomavirus type 18 strain 18CNTZ12 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457815.1 Human papillomavirus type 18 strain 18CNTZ11 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457814.1 Human papillomavirus type 18 strain 18CNTZ10 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457813.1 Human papillomavirus type 18 strain 18CNTZ09 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457812.1 Human papillomavirus type 18 strain 18CNTZ08 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457811.1 Human papillomavirus type 18 strain 18CNTZ07 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457810.1 Human papillomavirus type 18 strain 18CNTZ06 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457809.1 Human papillomavirus type 18 strain 18CNTZ05 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457808.1 Human papillomavirus type 18 strain 18CNTZ04 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457807.1 Human papillomavirus type 18 strain 18CNTZ03 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457806.1 Human papillomavirus type 18 strain 18CNTZ02 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY457805.1 Human papillomavirus type 18 strain 18CNTZ01 E6 (E6), E7 (E7), 
+and L1 (L1) genes, complete cds
+Length=2502
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KX514433.1 Human papillomavirus type 18 isolate pam9, complete genome
+Length=7857
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  516  ACTGGCCTCTATAGTGCCCA  497
+
+
+>KY502096.1 Human papillomavirus isolate HPV18 P2-50 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502095.1 Human papillomavirus isolate HPV18 P2-40 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502094.1 Human papillomavirus isolate HPV18 P2-30 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502093.1 Human papillomavirus isolate HPV18 P2-20 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502092.1 Human papillomavirus isolate HPV18 P2-10 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502091.1 Human papillomavirus isolate HPV18 P2 transforming protein E6 
+(E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502090.1 Human papillomavirus isolate HPV18 P1-50 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502089.1 Human papillomavirus isolate HPV18 P1-40 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502088.1 Human papillomavirus isolate HPV18 P1-30 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502087.1 Human papillomavirus isolate HPV18 P1-20 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502086.1 Human papillomavirus isolate HPV18 P1-10 transforming protein 
+E6 (E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY502085.1 Human papillomavirus isolate HPV18 P1 transforming protein E6 
+(E6) gene, partial cds
+Length=474
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1    ACTGGCCTCTATAGTGCCCA  20
+            ||||||||||||||||||||
+Sbjct  412  ACTGGCCTCTATAGTGCCCA  393
+
+
+>KY427058.1 Human papillomavirus type 18 strain RKAH02 E6 protein (E6) gene, 
+partial cds
+Length=96
+
+ Score = 37.4 bits (40),  Expect = 2.5
+ Identities = 20/20 (100%), Gaps = 0/20 (0%)
+ Strand=Plus/Minus
+
+Query  1   ACTGGCCTCTATAGTGCCCA  20
+           ||||||||||||||||||||
+Sbjct  37  ACTGGCCTCTATAGTGCCCA  18
+
+
+  Database: Nucleotide collection (nt)
+    Posted date:  Jul 4, 2017  12:42 PM
+  Number of letters in database: 149,875,683,954
+  Number of sequences in database:  43,316,432
+
+Lambda      K        H
+   0.634    0.408    0.912 
+Gapped
+Lambda      K        H
+   0.625    0.410    0.780 
+Matrix: blastn matrix:2 -3
+Gap Penalties: Existence: 5, Extension: 2
+Number of Sequences: 43316432
+Number of Hits to DB: 684250
+Number of extensions: 161
+Number of successful extensions: 161
+Number of sequences better than 10: 10
+Number of HSP's better than 10 without gapping: 0
+Number of HSP's gapped: 161
+Number of HSP's successfully gapped: 10
+Length of query: 20
+Length of database: 149875683954
+Length adjustment: 17
+Effective length of query: 3
+Effective length of database: 149139304610
+Effective search space: 447417913830
+Effective search space used: 447417913830
+A: 0
+X1: 22 (20.1 bits)
+X2: 33 (29.8 bits)
+X3: 110 (99.2 bits)
+S1: 28 (26.5 bits)
+S2: 38 (35.6 bits)
+
+
+
+

@@ -14,8 +14,8 @@ PRIMERS_INPUT_FILENAME = 'primers_input'
 def main():
 	# Configuration parameters
 	platform = sys.platform;
-	#clustalw2_path = "/home/karla/Desktop/mis_repositorios/compendioBioPython/compendium/aligners/clustalw/linux/clustalw2"
-	clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
+	clustalw2_path = "/home/karla-avila/Desktop/mis_repositorios/compendium/aligners/clustalw/linux/clustalw2"
+	#clustalw2_path = "./aligners/clustalw/" + platform  + "/clustalw2"; # TODO: cambiar la ruta dependiendo del sistema operativo
 	sequence_file_path = "";
 	alignment_file_name = "";
 	database = "nucleotide";
@@ -89,14 +89,15 @@ def main():
 		print 'Generated' + key +' primers input file'
 		get_primers(full_primers_input_filename) 
 		print 'Reading generated primers'
-		data = read_primers(seq_id)
+		primers_data = read_primers(seq_id)
+		primer_list = get_primers_list(seq_id)
 		
 		
 		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")
 		print report_filename
-		generate_report(strAlignment,consensus_seq_record,tree_filename,data,report_filename)
+		generate_report(strAlignment,consensus_seq_record,tree_filename,primers_data,report_filename)
 
 
 if __name__ == "__main__":
