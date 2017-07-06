@@ -2,12 +2,14 @@
 from utils import *;
 from Petitions import *;
 from Alignments import *;
+from Primers import *;
 from Bio import Phylo;
 from Bio import AlignIO;
 from IO import *;
 from time import time;
 import sys
 
+PRIMERS_INPUT_FILENAME = 'primers_input'
 
 def main():
 	# Configuration parameters
@@ -30,9 +32,10 @@ def main():
 	main_folder = "./output/"
 	tool = "clustalw"
 	threshold = 0.6
-	
+	seq_target = '37,21'
+
 	#Buscando y descargando las secuencias correspondientes
-	filename_path = downloadSequences(database, term, file_name, file_format, email, "./output", retmax); 
+	filename_path = downloadSequences(database, term, file_name, file_format, email, main_folder, retmax); 
 	#Leyendo secuencias descargadas	
 	record = parse(filename_path, file_format);
 	#Filtrando secuencias que contengan las secciones buscadas
@@ -44,8 +47,15 @@ def main():
 	#Guardando secciones filtradas 
 	for key in orfs.keys():
 		writeFile(orfs[key],new_file_name + "_" + key , alinging_format);
+	
+	#Creando carpeta para primers
+	p3_filename = main_folder + file_name
+	primers_folder  = 	make_primers_dir(p3_filename)
+	print (primers_folder + '\n.............................')
+	
+	
 	"""Procesando ...
-		Generando alineamiento, secuencia consenso y arbol"""
+		Generando alineamiento, secuencia consenso, arbol filogenetico y primers"""
 	for key in orfs.keys():
 		print("Aligning sequences " + key +"...");
 		initial_time = time(); # Comienza el conteo del tiempo de alineamiento
@@ -71,11 +81,23 @@ def main():
 		consensus_seq_record = SeqRecord(get_consensus(alignment,threshold), id = term + " " +key, description = " Consensus sequence ")
 		print ("Saving " + key + " consensus ...");
 		writeFile(consensus_seq_record,new_file_name + "_consensus_" + key, alinging_format)
-		#Generando reporte
+		
+		full_primers_input_filename = primers_folder + PRIMERS_INPUT_FILENAME + "_" + key
+		print full_primers_input_filename
+		seq_id = primers_folder+ 'primers_' +key
+		generate_basic_primers_input(full_primers_input_filename, seq_id, str(consensus_seq_record.seq),seq_target)
+		print 'Generated' + key +' primers input file'
+		get_primers(full_primers_input_filename) 
+		print 'Reading generated primers'
+		data = read_primers(seq_id)
+		
+		
+		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")
-		print (report_filename);
-		generate_report(strAlignment,consensus_seq_record,tree_filename,report_filename)
+		print report_filename
+		generate_report(strAlignment,consensus_seq_record,tree_filename,data,report_filename)
+
 
 if __name__ == "__main__":
 	main();

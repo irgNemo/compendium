@@ -5,8 +5,13 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from Alignments import *;
 
+TREE_TITLE = "Multiple Sequence Alignment tree"
+CONSENSUS_TITLE = "Consensus sequence"
+PRIMERS_TITLE = 'Primers data'
 CONSENSUS_X = 50
 CONSENSUS_Y = 760
+PRIMERS_X = 50
+PRIMERS_Y = 760
 TEXT_ORIGIN_X = 30
 TEXT_ORIGIN_Y = 785
 TITLE_X = 30
@@ -20,6 +25,11 @@ SCALE = 0.70
 PAGE_LIMIT = 47
 LINE_LIMIT = 80
 POS_TABS = 247
+"""Creates a new canvas page
+	INPUTS: canvas --> canvas object"""
+def new_page(canvas):
+	canvas.showPage()
+
 """Creates a  new ReportLab text object
 	INPUTS: data--> it's a string 
 			canvas --> A ReportLab canvas
@@ -38,7 +48,7 @@ def new_textobject(data,canvas,pos_x,pos_y):
 			title--> A string that describes the report section at the page's beginning
 			data--> Alignment data to be save as MultipleSeqAlignment
 			page_limit--> Integer that defines the number of new lines per page"""
-def add_split_data(canvas,title,data,page_limit):
+def add_split_data(canvas,title,data,page_limit=PAGE_LIMIT):
 	data_list = data.split('\n')
 	data_list_lenght = len(data_list)
 	i = 0	
@@ -96,20 +106,20 @@ def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT)
 			canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
 			y = CONSENSUS_Y
 			j = 0
-
+	
 """Generates a pdf report based on the alignment, consensus sequence and the philo tree
 	INPUTS: data--> alignment data
 			consensus_data --> consensus sequence by Seq object
 			image_name--> It's the image filename
 			file_name--> A string that specifies the report filename"""
-def generate_report(data,consensus_data,image_name,file_name):
+def generate_report(data,consensus_data,image_name,primers_data,file_name):
 	c = canvas.Canvas(file_name)
 	title,align = data.split("alignment")
 	title = title + "alignment"
-	tree_title = "Multiple Sequence Alignment tree"
-	consensus_title = "Consensus sequence"
-	add_split_data(c,title,align,PAGE_LIMIT)
-	add_image(c,tree_title,image_name)
-	add_consensus(c,consensus_title,consensus_data,PAGE_LIMIT,LINE_LIMIT)
+	add_split_data(c,title,align)
+	add_image(c,TREE_TITLE,image_name)
+	add_consensus(c,CONSENSUS_TITLE,consensus_data)
+	new_page(c)
+	add_split_data(c,PRIMERS_TITLE,primers_data)
 	c.save()	
 
