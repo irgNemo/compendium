@@ -91,13 +91,13 @@ def main():
 		print 'Reading generated primers'
 		primers_data = read_primers(seq_id)
 		primer_list = get_primers_list(seq_id)
-		
+		blast_data = get_blast_data(primer_list[0:5])
 		
 		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")
 		print report_filename
-		generate_report(strAlignment,consensus_seq_record,tree_filename,primers_data,report_filename)
+		generate_report(strAlignment,consensus_seq_record,tree_filename,primers_data,blast_data,report_filename)
 
 
 if __name__ == "__main__":

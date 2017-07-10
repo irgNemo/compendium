@@ -1,0 +1,19 @@
+1.-Biopython 
+	sudo apt-get install python-biopython #Installs all the requiered basic sources and Biopython 1.66
+	TO INSTALL BIOPYTHON 1.69 (It's necesary to have requiered packets ans sources installed)
+		I.-Download last Biopython version at: http://biopython.org/wiki/Download
+		II.-Unziped it and located in the Biopython folder
+		III.-Then use you pythonX (Ex. python3) for the next commands:
+				python setup.py build
+				python setup.py test
+				sudo python setup.py install
+2.-Primer3 (the C code)
+	You can get more information at: http://primer3.sourceforge.net/primer3_manual.htm
+		I.-Download Primer 3 (the C code) from http://primer3.sourceforge.net/releases.php
+		II.-Unziped it and located in the primer3-<release>/src folder
+		III.- Then (in the terminal type) make all and make test
+
+3.-ReportLab
+	sudo apt-get install python-matplotlib
+	
+	

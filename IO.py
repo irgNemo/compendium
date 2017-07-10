@@ -8,6 +8,7 @@ from Alignments import *;
 TREE_TITLE = "Multiple Sequence Alignment tree"
 CONSENSUS_TITLE = "Consensus sequence"
 PRIMERS_TITLE = 'Primers data'
+BLAST_TITLE = 'BLAST INFORMATION'
 CONSENSUS_X = 50
 CONSENSUS_Y = 760
 PRIMERS_X = 50
@@ -112,7 +113,7 @@ def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT)
 			consensus_data --> consensus sequence by Seq object
 			image_name--> It's the image filename
 			file_name--> A string that specifies the report filename"""
-def generate_report(data,consensus_data,image_name,primers_data,file_name):
+def generate_report(data,consensus_data,image_name,primers_data,blast_data,file_name):
 	c = canvas.Canvas(file_name)
 	title,align = data.split("alignment")
 	title = title + "alignment"
@@ -121,5 +122,6 @@ def generate_report(data,consensus_data,image_name,primers_data,file_name):
 	add_consensus(c,CONSENSUS_TITLE,consensus_data)
 	new_page(c)
 	add_split_data(c,PRIMERS_TITLE,primers_data)
+	add_split_data(c,BLAST_TITLE,blast_data)
 	c.save()	
 

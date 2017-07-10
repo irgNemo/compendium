@@ -29,7 +29,7 @@ def make_primers_dir(based_path):
 	return based_path +PRIMERS_FOLDER
 
 def generate_basic_primers_input(filename,seq_id,seq,seq_target,product_size=DEFAULT_PRODUCT_SIZE):
-	primers_file = open(filename, 'a')
+	primers_file = open(filename, 'w')
 	lista = [SEQUENCE_ID+EQUAL_SIGN+seq_id+NEW_LINE,
 	SEQUENCE_TEMPLATE+EQUAL_SIGN+seq+NEW_LINE,
 	SEQUENCE_TARGET+EQUAL_SIGN+seq_target+NEW_LINE,
@@ -61,11 +61,18 @@ def get_file_data(filename,file_type):
 	else:
 		'Error! File does not exist '
 	return data 
+
+def set_primers_data_format(data):
+	split_data = data.split('PRIMERS')
+	print len(split_data)
+	title = split_data[0] + "\n                         ."
+	primers_data = split_data[1]
+	return title + primers_data
 	
 def read_primers(based_filename):
 	separator = NEW_LINE + SEPARATOR + SEPARATOR + NEW_LINE + NEW_LINE
 	data = get_file_data(based_filename ,LEFT_PRIMERS_EXT)+ separator
-	data = data + get_file_data(based_filename ,RIGHT_PRIMERS_EXT)+ separator
+	data = data + get_file_data(based_filename ,RIGHT_PRIMERS_EXT) + separator
 	data = data + get_file_data(based_filename ,INTERNAL_PRIMERS_EXT)
 	return data
 
@@ -81,9 +88,12 @@ def get_primers_list(filename):
 	return primers_list	
 
 def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,output_filename): solo si format_type != "Text"
-	print 'Getting blast results ...'
+	print 'Getting blast ' + sequence + ' results ...'
 	result_handle = NCBIWWW.qblast(blast_program, database, sequence, format_type=BLAST_OUT_FORMAT)#Es importante manajerlo como "Text" para obtener un String
-	return result_handle.getvalue() #Se puede retornar como String
+	print 'Finishing getting ' + sequence + ' blast data.'
+	blast_results = result_handle.getvalue() #Se puede retornar como String
+	txt_results = blast_results.split('BLASTN 2.6.1+')
+	return txt_results[1]
 	#Asi se evita crear un archivo xml para cada primer
 	"""print 'Saving blast results ...'
 	out_handle = open(output_filename, "w")
@@ -94,7 +104,12 @@ def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,o
 
 def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):
 	data = ""
-	for each in primer_list:
+	print 'Getting blast primars information ...'
+	for each in primers_list:
+		"""text = run_blast(each)
+		text_split = text.split('<PRE>')
+		print len(text_split)
+		str1 = ''.join(text_split[1])"""
 		data = data + run_blast(each)
 	return data
 
@@ -115,4 +130,5 @@ def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATA
 
 
 handle = run_blast("ACTGGCCTCTATAGTGCCCA")
+print handle
 
