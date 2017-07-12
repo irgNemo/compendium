@@ -26,6 +26,8 @@ SCALE = 0.70
 PAGE_LIMIT = 47
 LINE_LIMIT = 80
 POS_TABS = 247
+POS_LINKS = 95
+POS_TAB_FIT = 215
 """Creates a new canvas page
 	INPUTS: canvas --> canvas object"""
 def new_page(canvas):
@@ -62,6 +64,14 @@ def add_split_data(canvas,title,data,page_limit=PAGE_LIMIT):
 			x = POS_TABS
 			canvas.drawText(new_textobject(string,canvas,x,y))
 			x = TEXT_ORIGIN_X
+		elif string.find('|') != -1:
+			x = POS_LINKS
+			canvas.drawText(new_textobject(string,canvas,x,y))
+			x = TEXT_ORIGIN_X
+		elif string.find('0-based') != -1:
+			x = POS_TAB_FIT
+			canvas.drawText(new_textobject(string,canvas,x,y))
+			x = TEXT_ORIGIN_X	
 		else:
 			canvas.drawText(new_textobject(string,canvas,x,y))
 		y = y - 15

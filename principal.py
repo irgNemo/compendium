@@ -90,9 +90,13 @@ def main():
 		get_primers(full_primers_input_filename) 
 		print 'Reading generated primers'
 		primers_data = read_primers(seq_id)
-		primer_list = get_primers_list(seq_id)
-		blast_data = get_blast_data(primer_list[0:5])
+		primers_list = get_primers_list(seq_id)
 		
+		"""for i in range(3):
+			print str(i)+' .- ' + primer_list[i]"""	
+
+		#blast_data = get_blast_data(primers_list[0])
+		blast_data = run_blast(primers_list[0])
 		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"
 		strAlignment = alignment.format("clustal")

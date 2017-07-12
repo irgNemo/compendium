@@ -87,13 +87,19 @@ def get_primers_list(filename):
 	primers_list = re.findall(EXP_REG_RNA, str1)
 	return primers_list	
 
+def split_blast_results(results):
+	text_split = results.split('<PRE>')
+	str1 = ''.join(text_split[1])
+	final_split = str1.split('</form>')
+	return ''.join(final_split[0])
+
 def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,output_filename): solo si format_type != "Text"
 	print 'Getting blast ' + sequence + ' results ...'
 	result_handle = NCBIWWW.qblast(blast_program, database, sequence, format_type=BLAST_OUT_FORMAT)#Es importante manajerlo como "Text" para obtener un String
 	print 'Finishing getting ' + sequence + ' blast data.'
 	blast_results = result_handle.getvalue() #Se puede retornar como String
-	txt_results = blast_results.split('BLASTN 2.6.1+')
-	return txt_results[1]
+	result_handle.close()
+	return split_blast_results(blast_results)
 	#Asi se evita crear un archivo xml para cada primer
 	"""print 'Saving blast results ...'
 	out_handle = open(output_filename, "w")
@@ -106,29 +112,6 @@ def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATA
 	data = ""
 	print 'Getting blast primars information ...'
 	for each in primers_list:
-		"""text = run_blast(each)
-		text_split = text.split('<PRE>')
-		print len(text_split)
-		str1 = ''.join(text_split[1])"""
 		data = data + run_blast(each)
 	return data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-handle = run_blast("ACTGGCCTCTATAGTGCCCA")
-print handle
 
