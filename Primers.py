@@ -115,3 +115,7 @@ def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATA
 		data = data + run_blast(each)
 	return data
 
+
+data = run_blast('GCGCTTTGAGGATCCAACAC')
+split_data = data.split('Length=')
+print split_data[0]

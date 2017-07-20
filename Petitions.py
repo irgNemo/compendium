@@ -19,6 +19,7 @@ def close(data):
 	INPUTS: database  --> is an string that specifies the database where you want to search.		Ex.: "nucleotide"
 					term --> it's the name of the term that we want to search.		Ex.: "Human papillomavirus"
 					email --> it's your e-mail address for begining the NCBI connection
+					retmax --> Total number of UIDs from the retrieved set to be shown in the output.
 	OUTPUTS: a list of sequence identifiers"""
 def search(database, term, email, retmax=20):
 	init(email);
