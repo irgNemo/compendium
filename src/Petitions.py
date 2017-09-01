@@ -4,7 +4,7 @@ from Bio import Entrez
 from Bio.Seq import Seq
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
-
+from Tkinter import *
 """Begins a NCBI connection using your e-mail address.
 	INPUTS: email --> e-mail address"""
 def init(email):
@@ -49,22 +49,22 @@ def parse(data,type_file):
 """Saves the handle data into a file.
 	INPUTS: filename --> it's the name which we want to save the file.
 			data --> it's a handle data """
-def save(filename,data):	
+def save(informer,filename,data):	
 	if not os.path.isfile(filename):
 		out_handle = open(filename, "w")
 		out_handle.write(data.read())
 		close(out_handle)
 		close(data)
-		print("Successfully saved")
+		informer.insert(INSERT,"\nSuccessfully saved")
 
 """Shows some information of a sequences list like: identifier, sequence and size.
 	INPUTS: records_list --> a sequences list"""
 def show_info(records_list):
 	for i in range(len(records_list)):
 		node = records_list[i];
-		print("Id: " + node.id)
-		print("Secuencia: " + repr(node.seq))
-		print("Tam: " +str(len(node)) + "\n")
+		informer.insert(INSERT,"\nId: " + node.id)
+		informer.insert(INSERT,"\nSecuencia: " + repr(node.seq))
+		informer.insert(INSERT,"\nTam: " +str(len(node)) + "\n")
 
 """Changes a list of identifier into a string of identifiers separated by commas
 	INPUTS: record_list -->a list of identifier
@@ -92,9 +92,9 @@ def get_ORF(record_list,type_seq,ident):
 				lower = int(match.group(1))
 				uper = int(match.group(2))
 				new = record[lower:uper].seq
-				#print("Locus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
+				#informer.insert(INSERT,"\nLocus: " + record.id + "\n" + str(feature.qualifiers) + "\tLimite inferior: " + str(lower) + "\tLimite superior: " + str(uper))
 				#print(new)
-				#print("**********************************************************************")
+				#informer.insert(INSERT,"\n**********************************************************************")
 				#new_record = newSequence(new,record.id,record.name,ident,record.dbxrefs)
 				new_record = newSequence(new,record.id,record.name,record.description,record.dbxrefs)
 				seq_list.append(new_record)
@@ -127,11 +127,12 @@ def is_empty(record_list):
 		return False
 	
 """Searches and downloads sequences by the term and database. Returns the file path they were saved."""
-def downloadSequences(database, term, file_name, file_format, email, saving_path, retmax = 20):
-	print ("Searching ...");
+def downloadSequences(informer,database, term, file_name, file_format, email, saving_path, retmax = 20):
+	
+	informer.insert(INSERT,'\nSearching ...');
 	records = search(database, term, email, retmax);
-	print("Search finished");
-	print("Downloading " + str(len(records)) + " sequences ...");
+	informer.insert(INSERT,'\nSearch finished');
+	informer.insert(INSERT,"\nDownloading " + str(len(records)) + " sequences ...");
 	records_str = format(records);
 	record_handler = download(database, records_str, file_format, email, retmax);
 	file_name_extension = file_name + '.' + file_format;
@@ -140,8 +141,8 @@ def downloadSequences(database, term, file_name, file_format, email, saving_path
 	if not os.path.exists(saving_path + "/" + file_name):
 		os.makedirs(saving_path + "/" + file_name);
 	saving_path += "/" + file_name + "/" + file_name_extension;
-	save(saving_path, record_handler);
-	print("Sequences stored in file " + saving_path);
+	save(informer,saving_path, record_handler);
+	informer.insert(INSERT,"\nSequences stored in file " + saving_path + "\n");
 	return saving_path;
 
 

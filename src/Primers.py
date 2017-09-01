@@ -40,7 +40,7 @@ def generate_basic_primers_input(filename,seq_id,seq,seq_target,product_size=DEF
 	primers_file.close()
 	
 def get_primers(input_filename):
-	print 'Getting primers ...'
+	informer.insert(INSERT,'\nGetting primers ...'
 	os.system('primer3_core < ' + input_filename)
 
 def read_primers_file(filename):
@@ -55,7 +55,7 @@ def read_primers_file(filename):
 
 def get_file_data(filename,file_type):
 	data = ''
-	print 'Getting ' + filename + file_type + ' data ...'
+	informer.insert(INSERT,'\nGetting ' + filename + file_type + ' data ...'
 	if os.path.isfile(filename + file_type):
 		data = data + read_primers_file(filename + file_type)
 	else:
@@ -94,14 +94,14 @@ def split_blast_results(results):
 	return ''.join(final_split[0])
 
 def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,output_filename): solo si format_type != "Text"
-	print 'Getting blast ' + sequence + ' results ...'
+	informer.insert(INSERT,'\nGetting blast ' + sequence + ' results ...'
 	result_handle = NCBIWWW.qblast(blast_program, database, sequence, format_type=BLAST_OUT_FORMAT)#Es importante manajerlo como "Text" para obtener un String
-	print 'Finishing getting ' + sequence + ' blast data.'
+	informer.insert(INSERT,'\nFinishing getting ' + sequence + ' blast data.'
 	blast_results = result_handle.getvalue() #Se puede retornar como String
 	result_handle.close()
 	return split_blast_results(blast_results)
 	#Asi se evita crear un archivo xml para cada primer
-	"""print 'Saving blast results ...'
+	"""informer.insert(INSERT,'\nSaving blast results ...'
 	out_handle = open(output_filename, "w")
 	out_handle.write(result_handle.read())
 	result_handle.close()
@@ -110,7 +110,7 @@ def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,o
 
 def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):
 	data = ""
-	print 'Getting blast primars information ...'
+	informer.insert(INSERT,'\nGetting blast primars information ...'
 	for each in primers_list:
 		data = data + run_blast(each)
 	return data

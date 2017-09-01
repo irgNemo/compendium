@@ -35,7 +35,7 @@ def show_align(input_file,file_type):
 def show_complite_align(input_file,file_type):
 	align = get_align(input_file,file_type)
 	for record in align:
-		print("%s - %s \n" % (record.seq, record.id))
+		informer.insert(INSERT,"\n%s - %s \n" % (record.seq, record.id))
 
 """Gets the aling data form the input file
 	INPUTS: input_file --> it's the name of a alignment file. Ex.: "opuntia.aln"

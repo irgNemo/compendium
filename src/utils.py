@@ -47,4 +47,3 @@ def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
 	return sequence_grouped_by_ORFs;
 
 
-
