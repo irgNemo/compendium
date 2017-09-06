@@ -1,0 +1,5 @@
+1.-It's recommended to save the installer folder in your home folder. Because here is where biopython and primers3 are going to be compiled.
+
+2.-Then open the terminal and move yourself into the installer file. (You can use: cd installer)
+
+3.-Run the installer.sh file. (You can use: sudo sh installer.sh) and the instalation of all needed software will star.

@@ -1,8 +1,10 @@
 from Tkinter import *
+import tkMessageBox
 from ttk import *
 from basic_tab import *
 from gui_constans import *
 from gui_utils import *
+from validations import *
 import sys
 sys.path.append("../")
 from src.utils import *;
@@ -76,14 +78,18 @@ class Search_tab(Basic_tab):
 	def btn_search_call_back(self):
 		db = self.cmb_database.get()
 		mail = self.txt_mail.get("1.0","end-1c")
-		term = self.txt_term.get("1.0","end-1c")
-		retmax = self.txt_retmax.get("1.0","end-1c")
-		main_folder = "./" + self.txt_folder.get("1.0","end-1c")
-		filename = self.txt_filename.get("1.0","end-1c")
-		format = self.cmb_format.get()
-		filename_path = downloadSequences(self.main_window.get_main_informer(),db, term, filename, format, mail, main_folder, retmax);	
-		update_selected_file(self.main_window, filename_path)	
-		open_file(self.main_window,self.get_informer(),filename_path)
+		if validate_mail(mail):
+			term = self.txt_term.get("1.0","end-1c")
+			retmax = self.txt_retmax.get("1.0","end-1c")
+			main_folder = "./" + self.txt_folder.get("1.0","end-1c")
+			filename = self.txt_filename.get("1.0","end-1c")
+			format = self.cmb_format.get()
+			filename_path = downloadSequences(self.main_window.get_main_informer(),db, term, filename, format, mail, main_folder, retmax);	
+			update_selected_file(self.main_window, filename_path)	
+			open_file(self.main_window,self.get_informer(),filename_path)
+		else:
+			#tkMessageBox.showerror("Say Hello", "Hello World")
+			tkMessageBox.showerror("Error", ERROR_MAIL)
 
 	def add_btn_search(self,pos_x,pos_y):
 		btn_search = Button(self.get_top_panel(), text ="Search", command = self.btn_search_call_back)
@@ -109,6 +115,5 @@ class Search_tab(Basic_tab):
 		self.cmb_format.current(0)
 		self.cmb_format.pack();
 		self.cmb_format.place(x=pos_x+BLANK_SPACE_X,y=pos_y)
-
 
 

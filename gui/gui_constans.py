@@ -7,6 +7,7 @@ DEFAULT_TERM = 'Ex. Human Papillomavirus type 18 complete genome isolate'
 DATABASES = [  'nucleotide','protein','structure', 'genome','cdd', 'gap','gene',
 'genomeprj','homologene','ncbisearch','taxonomy']
 FORMATS = ['gb','fasta']
+ERROR_MAIL = 'Sorry! There is an error in the email writing'
 
 SIZE = '1200x600'
 TOP_PANEL_MAINWINDOW_HEIGHT = 50
