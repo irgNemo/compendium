@@ -23,15 +23,15 @@ def filterByNCBITagValue(sequence_records, feature_name, feature_tag, tag_value)
 			sequences_filtered.append(record);
 	return sequences_filtered; 
 
-def separate_ORFs_per_sequence(sequence_data, feature_tag, tag_values):
+def separate_ORFs_per_sequence(sequence_data, feature_name,	feature_tag, tag_values):
 	sequence_grouped_by_ORFs = {}; # Este diccionario tendra dos niveles: identificado de ORF y  Arreglo de ORFs
 	for tag in tag_values: # Se inicializa el diccionario para que tenga los tag_values que requiere (E6, E7, ..., L1)
 		sequence_grouped_by_ORFs[tag] = [];
 	for sequence in sequence_data:
 		id_sequence = sequence.id;
 		for feature in sequence.features:
-			if feature.type == feature_tag:
-				orf = feature.qualifiers.get('product'); #pasar product como parametro y ver como preguntamos por gene
+			if feature.type == feature_name:
+				orf = feature.qualifiers.get(feature_tag); #pasar product como parametro y ver como preguntamos por gene
 				orf = ''.join(orf); # Se cambia de arreglo a string para poder compararlo contra arreglo tag_values
 				if orf in tag_values:
 					pos = str(feature.location);

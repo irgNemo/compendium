@@ -128,10 +128,9 @@ def is_empty(record_list):
 	
 """Searches and downloads sequences by the term and database. Returns the file path they were saved."""
 def downloadSequences(informer,database, term, file_name, file_format, email, saving_path, retmax = 20):
-	
-	informer.insert(INSERT,'\nSearching ...');
+	informer.insert(INSERT,"\nSearching ...");
 	records = search(database, term, email, retmax);
-	informer.insert(INSERT,'\nSearch finished');
+	informer.insert(INSERT,"\nSearch finished");
 	informer.insert(INSERT,"\nDownloading " + str(len(records)) + " sequences ...");
 	records_str = format(records);
 	record_handler = download(database, records_str, file_format, email, retmax);

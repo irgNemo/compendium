@@ -41,20 +41,19 @@ def main():
 	#Filtrando secuencias que contengan las secciones buscadas
 	records_filtered = filterByNCBITagValue(record, "CDS", ['gene', 'product'], tag_values_list);
 	#Filtrando por secciones 
-	orfs = separate_ORFs_per_sequence(records_filtered, "CDS", tag_values_list);
+	orfs = separate_ORFs_per_sequence(records_filtered, "CDS",'product', tag_values_list);
 	#Generando base para nuevo nombre de archivo filtrado
 	new_file_name = main_folder + file_name + "/" + file_name
 	#Guardando secciones filtradas 
 	for key in orfs.keys():
 		writeFile(orfs[key],new_file_name + "_" + key , alinging_format);
-	
+
 	#Creando carpeta para primers
 	p3_filename = main_folder + file_name
 	primers_folder  = 	make_primers_dir(p3_filename)
 	
-	
-	"""Procesando ...
-		Generando alineamiento, secuencia consenso, arbol filogenetico y primers"""
+	#Procesando ...
+	#Generando alineamiento, secuencia consenso, arbol filogenetico y primers
 	for key in orfs.keys():
 		print("Aligning sequences " + key +"...");
 		initial_time = time(); # Comienza el conteo del tiempo de alineamiento
@@ -102,6 +101,4 @@ def main():
 if __name__ == "__main__":
 	main();
 
-PD7CE5VJ014
-PD7BHJEM014
 
