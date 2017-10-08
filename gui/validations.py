@@ -8,7 +8,7 @@ def validate_is_number(data):
 	return bool(re.search(r"[0-9]+",data))
 
 def validate_not_none(data):
-	if data is None or data is APUNTADOR_CARPETA or data is CADENA_VACIA:
+	if data is None or data is FOLDER_POINTER or data is EMPTY_STRING:
 		return False
 	elif bool(re.search(r"^\s",data)):#validate not whitespaces
 		return False
@@ -18,4 +18,4 @@ def validate_not_none(data):
 def validate_selected_filename(filename):
 	regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln)"
 	match = re.search(regex,filename)
-	return [match.group(3), match.group(4)]
+	return [match.group(2), match.group(3), match.group(4)]

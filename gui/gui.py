@@ -27,7 +27,6 @@ class Gui:
 		self.make_Filter_tab()
 		self.make_alignment_tab()
 		self.load_settings()
-		self.print_settings()
 		self.disable_all_tabs()
 		self.window.mainloop()
 
@@ -53,25 +52,28 @@ class Gui:
 		return lbl_selected_file
 
 	def insert_menu(self):
-		menubar = Menu(self.window)
+		self.menubar = Menu(self.window)
 		#sequence menu
-		sequences_menu = Menu(menubar, tearoff=0)
+		sequences_menu = Menu(self.menubar, tearoff=0)
 		sequences_menu.add_command(label="Load from computer", command=self.select_file)
 		sequences_menu.add_command(label="Search and download", command=self.make_download_frame)
 		sequences_menu.add_command(label="Close")
 		sequences_menu.add_separator()
 		sequences_menu.add_command(label="Exit", command=self.window.quit)
-		menubar.add_cascade(label="Sequences", menu=sequences_menu)
+		self.menubar.add_cascade(label="Sequences", menu=sequences_menu,state="disabled")
 		#Settings menu
-		settings_menu = Menu(menubar, tearoff=0)
+		self.automatic_setting = BooleanVar()
+		self.default_setting = BooleanVar()
+		settings_menu = Menu(self.menubar, tearoff=0)
 		settings_menu.add_command(label="Set main folder", command=self.setting_main_folder)
-		settings_menu.add_command(label="Automatic", command=self.setting_automatic)
-		settings_menu.add_command(label="Default", command=self.setting_default)
-		menubar.add_cascade(label="Settings", menu=settings_menu)	
+		settings_menu.add_command(label="Set ClustalW path", command=self.setting_main_folder)
+		settings_menu.add_checkbutton(label="Automatic", onvalue=True, offvalue=False, variable=self.automatic_setting, command=self.setting_automatic)
+		settings_menu.add_checkbutton(label="Default", onvalue=True, offvalue=False, variable=self.default_setting, command=self.setting_default)
+		self.menubar.add_cascade(label="Settings", menu=settings_menu)	
 		#Run menu
-		menubar.add_command(label="Run", command=self.setting_main_folder)	
+		self.menubar.add_command(label="Run", command=self.setting_main_folder)	
 
-		self.window.config(menu=menubar)
+		self.window.config(menu=self.menubar)
 
 	def insert_notebooks(self):
 		self.note = Notebook(padding=[LEFT_PADDING,TOP_PADDING,RIGHT_PADDING,BOTTOM_PADDING])
@@ -98,7 +100,7 @@ class Gui:
 
 	def get_selected_tab_informer(self):
 		current_tab = self.note.index("current")
-		informers = { 0: self.filter_frame.get_informer(), 1: 10, 2: 30 }
+		informers = { 0: self.filter_frame.get_informer(), 1: self.align_frame.get_informer(), 2: 30 }
 		return informers[current_tab]
 
 	def select_file(self):
@@ -106,12 +108,12 @@ class Gui:
 		update_selected_file(self,selected_file)
 		selected_file= self.lbl_selected_file['text']
 		if  selected_file != DEFAULT_SELECTED_FILE and validate_not_none(selected_file):
-			self.enable_tab(INDEX_FILTER_TAB)
-			self.focus_tab(INDEX_FILTER_TAB)
-			self.assing_job(selected_file)
+			assing_job(self,selected_file)
 			open_file(self,self.get_selected_tab_informer(),selected_file)
 		else:
 			update_selected_file(self, DEFAULT_SELECTED_FILE)
+			self.clean_informer(self.get_informer())
+			self.disable_all_tabs()
 			tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)		
 
 	def clean_informer(self,tab_informer):
@@ -120,10 +122,19 @@ class Gui:
 	def close_selected_file(self):
 		update_selected_file(self, DEFAULT_SELECTED_FILE)
 
-	def assing_job(self,selected_filename):
-		exp_arr = validate_selected_filename(selected_filename)
-		self.working_folder = exp_arr[0]
-		print self.working_folder
+	def assing_available_tabs(self,filename,file_extention):
+		if file_extention == "gb":
+			self.enable_tab(INDEX_FILTER_TAB)
+			self.enable_tab(INDEX_ALIGNMENT_TAB)
+			self.focus_tab(INDEX_FILTER_TAB)
+			self.filter_frame.set_filename(filename)
+		if file_extention == "fasta":
+			self.enable_tab(INDEX_ALIGNMENT_TAB)
+			self.focus_tab(INDEX_ALIGNMENT_TAB)
+		if file_extention == "aln":
+			self.enable_tab(INDEX_PRIMERS_TAB)
+			self.enable_tab(INDEX_ALIGNMENT_TAB)
+			self.focus_tab(INDEX_ALIGNMENT_TAB)
 
 	def make_download_frame(self):
 		self.download_frame = Download_frame(self.download_informer,self)
@@ -133,18 +144,27 @@ class Gui:
 		self.download_informer = self.filter_frame.get_informer()		
 
 	def make_alignment_tab(self):
-		self.align_frame = Align_tab(self.tab_alignment)		
-		self.align_frame.adios()	
+		self.align_frame = Align_tab(self.tab_alignment,self)
+
+	def make_primers_tab(self):
+		self.primers_frame = Primers_tab(self.tab_primers,self)		
 
 	def setting_main_folder(self):
 		create_new_main_folder(self)
 		self.main_folder = set_main_folder(FOLDER_SETTINGS_FILENAME,self)
 
 	def setting_automatic(self):
-		print("Automatic")
+		if self.automatic_setting.get():
+			print("Automatic")
+		else:
+			print("NO Automatic")
 
 	def setting_default(self):
-		print("Default")
+		if self.automatic_setting.get():
+			print("Default")
+		else:
+			print("NO Default")
+		
 
 	def disable_all_tabs(self):
 		for index in range(INDEX_FILTER_TAB, INDEX_REPORTS+1):
@@ -161,11 +181,18 @@ class Gui:
 
 	def load_settings(self):
 		self.main_folder = set_main_folder(FOLDER_SETTINGS_FILENAME,self)
-		self.setting_automatic()
-		self.setting_default()
+		if validate_not_none(self.main_folder):
+			self.menubar.entryconfig("Sequences",state="normal")
+			self.setting_automatic()
+			self.setting_default()
+			self.print_settings()
+		else:
+			tkMessageBox.showerror("Error", ERROR_SETTINGS)
 	
 	def print_settings(self):
-		self.get_main_informer().insert(INSERT,FOLDER_SETTINGS_MSJ + self.main_folder)
+		self.get_main_informer().insert(INSERT,FOLDER_SETTINGS_MSJ + self.main_folder + NEW_LINE)
+		self.get_main_informer().insert(INSERT,AUTOMATIC_SETTINGS_MSJ + str(self.automatic_setting.get()) + NEW_LINE)
+		self.get_main_informer().insert(INSERT,DEFAULT_SETTINGS_MSJ + str(self.default_setting.get()) + NEW_LINE)
 
 my_gui = Gui()
 
