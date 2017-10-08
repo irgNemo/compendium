@@ -66,7 +66,6 @@ class Gui:
 		self.default_setting = BooleanVar()
 		settings_menu = Menu(self.menubar, tearoff=0)
 		settings_menu.add_command(label="Set main folder", command=self.setting_main_folder)
-		settings_menu.add_command(label="Set ClustalW path", command=self.setting_main_folder)
 		settings_menu.add_checkbutton(label="Automatic", onvalue=True, offvalue=False, variable=self.automatic_setting, command=self.setting_automatic)
 		settings_menu.add_checkbutton(label="Default", onvalue=True, offvalue=False, variable=self.default_setting, command=self.setting_default)
 		self.menubar.add_cascade(label="Settings", menu=settings_menu)	
@@ -151,7 +150,7 @@ class Gui:
 
 	def setting_main_folder(self):
 		create_new_main_folder(self)
-		self.main_folder = set_main_folder(FOLDER_SETTINGS_FILENAME,self)
+		self.main_folder = set_main_folder(self)
 
 	def setting_automatic(self):
 		if self.automatic_setting.get():
@@ -180,7 +179,7 @@ class Gui:
 		self.note.tab(tab_index, state="disabled")
 
 	def load_settings(self):
-		self.main_folder = set_main_folder(FOLDER_SETTINGS_FILENAME,self)
+		self.main_folder = set_main_folder(self)
 		if validate_not_none(self.main_folder):
 			self.menubar.entryconfig("Sequences",state="normal")
 			self.setting_automatic()

@@ -26,7 +26,7 @@ def update_selected_file(gui_obj, string):
 def get_selected_file(gui_obj):
 	return gui_obj.lbl_selected_file.cget("text")
 
-def set_main_folder(folder_settings_file,gui_obj):
+def set_main_folder(gui_obj,folder_settings_file=FOLDER_SETTINGS_FILENAME):
    	try:
 		gui_obj.get_main_informer().insert(INSERT,LOAD_SETTINGS_MSJ)
 		basic_file = open(folder_settings_file, 'r')
@@ -58,4 +58,17 @@ def assing_job(gui_obj,selected_filename):
 		
 def get_basic_filename(filename):
 	return filename.split('.')[0]
+
+def get_clustalw_path():
+	platform = sys.platform;
+	if "linux" in platform:
+		return CLUSTALW_LINUX_PATH
+	else:
+		return CLUSTALW_MAC_PATH
+
+
+
+
+
+
 

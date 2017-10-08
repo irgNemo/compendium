@@ -52,6 +52,7 @@ class Download_frame(Basic_frame):
 						update_selected_file(self.main_window, filename_path)
 						assing_job(self.main_window,filename_path)
 						open_file(self.main_window,self.main_window.filter_frame.get_informer(),filename_path)
+						self.get_frame().destroy()
 					else:
 						tkMessageBox.showerror("Error", ERROR_RETMAX)
 				else:
