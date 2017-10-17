@@ -13,6 +13,8 @@ FORMATS = ['gb','fasta']
 ALIGNERS_OPTIONS = ["clustalW", "Muscle"]
 FASTA_EXTENSION  = "fasta"
 ALINGING_EXTENSION  = ".aln"
+PHILO_EXTENSION = ".dnd"
+IMAGE_EXTENSION = ".jpg"
 DOT = '.'
 FOLDER_POINTER = "./"
 NEW_LINE = '\n'
@@ -33,6 +35,7 @@ ERROR_SELECTED_FILE = '\nSorry! You should select a file'
 ERROR_TAGS_VALUES = '\nSorry! Tags values can not be empty'
 ERROR_FILTERING = '\nSorry! We could not find tags values in your sequence data'
 ERROR_SETTINGS = '\nSorry! There is a problem with your settings. Please check them.'
+
 LOAD_SETTINGS_MSJ = '\nLoading settings ...'
 CLUSTALW_SETTINGS_MSJ = '\nGetting ClustalW path ...'
 SELECTED_FILE_WARNING = '\nWarning! There is no selected file'
@@ -44,6 +47,7 @@ SIZE = '1200x600'
 SEARCH_FRAME_SIZE = '900x150'
 TOP_PANEL_MAINWINDOW_HEIGHT = 50
 TOP_PANEL_TAB_HEIGHT = 50
+CLUSTAL_PANEL_HEIGHT = 10
 TOP_PANEL_SEARCH_FRAME_HEIGHT = 50
 PANELS_EXPAND = 1
 LBL_SELECTED_FILE_X = 100
@@ -82,7 +86,7 @@ TXTBOX_FEATURE_TAG_WIGTH = 40
 TXTBOX_TAG_VALUES_WIGTH = 30
 TXTBOX_THRESHOLD_WIGTH = 10
 TXTBOX_PRIMER_SIZE_WIGTH = 10
-
+TXTBOX_THRESHOLD_WIGTH = 10
 
 
 
