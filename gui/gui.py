@@ -8,6 +8,7 @@ from gui_utils import *
 from download_frame import *
 from filter_tab import *
 from align_tab import *
+from primers_tab import *
 
 class Gui:
 	
@@ -26,6 +27,7 @@ class Gui:
 		self.insert_text_area()
 		self.make_Filter_tab()
 		self.make_alignment_tab()
+		self.make_primers_tab()
 		self.load_settings()
 		self.disable_all_tabs()
 		self.window.mainloop()
@@ -129,9 +131,12 @@ class Gui:
 			self.filter_frame.set_filename(filename)
 		if file_extention == "fasta":
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
+			self.enable_tab(INDEX_PRIMERS_TAB)
 			self.focus_tab(INDEX_ALIGNMENT_TAB)
 		if file_extention == "aln":
-			self.enable_tab(INDEX_PRIMERS_TAB)
+			self.enable_tab(INDEX_ALIGNMENT_TAB)
+			self.focus_tab(INDEX_ALIGNMENT_TAB)
+		if file_extention == "dnd":
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
 			self.focus_tab(INDEX_ALIGNMENT_TAB)
 
