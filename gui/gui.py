@@ -1,7 +1,6 @@
 from Tkinter import *
 from ttk import *
 import tkFileDialog
-#from tkFileDialog import askopenfilename,filedialog
 from gui_constans import *
 from validations import *
 from gui_utils import *
@@ -30,7 +29,20 @@ class Gui:
 		self.make_primers_tab()
 		self.load_settings()
 		self.disable_all_tabs()
+		self.filename_list = EMPTY_LIST
 		self.window.mainloop()
+
+	def assign_to_filename_list(self,filename_list):
+		self.filename_list = filename_list
+
+	def get_filename_list(self):
+		return self.filename_list
+
+	def add_to_filename_list(self,filename):
+		self.filename_list.append(filename)
+
+	def clean_filename_list(self):
+		del self.filename_list[:]
 
 	def get_main_informer(self):
 		return self.main_informer
@@ -59,10 +71,14 @@ class Gui:
 		sequences_menu = Menu(self.menubar, tearoff=0)
 		sequences_menu.add_command(label="Load from computer", command=self.select_file)
 		sequences_menu.add_command(label="Search and download", command=self.make_download_frame)
-		sequences_menu.add_command(label="Close")
+		sequences_menu.add_command(label="Close", command=self.close_file)
 		sequences_menu.add_separator()
 		sequences_menu.add_command(label="Exit", command=self.window.quit)
 		self.menubar.add_cascade(label="Sequences", menu=sequences_menu,state="disabled")
+		#report menu
+		report_menu = Menu(self.menubar, tearoff=0)
+		report_menu.add_command(label="Generate report", command=self.generate_report)
+		self.menubar.add_cascade(label="Reports", menu=report_menu,state="disabled")
 		#Settings menu
 		self.automatic_setting = BooleanVar()
 		self.default_setting = BooleanVar()
@@ -87,8 +103,8 @@ class Gui:
 		self.note.add(tab_alignment, text = "Alignments")
 		self.note.add(tab_primers, text = "Primers")
 		self.note.add(tab_blast, text = "Blast")
-		self.note.add(tab_reports, text = "Reports")
 		self.note.pack(side = LEFT,expand=True, fill=BOTH)
+		self.note.bind("<Button-1>", self.notebook_listener)
 		return [tab_filter,tab_alignment,tab_primers,tab_blast,tab_reports]
 
 	def insert_text_area(self):
@@ -101,8 +117,20 @@ class Gui:
 
 	def get_selected_tab_informer(self):
 		current_tab = self.note.index("current")
-		informers = { 0: self.filter_frame.get_informer(), 1: self.align_frame.get_informer(), 2: 30 }
+		informers = { 0: self.filter_frame.get_informer(), 1: self.align_frame.get_informer(), 2: self.primers_frame.get_informer() }
 		return informers[current_tab]
+
+	def notebook_listener(self,event):
+		filename = get_selected_file(self)
+		informer = self.get_selected_tab_informer()
+		self.clean_informer(informer)
+		if filename is not DEFAULT_SELECTED_FILE:
+			open_file(self,informer,filename)
+
+	def close_file(self):
+		update_selected_file(self, DEFAULT_SELECTED_FILE)
+		informer = self.get_selected_tab_informer()
+		self.clean_informer(informer)
 
 	def select_file(self):
 		selected_file = tkFileDialog.askopenfilename()
@@ -113,10 +141,25 @@ class Gui:
 			open_file(self,self.get_selected_tab_informer(),selected_file)
 		else:
 			update_selected_file(self, DEFAULT_SELECTED_FILE)
-			self.clean_informer(self.get_informer())
+			self.clean_informer(self.get_selected_tab_informer())
 			self.disable_all_tabs()
-			tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)		
+			tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)	
 
+	def generate_report(self):
+		#try:
+		reports_folder = tkFileDialog.askdirectory()
+		if validate_not_none(reports_folder):
+			if get_selected_file(self) is not DEFAULT_SELECTED_FILE:
+			#TODO:get current directory and based on the open file generate report
+			#TODO: OR select all the files and generate report
+				show_path_files(reports_folder)
+				#else:
+					
+		else:
+			tkMessageBox.showerror("Error", ERROR_FOLDER_NAME)
+		#except:
+			tkMessageBox.showerror("Error", "hola")
+	
 	def clean_informer(self,tab_informer):
 		tab_informer.delete(1.0,END)
 
@@ -124,28 +167,34 @@ class Gui:
 		update_selected_file(self, DEFAULT_SELECTED_FILE)
 
 	def assing_available_tabs(self,filename,file_extention):
+		self.disable_all_tabs()
 		if file_extention == "gb":
 			self.enable_tab(INDEX_FILTER_TAB)
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
 			self.focus_tab(INDEX_FILTER_TAB)
 			self.filter_frame.set_filename(filename)
 		if file_extention == "fasta":
-			self.enable_tab(INDEX_ALIGNMENT_TAB)
-			self.enable_tab(INDEX_PRIMERS_TAB)
-			self.focus_tab(INDEX_ALIGNMENT_TAB)
+			if is_consensus_file(filename):
+				self.enable_tab(INDEX_PRIMERS_TAB)
+				self.focus_tab(INDEX_ALIGNMENT_TAB)
+			else:
+				self.enable_tab(INDEX_ALIGNMENT_TAB)
+				self.focus_tab(INDEX_ALIGNMENT_TAB)
 		if file_extention == "aln":
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
 			self.focus_tab(INDEX_ALIGNMENT_TAB)
+			#TODO: deshabilitar otros checkbox
 		if file_extention == "dnd":
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
 			self.focus_tab(INDEX_ALIGNMENT_TAB)
+			#TODO: deshabilitar otros checkbox
 
 	def make_download_frame(self):
 		self.download_frame = Download_frame(self.download_informer,self)
 
 	def make_Filter_tab(self):
 		self.filter_frame = Filter_tab(self.tab_filter,self)
-		self.download_informer = self.filter_frame.get_informer()		
+		self.download_informer = self.filter_frame.get_informer()	
 
 	def make_alignment_tab(self):
 		self.align_frame = Align_tab(self.tab_alignment,self)
@@ -171,7 +220,7 @@ class Gui:
 		
 
 	def disable_all_tabs(self):
-		for index in range(INDEX_FILTER_TAB, INDEX_REPORTS+1):
+		for index in range(INDEX_FILTER_TAB, INDEX_REPORTS):
 			self.disable_tab(index)
 
 	def focus_tab(self,tab_index):
@@ -187,6 +236,7 @@ class Gui:
 		self.main_folder = set_main_folder(self)
 		if validate_not_none(self.main_folder):
 			self.menubar.entryconfig("Sequences",state="normal")
+			self.menubar.entryconfig("Reports",state="normal")
 			self.setting_automatic()
 			self.setting_default()
 			self.print_settings()

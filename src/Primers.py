@@ -39,9 +39,10 @@ def generate_basic_primers_input(filename,seq_id,seq,seq_target,product_size=DEF
 	primers_file.writelines(lista)
 	primers_file.close()
 	
-def get_primers(input_filename,informer):
-	informer.insert(INSERT,"\nGetting primers ...")
+def get_primers(input_filename):
+	print "Calculing primers"
 	os.system('primer3_core < ' + input_filename)
+	print "Calculing primers finished"
 
 def read_primers_file(filename):
 	try:
@@ -55,7 +56,7 @@ def read_primers_file(filename):
 
 def get_file_data(filename,file_type):
 	data = ''
-	informer.insert(INSERT,"\nGetting " + filename + file_type + " data ...")
+	#informer.insert(INSERT,"\nGetting " + filename + file_type + " data ...")
 	if os.path.isfile(filename + file_type):
 		data = data + read_primers_file(filename + file_type)
 	else:
@@ -110,7 +111,8 @@ def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,o
 
 def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):
 	data = ""
-	informer.insert(INSERT,"\nGetting blast primars information ...")
+	#informer.insert(INSERT,"\nGetting blast primars information ...")
+	print "Getting blast primars information ..."
 	for each in primers_list:
 		data = data + run_blast(each)
 	return data

@@ -19,3 +19,9 @@ def validate_selected_filename(filename):
 	regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln)"
 	match = re.search(regex,filename)
 	return [match.group(2), match.group(3), match.group(4)]
+
+def is_consensus_file(filename):
+	if PREFIX_CONSENSUS in filename:
+		return True
+
+

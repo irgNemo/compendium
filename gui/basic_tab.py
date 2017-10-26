@@ -9,6 +9,19 @@ class Basic_tab:
 		self.main_window = main_window
 		self.add_top_panel(tab)
 		self.insert_informer(tab,height,width)
+		self.filename_list = EMPTY_LIST
+
+	"""def assign_to_filename_list(self,filename_list):
+		self.filename_list = filename_list
+
+	def get_filename_list(self):
+		return self.filename_list
+
+	def add_to_filename_list(self,filename):
+		self.filename_list.append(filename)
+
+	def clean_filename_list(self):
+		del self.filename_list[:]"""
 
 	def insert_informer(self,tab,height,width):
 		self.informer = Text(tab,height=height,width=width)	
@@ -71,3 +84,20 @@ class Basic_tab:
 
 	def get_tab(self):
 		return self.tab
+
+	def get_current_slash(self):
+		return self.slash 
+
+	def get_OS_slash(self):
+		if OS_LINUX in sys.platform:
+			self.slash = OS_LINUX_SLASH
+		else:
+			self.slash = OS_WIN_SLASH
+
+
+
+
+
+
+
+

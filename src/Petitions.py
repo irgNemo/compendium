@@ -113,9 +113,12 @@ def newSequence(data,ident,name,description,references):
 					filename --> a string that specifies the filename
 					format --> a string that specifies the format of the file. """
 def writeFile(sequence_list,file_name,file_format):
-	fasta_filename = file_name + "." + file_format;
-	SeqIO.write(sequence_list, fasta_filename, file_format)
-	return fasta_filename;
+	try:
+		fasta_filename = file_name + "." + file_format;
+		SeqIO.write(sequence_list, fasta_filename, file_format)
+		return fasta_filename
+	except:
+		print "Error on write file"
 
 """Checks if a list is empty.
 	INPUTS: record_list --> a list

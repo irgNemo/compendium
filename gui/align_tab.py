@@ -1,4 +1,5 @@
 import threading
+import tkMessageBox
 from Tkinter import *
 from ttk import *
 from basic_tab import *
@@ -21,13 +22,6 @@ class Align_tab(Basic_tab):
 		self.chkbox_consensus_seq= self.add_combobox("Consensus sequence",10,50)
 		self.txt_threshold = self.add_field("Threshold",1,200,50,DEFAULT_TXTBOX_HEIGHT,TXTBOX_THRESHOLD_WIGTH)
 
-	"""def add_clustal_panel(self,panel_height=CLUSTAL_PANEL_HEIGHT):
-		self.clustal_panel = PanedWindow(self.get_top_panel(), height=panel_height)
-		self.clustal_panel.pack(fill=Y)#,expand=PANELS_EXPAND
-		label = Label(self.clustal_panel, text="hola")
-		self.clustal_panel.add(label)
-		self.clustal_panel.proxy_place(10, 20)"""
-
 	def add_btn_align(self,pos_x,pos_y):
 		btn_align = Button(self.get_top_panel(), text ="Align",command = self.run_btn_align)
 		btn_align.pack()
@@ -38,23 +32,36 @@ class Align_tab(Basic_tab):
 		thread.start()
 
 	def btn_align_call_back(self):
-		filename = get_selected_file(self.main_window)
-		output_filename = get_basic_filename(filename)+ALINGING_EXTENSION
-		self.clean_informer(self.get_informer())
+		filename_list = self.get_main_window().get_filename_list()
+		consensus_list = EMPTY_LIST
+		if len(filename_list) != 0:
+			for filename_item in filename_list:
+				update_selected_file(self.get_main_window(), filename_item)
+				output_filename = get_basic_filename(filename_item)+ALINGING_EXTENSION
+				#self.clean_informer(self.get_informer())
 
-		if self.chkbox_align_seq.get() == CHKBOX_ON :#and self.chkbox_consensus_seq.get() == CHKBOX_ON :
-			self.get_align(filename,output_filename)
-			update_selected_file(self.get_main_window(), output_filename)
-			open_file(self.get_main_window(),self.get_informer(),output_filename)
+				if self.chkbox_align_seq.get() == CHKBOX_ON :#and self.chkbox_consensus_seq.get() == CHKBOX_ON :
+					self.get_align(filename_item,output_filename)
+					update_selected_file(self.get_main_window(), output_filename)
+					open_file(self.get_main_window(),self.get_informer(),output_filename)
 
-		if self.chkbox_philo_tree.get() == CHKBOX_ON:
-			self.get_philo_tree(get_basic_filename(filename))
+				if self.chkbox_philo_tree.get() == CHKBOX_ON:
+					self.get_philo_tree(get_basic_filename(filename_item))
 
-		if self.chkbox_consensus_seq.get() == CHKBOX_ON :
-			consensus_filename = self.get_consensus(get_basic_filename(filename))
-			update_selected_file(self.get_main_window(), consensus_filename)
-			open_file(self.get_main_window(),self.get_informer(),consensus_filename)
-			self.get_informer().see("insert")#index(Tkinter.INSERT)
+				if self.chkbox_consensus_seq.get() == CHKBOX_ON :
+					consensus_filename = self.get_consensus(get_basic_filename(filename_item))
+					if validate_not_none(consensus_filename):
+						consensus_list.append(consensus_filename)
+						update_selected_file(self.get_main_window(), consensus_filename)
+						open_file(self.get_main_window(),self.get_informer(),consensus_filename)
+						self.get_informer().see("insert")
+					else:
+						self.get_main_window().get_main_informer().insert(INSERT,ERROR_CONSENSUS)
+			self.get_main_window().clean_filename_list()		
+			self.get_main_window().assign_to_filename_list(consensus_list)
+			print self.get_main_window().get_filename_list()[0]
+		else:
+			print "No hay nada en la lista de archivos"
 
 	def get_align(self,filename,output_filename):
 		try:
@@ -77,21 +84,24 @@ class Align_tab(Basic_tab):
 			self.get_main_window().get_main_informer().insert(INSERT,"\nSaving phylo tree in "+tree_filename)
 			save_tree(tree_filename,aling_tree)
 		except:
-			self.get_main_window().get_main_informer().insert(INSERT,"\nPhilo tree Error")
+			self.get_main_window().get_main_informer().insert(INSERT,ERROR_PHILO)
 
 	def get_consensus(self,based_filename):
-		self.get_main_window().get_main_informer().insert(INSERT,"\nGetting align data...")
-		filename = based_filename + ALINGING_EXTENSION
-		alignment = get_align(filename, "clustal")
-		self.get_main_window().get_main_informer().insert(INSERT,"\nGetting consensus sequence...")
-		threshold = float(self.txt_threshold.get("1.0","end-1c"))
-		consensus_seq = get_consensus(alignment,threshold)
-		consensus_seq_record = SeqRecord(consensus_seq, id =based_filename, description = " Consensus sequence threshold=" + str(threshold))
-		consensus_filename = based_filename +"_consensus_th"+str(threshold)+ "." + FASTA_EXTENSION
-		self.get_main_window().get_main_informer().insert(INSERT,"\nSaving consensus sequence in "+ consensus_filename)
-		writeFile(consensus_seq_record,based_filename + "_consensus_th"+str(threshold) , FASTA_EXTENSION)
-		return consensus_filename
-
+		try:
+			self.get_main_window().get_main_informer().insert(INSERT,"\nGetting align data...")
+			filename = based_filename + ALINGING_EXTENSION
+			alignment = get_align(filename, "clustal")
+			self.get_main_window().get_main_informer().insert(INSERT,"\nGetting consensus sequence...")
+			threshold = float(self.txt_threshold.get("1.0","end-1c"))
+			consensus_seq = get_consensus(alignment,threshold)
+			consensus_seq_record = SeqRecord(consensus_seq, id =based_filename, description = " Consensus sequence threshold=" + str(threshold))
+			threshold_prefix = str(threshold).split('.')[1]
+			consensus_filename = based_filename +PREFIX_CONSENSUS+threshold_prefix+ "." + FASTA_EXTENSION
+			self.get_main_window().get_main_informer().insert(INSERT,"\nSaving consensus sequence in "+ consensus_filename)
+			writeFile(consensus_seq_record,consensus_filename.split('.')[0], FASTA_EXTENSION)
+			return consensus_filename
+		except:
+			self.get_main_window().get_main_informer().insert(INSERT,ERROR_CONSENSUS)
 
 
 
