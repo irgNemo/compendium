@@ -32,6 +32,25 @@ class Gui:
 		self.filename_list = EMPTY_LIST
 		self.window.mainloop()
 
+	def println(self,msj):
+		self.main_informer.insert(INSERT,msj)
+		self.main_informer.see("insert")#Focus the informer's bottom
+
+	def assign_to_consensus_list(self,filename_list):
+		self.consensus_list = filename_list
+
+	def get_consensus_list(self):
+		return self.consensus
+
+	def add_to_consensus_list(self,filename):
+		self.consensus_list.append(filename)
+
+	def clean_consensus_list(self):
+		if len(self.consensus_list) != 0:
+			del self.consensus_list[:]
+			self.println("Consensus list was cleaned")
+
+
 	def assign_to_filename_list(self,filename_list):
 		self.filename_list = filename_list
 
@@ -42,7 +61,9 @@ class Gui:
 		self.filename_list.append(filename)
 
 	def clean_filename_list(self):
-		del self.filename_list[:]
+		if len(self.filename_list) != 0:
+			del self.filename_list[:]
+			self.println("Filename list was cleaned")
 
 	def get_main_informer(self):
 		return self.main_informer
@@ -128,12 +149,19 @@ class Gui:
 			open_file(self,informer,filename)
 
 	def close_file(self):
-		update_selected_file(self, DEFAULT_SELECTED_FILE)
+		if  self.lbl_selected_file['text'] != DEFAULT_SELECTED_FILE:
+			self.clean_selected_tab_informer()
+			self.clean_filename_list()
+			self.clean_consensus_list()
+			update_selected_file(self, DEFAULT_SELECTED_FILE)
+
+	def clean_selected_tab_informer(self):
 		informer = self.get_selected_tab_informer()
 		self.clean_informer(informer)
 
 	def select_file(self):
 		selected_file = tkFileDialog.askopenfilename()
+		self.close_file()
 		update_selected_file(self,selected_file)
 		selected_file= self.lbl_selected_file['text']
 		if  selected_file != DEFAULT_SELECTED_FILE and validate_not_none(selected_file):
@@ -163,8 +191,9 @@ class Gui:
 	def clean_informer(self,tab_informer):
 		tab_informer.delete(1.0,END)
 
-	def close_selected_file(self):
+	"""def close_selected_file(self):
 		update_selected_file(self, DEFAULT_SELECTED_FILE)
+		clean_selected_tab_informer()"""
 
 	def assing_available_tabs(self,filename,file_extention):
 		self.disable_all_tabs()

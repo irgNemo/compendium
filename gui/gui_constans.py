@@ -51,6 +51,15 @@ FOLDER_SETTINGS_MSJ = '\nYour Settings are:\n\nMain folder:\n'
 AUTOMATIC_SETTINGS_MSJ = '\nThe automatic enable button is:'
 DEFAULT_SETTINGS_MSJ = '\nThe default enable button is:'
 WORKING_FOLDER_MSJ = '\nWorking folder:\n'
+SAVING_CONSENSUS_MSJ = '\nSaving consensus...'
+CLUSTAL_ALING_MSJ = '\n\nAligning with ClustalW...'
+MUSCLE_ALING_MSJ = '\nAligning with Muscle...'
+PHILO_MSJ = '\n\nGetting phylo tree ...'
+ALIGN_DATA_MSJ = '\nGetting align data...'
+CONSENSUS_MSJ = '\n\nGetting consensus sequence...'
+
+
+
 INICIAL = 0
 SIZE = '1200x600'
 SEARCH_FRAME_SIZE = '900x150'
@@ -66,7 +75,7 @@ INFORMER_HEIGHT = 41
 INFORMER_WIGTH = 40
 DEFAULT_TAB_INFORMERS_HEIGHT = 27
 DEFAULT_TAB_INFORMERS_WIGTH = 125
-ALIGN_INFORMER_HEIGHT = 15
+ALIGN_INFORMER_HEIGHT = 30
 ALIGN_INFORMERS_WIGTH = 125
 TABS_WIDTH = 900
 TABS_HEIGHT = 550

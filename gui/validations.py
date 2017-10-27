@@ -16,12 +16,19 @@ def validate_not_none(data):
 		return True
 
 def validate_selected_filename(filename):
-	regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln)"
-	match = re.search(regex,filename)
-	return [match.group(2), match.group(3), match.group(4)]
+	try:
+		regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln)"
+		match = re.search(regex,filename)
+		return [match.group(2), match.group(3), match.group(4)]
+	except:
+		print "IT's default"
 
 def is_consensus_file(filename):
 	if PREFIX_CONSENSUS in filename:
 		return True
 
+def get_secction_name(filename):
+	regex = "(\w+)\."
+	match = re.search(regex,filename)
+	return match.group(0)
 

@@ -60,6 +60,8 @@ def assing_job(gui_obj,selected_filename):
 	gui_obj.assing_available_tabs(exp_arr[1],exp_arr[2])
 	#gui_obj.filter_frame.set_filename()
 
+
+
 def get_extention(filename):		
 	return filename.split('.')[1]
 
