@@ -147,6 +147,8 @@ class Gui:
 		self.clean_informer(informer)
 		if filename is not DEFAULT_SELECTED_FILE:
 			open_file(self,informer,filename)
+			exp_arr = validate_selected_filename(filename)
+			self.assing_available_tabs(exp_arr[1],exp_arr[2])
 
 	def close_file(self):
 		if  self.lbl_selected_file['text'] != DEFAULT_SELECTED_FILE:
@@ -160,18 +162,23 @@ class Gui:
 		self.clean_informer(informer)
 
 	def select_file(self):
-		selected_file = tkFileDialog.askopenfilename()
-		self.close_file()
-		update_selected_file(self,selected_file)
-		selected_file= self.lbl_selected_file['text']
-		if  selected_file != DEFAULT_SELECTED_FILE and validate_not_none(selected_file):
-			assing_job(self,selected_file)
-			open_file(self,self.get_selected_tab_informer(),selected_file)
-		else:
+		try:
+			selected_file = tkFileDialog.askopenfilename()
+			self.close_file()
+			update_selected_file(self,selected_file)
+			selected_file= self.lbl_selected_file['text']
+			if  selected_file != DEFAULT_SELECTED_FILE and validate_not_none(selected_file):
+				assing_job(self,selected_file)
+				open_file(self,self.get_selected_tab_informer(),selected_file)
+			else:
+				update_selected_file(self, DEFAULT_SELECTED_FILE)
+				self.clean_informer(self.get_selected_tab_informer())
+				self.disable_all_tabs()
+				tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)	
+		except:
 			update_selected_file(self, DEFAULT_SELECTED_FILE)
 			self.clean_informer(self.get_selected_tab_informer())
 			self.disable_all_tabs()
-			tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)	
 
 	def generate_report(self):
 		#try:
@@ -205,7 +212,7 @@ class Gui:
 		if file_extention == "fasta":
 			if is_consensus_file(filename):
 				self.enable_tab(INDEX_PRIMERS_TAB)
-				self.focus_tab(INDEX_ALIGNMENT_TAB)
+				self.focus_tab(INDEX_PRIMERS_TAB)
 			else:
 				self.enable_tab(INDEX_ALIGNMENT_TAB)
 				self.focus_tab(INDEX_ALIGNMENT_TAB)

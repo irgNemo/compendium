@@ -11,17 +11,11 @@ class Basic_tab:
 		self.insert_informer(tab,height,width)
 		self.filename_list = EMPTY_LIST
 
-	"""def assign_to_filename_list(self,filename_list):
-		self.filename_list = filename_list
-
-	def get_filename_list(self):
-		return self.filename_list
-
-	def add_to_filename_list(self,filename):
-		self.filename_list.append(filename)
-
-	def clean_filename_list(self):
-		del self.filename_list[:]"""
+	def enable(self,component):
+		component.config(state=NORMAL)
+	
+	def disabled(self,component):
+		component.config(state=DISABLED)
 
 	def insert_informer(self,tab,height,width):
 		self.informer = Text(tab,height=height,width=width)	
@@ -38,7 +32,7 @@ class Basic_tab:
 	def add_separator(self,widget,pos_x,pos_y,sep_orient):
 		separator = Separator(widget, orient='horizontal').pack(fill=X,pady=140)
 
-	def add_field(self,field_label,spaces,pos_x,pos_y,field_height,field_width):
+	def add_field(self,field_label,spaces,pos_x,pos_y,field_height,field_width,value=EMPTY_STRING):
 		panel = self.get_top_panel()
 		lbl_1 = Label(panel, text=field_label)
 		panel.add(lbl_1)
@@ -46,6 +40,7 @@ class Basic_tab:
 		txt = Text(self.get_tab(),height=field_height,width=field_width)#state='disabled',background="gray75")
 		txt.pack()
 		txt.place(x=pos_x+(BLANK_SPACE_X*spaces),y=pos_y)
+		txt.insert(INSERT,str(value))
 		return txt
 
 	def add_chooser(self,option_list,chooser_label,spaces,pos_x,pos_y):

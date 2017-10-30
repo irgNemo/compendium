@@ -21,7 +21,7 @@ INTERNAL_PRIMERS_EXT = ".int"
 BLAST_PROGRAM = "blastn"
 BLAST_DATABASE = "nt"
 BLAST_OUT_FORMAT = "text"
-
+ERROR_PRIMERS = '\nPrimers Error!'
 #################
 
 def make_primers_dir(based_path):
@@ -38,11 +38,26 @@ def generate_basic_primers_input(filename,seq_id,seq,seq_target,product_size=DEF
 	EQUAL_SIGN+NEW_LINE]
 	primers_file.writelines(lista)
 	primers_file.close()
-	
-def get_primers(input_filename):
-	print "Calculing primers"
-	os.system('primer3_core < ' + input_filename)
-	print "Calculing primers finished"
+
+def add_parameter_to(primers_input_filename,prefix,value,gui_obj):
+	parameter = prefix+EQUAL_SIGN+str(value)+NEW_LINE
+	print parameter
+	primers_file = open(primers_input_filename, 'a')
+	print "abriendo archivo "
+	primers_file.write(parameter)
+	print "escribiendo archivo "
+	primers_file.close()
+	print "cerrando archivo " 
+	#except:
+	#gui_obj.println(ERROR_PRIMERS)
+
+def get_primers(input_filename,gui_obj):
+	try:
+		gui_obj.println("Calculing primers")
+		os.system('primer3_core < ' + input_filename)
+		gui_obj.println("Calculing primers finished")
+	except:
+		gui_obj.println(ERROR_PRIMERS)
 
 def read_primers_file(filename):
 	try:

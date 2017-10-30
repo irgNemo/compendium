@@ -41,7 +41,7 @@ def separate_ORFs_per_sequence(sequence_data, feature_name,	feature_tag, tag_val
 					orf_sequence = sequence[lower:uper].seq;
 					orf_seqRecord = SeqRecord(orf_sequence);
 					orf_seqRecord.id = sequence.id;
-					orf_seqRecord.description = sequence.description;
+					orf_seqRecord.description = sequence.description + orf;
 					orf_seqRecord.name = orf
 					sequence_grouped_by_ORFs[orf].append(orf_seqRecord);
 	return sequence_grouped_by_ORFs;

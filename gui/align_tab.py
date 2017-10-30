@@ -16,7 +16,7 @@ class Align_tab(Basic_tab):
 	def __init__(self,tab,main_window):
 		Basic_tab.__init__(self,tab,main_window,ALIGN_INFORMER_HEIGHT,ALIGN_INFORMERS_WIGTH)
 		self.cmb_align_tool = self.add_chooser(ALIGNERS_OPTIONS,"Select an alignment tool:",2,200,10)
-		self.add_btn_align(800,80)
+		self.add_btn_align(800,50)
 		self.chkbox_align_seq = self.add_combobox("Align sequence",10,10)
 		self.chkbox_philo_tree = self.add_combobox("Philo tree",10,30)
 		self.chkbox_consensus_seq= self.add_combobox("Consensus sequence",10,50)
@@ -33,48 +33,61 @@ class Align_tab(Basic_tab):
 
 	def btn_align_call_back(self):
 		filename_list = self.get_main_window().get_filename_list()
-		
+		if is_empty(filename_list):
+			self.get_main_window().add_to_filename_list(get_selected_file(self.get_main_window()))
+			
 		for filename_item in filename_list:
+			if get_extention(filename_item) == GENBANK_EXTENTION:
+				file_data = parse(filename_item,GENBANK_FILE_TYPE)
+				new_file_name = writeFile(file_data,get_basic_filename(filename_item),FASTA_EXTENSION)
+				update_selected_file(self.get_main_window(), new_file_name)
+				filename_item = new_file_name
+				print "es gb"
+			
 			self.get_main_window().println("\n\n---Working with "+get_secction_name(filename_item)+"---")
 			#self.get_main_window().get_main_informer().insert(INSERT,"\n\n---Working with "+get_secction_name(filename_item)+"---")
 			update_selected_file(self.get_main_window(), filename_item)
 			output_filename = get_basic_filename(filename_item)+ALINGING_EXTENSION
+			self.disabled(self.txt_threshold)
 
 			if self.chkbox_align_seq.get() == CHKBOX_ON :
 				self.get_align(filename_item,output_filename)
 				update_selected_file(self.get_main_window(), output_filename)
 				open_file(self.get_main_window(),self.get_informer(),output_filename)
-
-			if self.chkbox_philo_tree.get() == CHKBOX_ON:
-				self.get_philo_tree(get_basic_filename(filename_item))
-
-			if self.chkbox_consensus_seq.get() == CHKBOX_ON :
-				consensus_filename = self.get_consensus(get_basic_filename(filename_item))
-				if validate_not_none(consensus_filename):
-					self.get_main_window().println("\nConsensus sequence was saved in "+ consensus_filename)
-					#self.get_main_window().get_main_informer().insert(INSERT,"\nConsensus sequence was saved in "+ consensus_filename)
-					update_selected_file(self.get_main_window(), consensus_filename)
-					open_file(self.get_main_window(),self.get_informer(),consensus_filename)
-					self.get_informer().see("insert")#Focus the informer's bottom
-				else:
-					self.get_main_window().println(ERROR_CONSENSUS)
-					#self.get_main_window().get_main_informer().insert(INSERT,ERROR_CONSENSUS)
+				if self.chkbox_philo_tree.get() == CHKBOX_ON:
+					self.get_philo_tree(get_basic_filename(filename_item))
+				if self.chkbox_consensus_seq.get() == CHKBOX_ON :
+					consensus_filename = self.get_consensus(get_basic_filename(filename_item))
+					if validate_not_none(consensus_filename):
+						self.get_main_window().println("\nConsensus sequence was saved in "+ consensus_filename)
+						#self.get_main_window().get_main_informer().insert(INSERT,"\nConsensus sequence was saved in "+ consensus_filename)
+						update_selected_file(self.get_main_window(), consensus_filename)
+						open_file(self.get_main_window(),self.get_informer(),consensus_filename)
+						self.get_informer().see("insert")#Focus the informer's bottom
+						self.get_main_window().enable_tab(INDEX_PRIMERS_TAB)
+						self.get_main_window().focus_tab(INDEX_PRIMERS_TAB)
+					else:
+						self.get_main_window().println(ERROR_CONSENSUS)
+						#self.get_main_window().get_main_informer().insert(INSERT,ERROR_CONSENSUS)"""
+			self.enable(self.txt_threshold)
+			#exp_arr = validate_selected_filename(consensus_filename)
+			#self.get_main_window().assing_available_tabs(exp_arr[1],exp_arr[2])
 				
 
 	def get_align(self,filename,output_filename):
 		try:
 			if self.cmb_align_tool.get() == ALIGNERS_OPTIONS[INDEX_CLUSTALW]:
 				self.get_main_window().println(CLUSTAL_ALING_MSJ)
-				#self.get_main_window().get_main_informer().insert(INSERT,"\n\nAligning with ClustalW...")
 				clustal_align(filename,get_clustalw_path());
 			else:
 				self.get_main_window().println(MUSCLE_ALING_MSJ)
-				#self.get_main_window().get_main_informer().insert(INSERT,"\nAligning with Muscle...")
 				muscle_align(filename, output_filename)
+
+			self.get_main_window().get_main_informer().insert(INSERT,"\nAlignment was finished")
+			self.get_main_window().get_main_informer().insert(INSERT,"\nOutput file is "+output_filename)
+	
 		except:
-			self.get_main_window().get_main_informer().insert(INSERT,"\nAligning Error...")
-		self.get_main_window().get_main_informer().insert(INSERT,"\nAlignment was finished")
-		self.get_main_window().get_main_informer().insert(INSERT,"\nOutput file is "+output_filename)
+			self.get_main_window().println("\nAligning Error!")
 
 	def get_philo_tree(self,based_filename):
 		try:

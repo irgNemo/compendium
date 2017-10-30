@@ -27,7 +27,7 @@ def get_selected_file(gui_obj):
 
 def update_selected_file(gui_obj, string):
 	gui_obj.lbl_selected_file.config(text=string)
-	exp_arr = validate_selected_filename(string)
+	#exp_arr = validate_selected_filename(string)
 	#gui_obj.assing_available_tabs(exp_arr[1],exp_arr[2])
 
 def set_main_folder(gui_obj,folder_settings_file=FOLDER_SETTINGS_FILENAME):

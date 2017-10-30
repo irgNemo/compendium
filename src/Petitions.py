@@ -118,7 +118,7 @@ def writeFile(sequence_list,file_name,file_format):
 		SeqIO.write(sequence_list, fasta_filename, file_format)
 		return fasta_filename
 	except:
-		print "Error on write file"
+		print "Error writing the file"
 
 """Checks if a list is empty.
 	INPUTS: record_list --> a list
