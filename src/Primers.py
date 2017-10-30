@@ -22,6 +22,7 @@ BLAST_PROGRAM = "blastn"
 BLAST_DATABASE = "nt"
 BLAST_OUT_FORMAT = "text"
 ERROR_PRIMERS = '\nPrimers Error!'
+IO_ERROR = '\nSorry! There is an IO error'
 #################
 
 def make_primers_dir(based_path):
@@ -40,16 +41,13 @@ def generate_basic_primers_input(filename,seq_id,seq,seq_target,product_size=DEF
 	primers_file.close()
 
 def add_parameter_to(primers_input_filename,prefix,value,gui_obj):
-	parameter = prefix+EQUAL_SIGN+str(value)+NEW_LINE
-	print parameter
-	primers_file = open(primers_input_filename, 'a')
-	print "abriendo archivo "
-	primers_file.write(parameter)
-	print "escribiendo archivo "
-	primers_file.close()
-	print "cerrando archivo " 
-	#except:
-	#gui_obj.println(ERROR_PRIMERS)
+	try:
+		parameter = prefix+EQUAL_SIGN+str(value)+NEW_LINE
+		primers_file = open(primers_input_filename, 'a')
+		primers_file.write(parameter)
+		primers_file.close()
+	except:
+		gui_obj.println(ERROR_PRIMERS+"\nCan not add: " + parameter)
 
 def get_primers(input_filename,gui_obj):
 	try:
@@ -59,24 +57,26 @@ def get_primers(input_filename,gui_obj):
 	except:
 		gui_obj.println(ERROR_PRIMERS)
 
-def read_primers_file(filename):
+def read_primers_file(filename,gui_obj):
 	try:
 		primers_file = open(filename,'r')
 		data = primers_file.read()
 		primers_file.close()
-		informer.insert(INSERT,"File was successfully opened")
+		gui_obj.println("File was successfully opened")
+		return data
 	except IOError:
-		informer.insert(INSERT,"Error! File cannot be opened")
-	return data
+		gui_obj.println("Error! File cannot be opened")
 
-def get_file_data(filename,file_type):
-	data = ''
-	#informer.insert(INSERT,"\nGetting " + filename + file_type + " data ...")
-	if os.path.isfile(filename + file_type):
-		data = data + read_primers_file(filename + file_type)
-	else:
-		'Error! File does not exist '
-	return data 
+
+def get_file_data(filename,file_type,gui_obj):
+	try:
+		data = ''
+		gui_obj.println("\nGetting " + filename + file_type + " data ...")
+		if os.path.isfile(filename + file_type):
+			data = data + read_primers_file(filename + file_type,gui_obj)
+		return data 
+	except:
+		gui_obj.println(IO_ERROR)
 
 def set_primers_data_format(data):
 	split_data = data.split('PRIMERS')
@@ -85,18 +85,18 @@ def set_primers_data_format(data):
 	primers_data = split_data[1]
 	return title + primers_data
 	
-def read_primers(based_filename):
+def read_primers(based_filename,gui_obj):
 	separator = NEW_LINE + SEPARATOR + SEPARATOR + NEW_LINE + NEW_LINE
-	data = get_file_data(based_filename ,LEFT_PRIMERS_EXT)+ separator
-	data = data + get_file_data(based_filename ,RIGHT_PRIMERS_EXT) + separator
-	data = data + get_file_data(based_filename ,INTERNAL_PRIMERS_EXT)
+	data = get_file_data(based_filename ,LEFT_PRIMERS_EXT,gui_obj)+ separator
+	data = data + get_file_data(based_filename ,RIGHT_PRIMERS_EXT,gui_obj) + separator
+	data = data + get_file_data(based_filename ,INTERNAL_PRIMERS_EXT,gui_obj)
 	return data
 
 def get_primers_list(filename):
 	text = ''
-	text = text + get_file_data(filename,LEFT_PRIMERS_EXT)
-	text = text + get_file_data(filename,RIGHT_PRIMERS_EXT)
-	text = text + get_file_data(filename,INTERNAL_PRIMERS_EXT)
+	text = text + get_file_data(filename,LEFT_PRIMERS_EXT,gui_obj)
+	text = text + get_file_data(filename,RIGHT_PRIMERS_EXT,gui_obj)
+	text = text + get_file_data(filename,INTERNAL_PRIMERS_EXT,gui_obj)
 	text_split = text.split('lity')
 	new_text = text_split[::1]
 	str1 = ''.join(new_text)

@@ -25,6 +25,7 @@ EMPTY_LIST = []
 PREFIX_CONSENSUS = "_consensus_th"
 FOLDER_SETTINGS_FILENAME = ".main_folder"
 PRIMERS_INPUT_FILENAME = '_primers_input'
+PREFIX_PRIMERS = "_primers_"
 OS_LINUX = "linux"
 OS_LINUX_SLASH = "/"
 OS_WIN_SLASH = "\\"

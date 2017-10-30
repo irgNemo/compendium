@@ -57,32 +57,33 @@ class Primers_tab(Basic_tab):
 		consensus = parse(get_selected_file(self.main_window),FASTA_EXTENSION)
 		consensus_seq = consensus[0].seq
 		basic_filename = get_basic_filename(get_selected_file(self.main_window)).replace(PREFIX_CONSENSUS, "_th")
+		primers_input_filename = basic_filename + PRIMERS_INPUT_FILENAME
+		primers_id = basic_filename+PREFIX_PRIMERS
+		self.get_main_window().println("\nGetting primers input file...\n in "+primers_input_filename)
 		
-		full_primers_input_filename = basic_filename + PRIMERS_INPUT_FILENAME
-		self.get_main_window().println("\nGetting primers input file...\n in "+full_primers_input_filename)
-		add_parameter_to(full_primers_input_filename,PREFIX_SEQUENCE_ID,get_secction_name(get_selected_file(self.main_window)),self.get_main_window())
-		add_parameter_to(full_primers_input_filename,PREFIX_SEQUENCE_TEMPLATE,consensus_seq,self.get_main_window())	
-		add_parameter_to(full_primers_input_filename,PREFIX_PRIMER_SEQ_TARGET,PRIMER_SEQ_TARGET,self.get_main_window())
-		
-		add_parameter_to(full_primers_input_filename,PREFIX_PRODUCT_RANGE,PRODUCT_RANGE,self.get_main_window())	
-		
-		#....Todos los demas parametros iran aqui
+		add_parameter_to(primers_input_filename,PREFIX_SEQUENCE_ID,primers_id,self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_SEQUENCE_TEMPLATE,consensus_seq,self.get_main_window())	
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_SEQ_TARGET,self.txt_primer_seq_target.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRODUCT_RANGE,self.txt_primer_product_range.get("1.0","end-1c"),self.get_main_window())	
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_NUMBER,self.txt_primer_number.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_SALT_MONOVALENT,self.txt_primer_salt_monovalent.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MIN_SIZE,self.txt_primer_min_size.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_OPT_SIZE,self.txt_primer_opt_size.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MAX_SIZE,self.txt_primer_max_size.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MIN_TM,self.txt_primer_min_tm.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_OPT_TM,self.txt_primer_opt_tm.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MAX_TM,self.txt_primer_max_tm.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MIN_GC,self.txt_primer_min_gc.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_PRIMER_MAX_GC,self.txt_primer_max_gc.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_MAX_POLY_X,self.txt_primer_max_poly_x.get("1.0","end-1c"),self.get_main_window())
+		add_parameter_to(primers_input_filename,PREFIX_P3_FILE_FLAG,P3_FILE_FLAG_VALUE,self.get_main_window())
+		add_parameter_to(primers_input_filename,EMPTY_STRING,EMPTY_STRING,self.get_main_window())
 
-		add_parameter_to(full_primers_input_filename,PREFIX_P3_FILE_FLAG,P3_FILE_FLAG_VALUE,self.get_main_window())
-		add_parameter_to(full_primers_input_filename,EMPTY_STRING,EMPTY_STRING,self.get_main_window())
-
-		"""self.get_main_window().println("\nParsing consensus sequence...")
-		consensus = parse(get_selected_file(self.main_window),FASTA_EXTENSION)
-		consensus_seq = consensus[0].seq
-		full_primers_input_filename = get_basic_filename(get_selected_file(self.main_window))+PRIMERS_INPUT_FILENAME
-		print ("nombre arch input: " + full_primers_input_filename)
-		self.get_main_window().println("\nGetting primers input file...")
-		generate_basic_primers_input(full_primers_input_filename, PRIMERS_INPUT_FILENAME, str(consensus_seq),"37,21")
 		self.get_main_window().println("\nGetting primers...")
-		get_primers(full_primers_input_filename,self.get_main_window()) 
-		#self.get_main_window().println("\nReading primers output...")
-		#primers_data = read_primers(PRIMERS_INPUT_FILENAME)
-		#print primers_data"""
+		get_primers(primers_input_filename,self.get_main_window()) 		
+		self.get_main_window().println("\nReading primers output...")
+		primers_data = read_primers(primers_id,self.get_main_window())
+		self.println(self.get_informer(),primers_data)
 
 
 
