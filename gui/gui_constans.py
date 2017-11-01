@@ -11,6 +11,7 @@ DATABASES = [  'nucleotide','protein','structure', 'genome','cdd', 'gap','gene',
 FORMATS = ['gb','fasta']
 ALIGNERS_OPTIONS = ["clustalW", "Muscle"]
 FASTA_EXTENSION  = "fasta"
+ALING_EXTENSION = "aln"
 ALINGING_EXTENSION  = ".aln"
 PHILO_EXTENSION = ".dnd"
 IMAGE_EXTENSION = ".jpg"
@@ -38,6 +39,7 @@ ERROR_MAIL = '\nSorry! There is an error in the email writing'
 ERROR_FOLDER_NAME = "\nSorry! The folder name can not be empty"
 ERROR_FILE_NAME = "\nSorry! The file name can not be empty"
 ERROR_RETMAX = '\nSorry! Retmax should be a number'
+ERROR_PROCESSING = '\nSorry! We could not process your petition!'
 ERROR_FILTER_ENABLE = '\nSorry! You should check the filter checkbox'
 ERROR_SELECTED_FILE = '\nSorry! You should select a file'
 ERROR_TAGS_VALUES = '\nSorry! Tags values can not be empty'
@@ -47,6 +49,8 @@ ERROR_PHILO = '\nPhilo Tree Error!'
 ERROR_CONSENSUS = '\nConsensus Sequence Error!'
 ERROR_FILE_LIST = '\nSorry! There is no filename list'
 ERROR_PRIMERS = '\nPrimers Error!'
+ERROR_NO_PRIMERS = '\n\nSorry! There are not any primer data using the selected parameters in: '
+WARNING_CONSENSUS = '\n You should select a file with aln extension'
 
 LOAD_SETTINGS_MSJ = '\nLoading settings ...'
 CLUSTALW_SETTINGS_MSJ = '\nGetting ClustalW path ...'
@@ -61,9 +65,9 @@ MUSCLE_ALING_MSJ = '\nAligning with Muscle...'
 PHILO_MSJ = '\n\nGetting phylo tree ...'
 ALIGN_DATA_MSJ = '\nGetting align data...'
 CONSENSUS_MSJ = '\n\nGetting consensus sequence...'
+PROCESS_FINISHED_MSJ = '\n\n*****This process was finished*****\n\n'
 
-
-
+PRIMERS_OUTPUT_FILE_MIN_SIZE = 200
 INICIAL = 0
 SIZE = '1200x600'
 SEARCH_FRAME_SIZE = '900x150'
@@ -83,6 +87,8 @@ ALIGN_INFORMER_HEIGHT = 30
 ALIGN_INFORMERS_WIGTH = 125
 PRIMERS_INFORMER_HEIGHT = 22
 PRIMERS_INFORMERS_WIGTH = 125
+BLAST_INFORMER_HEIGHT = 30
+BLAST_INFORMERS_WIGTH = 125
 TABS_WIDTH = 900
 TABS_HEIGHT = 550
 LEFT_PADDING = 10

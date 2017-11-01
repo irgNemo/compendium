@@ -8,6 +8,7 @@ from download_frame import *
 from filter_tab import *
 from align_tab import *
 from primers_tab import *
+from blast_tab import *
 
 class Gui:
 	
@@ -27,20 +28,37 @@ class Gui:
 		self.make_Filter_tab()
 		self.make_alignment_tab()
 		self.make_primers_tab()
+		self.make_blast_tab()
 		self.load_settings()
 		self.disable_all_tabs()
-		self.filename_list = EMPTY_LIST
+		self.filename_list = []
+		self.consensus_list = []
+		self.primers_id_list = []
 		self.window.mainloop()
 
 	def println(self,msj):
 		self.main_informer.insert(INSERT,msj)
 		self.main_informer.see("insert")#Focus the informer's bottom
 
-	def assign_to_consensus_list(self,filename_list):
-		self.consensus_list = filename_list
+	def assign_to_primers_id_list(self,primers_list):
+		self.primers_id_list = primers_list
+
+	def get_primers_id_list(self):
+		return self.primers_id_list
+
+	def add_to_primers_id_list(self,filename):
+		self.primers_id_list.append(filename)
+
+	def clean_primers_id_list(self):
+		if len(self.primers_id_list) != 0:
+			del self.primers_id_list[:]
+			self.println("primers id list was cleaned")
+
+	def assign_to_consensus_list(self,consensus_list):
+		self.consensus_list = consensus_list
 
 	def get_consensus_list(self):
-		return self.consensus
+		return self.consensus_list
 
 	def add_to_consensus_list(self,filename):
 		self.consensus_list.append(filename)
@@ -48,8 +66,7 @@ class Gui:
 	def clean_consensus_list(self):
 		if len(self.consensus_list) != 0:
 			del self.consensus_list[:]
-			self.println("Consensus list was cleaned")
-
+			self.println("Consensus filename list was cleaned")
 
 	def assign_to_filename_list(self,filename_list):
 		self.filename_list = filename_list
@@ -138,7 +155,7 @@ class Gui:
 
 	def get_selected_tab_informer(self):
 		current_tab = self.note.index("current")
-		informers = { 0: self.filter_frame.get_informer(), 1: self.align_frame.get_informer(), 2: self.primers_frame.get_informer() }
+		informers = { 0: self.filter_frame.get_informer(), 1: self.align_frame.get_informer(), 2: self.primers_frame.get_informer(),3: self.blast_frame.get_informer() }
 		return informers[current_tab]
 
 	def notebook_listener(self,event):
@@ -155,7 +172,9 @@ class Gui:
 			self.clean_selected_tab_informer()
 			self.clean_filename_list()
 			self.clean_consensus_list()
+			self.clean_primers_id_list()
 			update_selected_file(self, DEFAULT_SELECTED_FILE)
+			self.disable_all_tabs()
 
 	def clean_selected_tab_informer(self):
 		informer = self.get_selected_tab_informer()
@@ -224,6 +243,8 @@ class Gui:
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
 			self.focus_tab(INDEX_ALIGNMENT_TAB)
 			#TODO: deshabilitar otros checkbox
+		if file_extention == "all":
+			self.enable_tab(INDEX_BLAST_TAB)
 
 	def make_download_frame(self):
 		self.download_frame = Download_frame(self.download_informer,self)
@@ -237,6 +258,9 @@ class Gui:
 
 	def make_primers_tab(self):
 		self.primers_frame = Primers_tab(self.tab_primers,self)		
+	
+	def make_blast_tab(self):
+		self.blast_frame = Blast_tab(self.tab_blast,self)
 
 	def setting_main_folder(self):
 		create_new_main_folder(self)

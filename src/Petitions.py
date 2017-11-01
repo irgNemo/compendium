@@ -147,5 +147,17 @@ def downloadSequences(informer,database, term, file_name, file_format, email, sa
 	informer.insert(INSERT,"\nSequences stored in file " + saving_path + "\n");
 	return saving_path;
 
+def save_new_file(informer,filename,data):
+	try:
+		file_in = open(filename, "w")
+		file_in.write(data)
+		file_in.close()
+	except:
+		informer.insert(INSERT,"\nError saving " + filename + "\n");
+
+
+
+
+
 
 

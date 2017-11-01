@@ -2,7 +2,7 @@ import os
 import os.path
 import re
 from Bio.Blast import NCBIWWW
-
+#from gui.gui_utils import *;
 #Constants
 EXP_REG_RNA = '[A|C|G|T]{4,}|[a|c|g|t]{4,}'#{4,}filtra que la longitud de la cadena sea mayor a 4 caracteres
 SEQUENCE_ID = "SEQUENCE_ID"
@@ -12,7 +12,7 @@ PRIMER_PRODUCT_SIZE_RANGE = "PRIMER_PRODUCT_SIZE_RANGE"
 P3_FILE_FLAG = "P3_FILE_FLAG=1"
 EQUAL_SIGN = "="
 NEW_LINE = '\n'
-SEPARATOR = '--------------------------------------'
+SEPARATOR = '------------------------------------------------'
 DEFAULT_PRODUCT_SIZE = "100-300"
 PRIMERS_FOLDER = "/primers/"
 LEFT_PRIMERS_EXT = ".for"
@@ -51,9 +51,8 @@ def add_parameter_to(primers_input_filename,prefix,value,gui_obj):
 
 def get_primers(input_filename,gui_obj):
 	try:
-		gui_obj.println("Calculing primers")
-		os.system('primer3_core < ' + input_filename)
-		gui_obj.println("Calculing primers finished")
+		gui_obj.println("\nCalculing primers")
+		return os.system('primer3_core < ' + input_filename)
 	except:
 		gui_obj.println(ERROR_PRIMERS)
 
@@ -70,9 +69,10 @@ def read_primers_file(filename,gui_obj):
 
 def get_file_data(filename,file_type,gui_obj):
 	try:
-		data = ''
+		full_filename = filename + file_type
+		data = ""
 		gui_obj.println("\nGetting " + filename + file_type + " data ...")
-		if os.path.isfile(filename + file_type):
+		if os.path.isfile(full_filename): 
 			data = data + read_primers_file(filename + file_type,gui_obj)
 		return data 
 	except:
@@ -86,13 +86,24 @@ def set_primers_data_format(data):
 	return title + primers_data
 	
 def read_primers(based_filename,gui_obj):
+	#filename = based_filename+LEFT_PRIMERS_EXT
+	data = ""
 	separator = NEW_LINE + SEPARATOR + SEPARATOR + NEW_LINE + NEW_LINE
-	data = get_file_data(based_filename ,LEFT_PRIMERS_EXT,gui_obj)+ separator
-	data = data + get_file_data(based_filename ,RIGHT_PRIMERS_EXT,gui_obj) + separator
-	data = data + get_file_data(based_filename ,INTERNAL_PRIMERS_EXT,gui_obj)
+	left_data = get_file_data(based_filename ,LEFT_PRIMERS_EXT,gui_obj)
+	if left_data is not None or left_data != "":
+		data = data + left_data + separator
+
+	right_data = get_file_data(based_filename ,RIGHT_PRIMERS_EXT,gui_obj)
+	if right_data is not None or right_data != "":	
+		data = data + right_data + separator
+	
+	internal_data = get_file_data(based_filename ,INTERNAL_PRIMERS_EXT,gui_obj)
+	if internal_data is not None or internal_data != "":
+		data = data + internal_data + separator
+
 	return data
 
-def get_primers_list(filename):
+def get_primers_list(filename,gui_obj):
 	text = ''
 	text = text + get_file_data(filename,LEFT_PRIMERS_EXT,gui_obj)
 	text = text + get_file_data(filename,RIGHT_PRIMERS_EXT,gui_obj)
@@ -109,10 +120,10 @@ def split_blast_results(results):
 	final_split = str1.split('</form>')
 	return ''.join(final_split[0])
 
-def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,output_filename): solo si format_type != "Text"
-	informer.insert(INSERT,"\nGetting blast " + sequence + " results ...")
-	result_handle = NCBIWWW.qblast(blast_program, database, sequence, format_type=BLAST_OUT_FORMAT)#Es importante manajerlo como "Text" para obtener un String
-	informer.insert(INSERT,"\nFinishing getting " + sequence + " blast data.")
+def run_blast(gui_obj,sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,output_filename): solo si format_type != "Text"
+	#gui_obj.println("\nGetting blast " + sequence + " results ...")
+	result_handle = NCBIWWW.qblast(blast_program, database, sequence, format_type="Text")#Es importante manajerlo como "Text" para obtener un String
+	#informer.insert(INSERT,"\nFinishing getting " + sequence + " blast data.")
 	blast_results = result_handle.getvalue() #Se puede retornar como String
 	result_handle.close()
 	return split_blast_results(blast_results)
@@ -124,11 +135,11 @@ def run_blast(sequence,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):#,o
 	out_handle.close()
 	print ('Blast results were saved at ' + output_filename)"""
 
-def get_blast_data(primers_list,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):
+def get_blast_data(primers_list,gui_obj,blast_program=BLAST_PROGRAM ,database=BLAST_DATABASE):
 	data = ""
 	#informer.insert(INSERT,"\nGetting blast primars information ...")
-	print "Getting blast primars information ..."
+	gui_obj.println("Getting blast primars information ...")
 	for each in primers_list:
-		data = data + run_blast(each)
+		data = data + run_blast(each,gui_obj)
 	return data
 

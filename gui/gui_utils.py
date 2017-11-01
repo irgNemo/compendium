@@ -1,5 +1,4 @@
 import tkFileDialog
-#from os import scandir, getcwd
 from os import walk
 from gui_constans import *
 from Tkinter import *

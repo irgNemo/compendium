@@ -32,45 +32,49 @@ class Filter_tab(Basic_tab):
 		btn_filter.place(x=pos_x,y=pos_y)
 
 	def btn_filter_call_back(self):
-		if validate_not_none(self.txt_tag_values.get("1.0","end-1c")):
-			self.println(self.get_main_window().get_main_informer(),"Reading data from selected file...")
-			record = parse(get_selected_file(self.get_main_window()), 'gb')
-			self.println(self.get_main_window().get_main_informer(),"Getting sequences with tag values...")
-			records_filtered = filterByNCBITagValue(record,self.cmb_feature_name.get(),self.cmb_feature_tag.get().split(), self.txt_tag_values.get("1.0","end-1c").split());
-			if records_filtered != EMPTY_LIST:
-				self.println(self.get_main_window().get_main_informer(),"Filtering tag values...")
-				orfs = separate_ORFs_per_sequence(records_filtered,self.cmb_feature_name.get(),self.cmb_feature_tag_per_seq.get(), self.txt_tag_values.get("1.0","end-1c").split());
-				self.println(self.get_main_window().get_main_informer(),"Saving filtered secuences...")
-				main_folder = self.get_main_window().get_main_folder()
-				if validate_not_none(main_folder):
-					filename = self.txt_filename.get("1.0","end-1c")
-					if validate_not_none(filename):
-						new_file_name = main_folder + "/"+ filename + "/" + filename
-						self.clean_informer(self.get_informer())
-						for key in orfs.keys():
-							self.println(self.get_main_window().get_main_informer(),"\nSaving "+key+"...\n")
-							if orfs[key] == EMPTY_LIST:
-								self.get_main_window().get_main_informer().insert(INSERT,key + " sequences are not contained in the file")
-							else:
-								file_path = writeFile(orfs[key],new_file_name + "_" + key , FASTA_EXTENSION);
-								print file_path
-								update_selected_file(self.get_main_window(),file_path)
-								if validate_not_none(file_path):
-									self.get_main_window().add_to_filename_list(file_path)
-									self.println(self.get_main_window().get_main_informer(),"\nThe file was saved in: "+file_path)
+		try:
+			if validate_not_none(self.txt_tag_values.get("1.0","end-1c")):
+				self.println(self.get_main_window().get_main_informer(),"Reading data from selected file...")
+				record = parse(get_selected_file(self.get_main_window()), 'gb')
+				self.println(self.get_main_window().get_main_informer(),"Getting sequences with tag values...")
+				records_filtered = filterByNCBITagValue(record,self.cmb_feature_name.get(),self.cmb_feature_tag.get().split(), self.txt_tag_values.get("1.0","end-1c").split());
+				if records_filtered != EMPTY_LIST:
+					self.println(self.get_main_window().get_main_informer(),"Filtering tag values...")
+					orfs = separate_ORFs_per_sequence(records_filtered,self.cmb_feature_name.get(),self.cmb_feature_tag_per_seq.get(), self.txt_tag_values.get("1.0","end-1c").split());
+					self.println(self.get_main_window().get_main_informer(),"Saving filtered secuences...")
+					main_folder = self.get_main_window().get_main_folder()
+					if validate_not_none(main_folder):
+						filename = self.txt_filename.get("1.0","end-1c")
+						if validate_not_none(filename):
+							new_file_name = main_folder + "/"+ filename + "/" + filename
+							self.clean_informer(self.get_informer())
+							for key in orfs.keys():
+								self.println(self.get_main_window().get_main_informer(),"\nSaving "+key+"...\n")
+								if orfs[key] == EMPTY_LIST:
+									self.get_main_window().get_main_informer().insert(INSERT,key + " sequences are not contained in the file")
 								else:
-									self.println(self.get_main_window().get_main_informer(),"Error al filtrar")
-								self.println(self.get_informer(),"---"+key+" SEQUENCES---\n")
-								open_file(self.get_main_window(),self.get_informer(),file_path)
+									file_path = writeFile(orfs[key],new_file_name + "_" + key , FASTA_EXTENSION);
+									print file_path
+									update_selected_file(self.get_main_window(),file_path)
+									if validate_not_none(file_path):
+										self.get_main_window().add_to_filename_list(file_path)
+										self.println(self.get_main_window().get_main_informer(),"\nThe file was saved in: "+file_path)
+									else:
+										self.println(self.get_main_window().get_main_informer(),"Error al filtrar")
+									self.println(self.get_informer(),"---"+key+" SEQUENCES---\n")
+									open_file(self.get_main_window(),self.get_informer(),file_path)
+						else:
+							tkMessageBox.showerror("Error", ERROR_FILE_NAME)
 					else:
-						tkMessageBox.showerror("Error", ERROR_FILE_NAME)
+						tkMessageBox.showerror("Error", ERROR_FOLDER_NAME)
 				else:
-					tkMessageBox.showerror("Error", ERROR_FOLDER_NAME)
+					tkMessageBox.showerror("Error", ERROR_FILTERING)
+					self.println(self.get_informer(),ERROR_FILTERING)
 			else:
-				tkMessageBox.showerror("Error", ERROR_FILTERING)
-				self.println(self.get_informer(),ERROR_FILTERING)
-		else:
-			tkMessageBox.showerror("Error", ERROR_TAGS_VALUES)
+				tkMessageBox.showerror("Error", ERROR_TAGS_VALUES)
+			self.get_main_window().println(PROCESS_FINISHED_MSJ)
+		except:
+			self.get_main_window().println(ERROR_PROCESSING)
 		#if len(self.get_main_window().get_filename_list()) != 0:
 		#	update_selected_file(self.get_main_window(), self.get_main_window().get_filename_list()[INICIAL])
 	
