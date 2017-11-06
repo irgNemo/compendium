@@ -89,7 +89,7 @@ def main():
 		print 'Reading generated primers'
 		primers_data = read_primers(seq_id)
 		primers_list = get_primers_list(seq_id)
-		blast_data = get_blast_data(primers_list[0:2])
+		#blast_data = get_blast_data(primers_list[0:2])
 		#blast_data = run_blast(primers_list[0])
 		#Generando reporte pdf
 		report_filename = new_file_name + "_" + key + ".pdf"

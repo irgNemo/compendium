@@ -67,6 +67,7 @@ ALIGN_DATA_MSJ = '\nGetting align data...'
 CONSENSUS_MSJ = '\n\nGetting consensus sequence...'
 PROCESS_FINISHED_MSJ = '\n\n*****This process was finished*****\n\n'
 
+REPORTS_FRAME_SIZE ='350x180'
 PRIMERS_OUTPUT_FILE_MIN_SIZE = 200
 INICIAL = 0
 SIZE = '1200x600'

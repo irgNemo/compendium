@@ -9,6 +9,7 @@ from filter_tab import *
 from align_tab import *
 from primers_tab import *
 from blast_tab import *
+from reports_frame import *
 
 class Gui:
 	
@@ -200,8 +201,9 @@ class Gui:
 			self.disable_all_tabs()
 
 	def generate_report(self):
+		self.reports_frame = Reports_frame(self.get_main_informer(),self)
 		#try:
-		reports_folder = tkFileDialog.askdirectory()
+		"""reports_folder = tkFileDialog.askdirectory()
 		if validate_not_none(reports_folder):
 			if get_selected_file(self) is not DEFAULT_SELECTED_FILE:
 			#TODO:get current directory and based on the open file generate report
@@ -212,7 +214,7 @@ class Gui:
 		else:
 			tkMessageBox.showerror("Error", ERROR_FOLDER_NAME)
 		#except:
-			tkMessageBox.showerror("Error", "hola")
+			tkMessageBox.showerror("Error", "hola")"""
 	
 	def clean_informer(self,tab_informer):
 		tab_informer.delete(1.0,END)

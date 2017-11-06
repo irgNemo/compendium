@@ -125,13 +125,21 @@ def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT)
 			file_name--> A string that specifies the report filename"""
 def generate_report(data,consensus_data,image_name,primers_data,blast_data,file_name):
 	c = canvas.Canvas(file_name)
-	title,align = data.split("alignment")
-	title = title + "alignment"
-	add_split_data(c,title,align)
-	add_image(c,TREE_TITLE,image_name)
-	add_consensus(c,CONSENSUS_TITLE,consensus_data)
-	new_page(c)
-	add_split_data(c,PRIMERS_TITLE,primers_data)
-	add_split_data(c,BLAST_TITLE,blast_data)
+	if data != "":
+		title,align = data.split("alignment")
+		title = title + "alignment"
+		add_split_data(c,title,align)
+	if image_name != "":
+		add_image(c,TREE_TITLE,image_name)
+	if consensus_data != "":
+		add_consensus(c,CONSENSUS_TITLE,consensus_data)
+		new_page(c)
+	if primers_data != "":
+		add_split_data(c,PRIMERS_TITLE,primers_data)
+	if blast_data != "":
+		add_split_data(c,BLAST_TITLE,blast_data)
+
 	c.save()	
+
+
 

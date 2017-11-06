@@ -31,6 +31,14 @@ class Basic_frame:
 		cmb.place(x=pos_x+(BLANK_SPACE_X*spaces),y=pos_y)
 		return cmb
 
+	def add_combobox(self,cmb_label,pos_x,pos_y):
+		CheckVar1 = IntVar()
+		panel = self.get_top_panel()
+		C1 = Checkbutton(panel, text = cmb_label, variable = CheckVar1,onvalue = 1, offvalue = 0)
+		C1.pack()
+		C1.place(x=pos_x,y=pos_y)
+		return CheckVar1
+
 	def add_top_panel(self,frame):
 		self.top_panel = PanedWindow(self.frame, height=TOP_PANEL_SEARCH_FRAME_HEIGHT)
 		self.top_panel.pack(fill=BOTH, expand=PANELS_EXPAND)
