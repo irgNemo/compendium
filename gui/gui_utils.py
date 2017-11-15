@@ -14,12 +14,13 @@ def open_file(gui_obj,tab_informer,filename):
 				tkMessageBox.showerror("Error", ERROR_EMPTY_FILE)
 			else:
 				tab_informer.insert(INSERT,data)
+			basic_file.close()
 		except IOError:
 			update_selected_file(gui_obj, DEFAULT_SELECTED_FILE)
-			gui_obj.get_main_informer().insert(INSERT,IO_ERROR)
+			gui_obj.println(IO_ERROR)
 	else:
 		update_selected_file(gui_obj, DEFAULT_SELECTED_FILE)
-		gui_obj.get_main_informer().insert(INSERT,SELECTED_FILE_WARNING)
+		gui_obj.println(SELECTED_FILE_WARNING)
 
 def get_selected_file(gui_obj):
 	return gui_obj.lbl_selected_file.cget("text")
@@ -31,14 +32,13 @@ def update_selected_file(gui_obj, string):
 
 def set_main_folder(gui_obj,folder_settings_file=FOLDER_SETTINGS_FILENAME):
    	try:
-		gui_obj.get_main_informer().insert(INSERT,LOAD_SETTINGS_MSJ)
+		gui_obj.println(LOAD_SETTINGS_MSJ)
 		basic_file = open(folder_settings_file, 'r')
 		data = basic_file.read()
-		print data
 		basic_file.close()
 		return data
 	except IOError:
-		gui_obj.get_main_informer().insert(INSERT,IO_ERROR)
+		gui_obj.println(IO_ERROR)
 
 def create_new_main_folder(gui_obj):
 	try:
@@ -47,15 +47,15 @@ def create_new_main_folder(gui_obj):
 			basic_file = open(FOLDER_SETTINGS_FILENAME, 'w')
 			basic_file.write(new_folder_name)
 		else:
-			gui_obj.get_main_informer().insert(INSERT,ERROR_FOLDER_NAME)
+			gui_obj.println(ERROR_FOLDER_NAME)
 	except IOError:
-		gui_obj.get_main_informer().insert(INSERT,IO_ERROR)
+		gui_obj.println(IO_ERROR)
 
 
 def assing_job(gui_obj,selected_filename):
 	exp_arr = validate_selected_filename(selected_filename)
 	gui_obj.working_folder = exp_arr[0]
-	gui_obj.get_main_informer().insert(INSERT,WORKING_FOLDER_MSJ + gui_obj.working_folder)
+	gui_obj.println(WORKING_FOLDER_MSJ + gui_obj.working_folder)
 	gui_obj.assing_available_tabs(exp_arr[1],exp_arr[2])
 	#gui_obj.filter_frame.set_filename()
 
@@ -87,6 +87,14 @@ def show_path_files(path):
 		print filename
 
 
+def get_file_data(filename):
+	try:
+		basic_file = open(filename, 'r')
+		data = basic_file.read()
+		basic_file.close()
+		return data
+	except IOError:
+		gui_obj.println(IO_ERROR)
 
 
 

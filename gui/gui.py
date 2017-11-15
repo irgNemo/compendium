@@ -124,10 +124,10 @@ class Gui:
 		settings_menu = Menu(self.menubar, tearoff=0)
 		settings_menu.add_command(label="Set main folder", command=self.setting_main_folder)
 		settings_menu.add_checkbutton(label="Automatic", onvalue=True, offvalue=False, variable=self.automatic_setting, command=self.setting_automatic)
-		settings_menu.add_checkbutton(label="Default", onvalue=True, offvalue=False, variable=self.default_setting, command=self.setting_default)
+		#settings_menu.add_checkbutton(label="Default", onvalue=True, offvalue=False, variable=self.default_setting, command=self.setting_default)
 		self.menubar.add_cascade(label="Settings", menu=settings_menu)	
 		#Run menu
-		self.menubar.add_command(label="Run", command=self.setting_main_folder)	
+		self.menubar.add_command(label="Run", command=self.run_automatic)	
 
 		self.window.config(menu=self.menubar)
 
@@ -197,24 +197,11 @@ class Gui:
 				tkMessageBox.showwarning("Warning", SELECTED_FILE_WARNING)	
 		except:
 			update_selected_file(self, DEFAULT_SELECTED_FILE)
-			self.clean_informer(self.get_selected_tab_informer())
+			#self.clean_informer(self.get_selected_tab_informer())
 			self.disable_all_tabs()
 
 	def generate_report(self):
 		self.reports_frame = Reports_frame(self.get_main_informer(),self)
-		#try:
-		"""reports_folder = tkFileDialog.askdirectory()
-		if validate_not_none(reports_folder):
-			if get_selected_file(self) is not DEFAULT_SELECTED_FILE:
-			#TODO:get current directory and based on the open file generate report
-			#TODO: OR select all the files and generate report
-				show_path_files(reports_folder)
-				#else:
-					
-		else:
-			tkMessageBox.showerror("Error", ERROR_FOLDER_NAME)
-		#except:
-			tkMessageBox.showerror("Error", "hola")"""
 	
 	def clean_informer(self,tab_informer):
 		tab_informer.delete(1.0,END)
@@ -247,6 +234,16 @@ class Gui:
 			#TODO: deshabilitar otros checkbox
 		if file_extention == "all":
 			self.enable_tab(INDEX_BLAST_TAB)
+		
+		if self.automatic_setting.get():
+			self.disable_all_tabs()
+			if file_extention == "gb":
+				self.want_to_filter(filename)
+			if file_extention == "fasta":
+				self.enable_tab(INDEX_ALIGNMENT_TAB)
+				self.focus_tab(INDEX_ALIGNMENT_TAB)
+				#.set(True)
+				self.align_frame.btn_align_call_back()
 
 	def make_download_frame(self):
 		self.download_frame = Download_frame(self.download_informer,self)
@@ -270,15 +267,14 @@ class Gui:
 
 	def setting_automatic(self):
 		if self.automatic_setting.get():
-			print("Automatic")
-		else:
-			print("NO Automatic")
+			self.disable_all_tabs()
+			self.print_settings()
 
-	def setting_default(self):
+	"""def setting_default(self):
 		if self.automatic_setting.get():
-			print("Default")
-		else:
-			print("NO Default")
+			self.disable_all_tabs()
+		#else:
+		#	print("NO Default")"""
 		
 
 	def disable_all_tabs(self):
@@ -300,7 +296,7 @@ class Gui:
 			self.menubar.entryconfig("Sequences",state="normal")
 			self.menubar.entryconfig("Reports",state="normal")
 			self.setting_automatic()
-			self.setting_default()
+			#self.setting_default()
 			self.print_settings()
 		else:
 			tkMessageBox.showerror("Error", ERROR_SETTINGS)
@@ -308,7 +304,31 @@ class Gui:
 	def print_settings(self):
 		self.get_main_informer().insert(INSERT,FOLDER_SETTINGS_MSJ + self.main_folder + NEW_LINE)
 		self.get_main_informer().insert(INSERT,AUTOMATIC_SETTINGS_MSJ + str(self.automatic_setting.get()) + NEW_LINE)
-		self.get_main_informer().insert(INSERT,DEFAULT_SETTINGS_MSJ + str(self.default_setting.get()) + NEW_LINE)
+		#self.get_main_informer().insert(INSERT,DEFAULT_SETTINGS_MSJ + str(self.default_setting.get()) + NEW_LINE)
+
+	def want_to_filter(self,filename):
+		result = tkMessageBox.askquestion("Filter", "Do you want to filter the sequence?", icon='warning')
+		if result == 'yes':
+			self.enable_tab(INDEX_FILTER_TAB)
+			self.focus_tab(INDEX_FILTER_TAB)
+			self.filter_frame.set_filename(filename)		
+
+	def run_automatic(self):
+		self.make_download_frame()
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
 
 my_gui = Gui()
 

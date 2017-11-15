@@ -1,5 +1,6 @@
 import re
 import os
+import os.path
 from gui_constans import *
 
 def validate_mail(mail):
@@ -18,7 +19,7 @@ def validate_not_none(data):
 
 def validate_selected_filename(filename):
 	try:
-		regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln|all)"
+		regex = "/(.+)/(.+)/(.+)\.(fasta|gb|aln|dnd|all)"
 		match = re.search(regex,filename)
 		return [match.group(2), match.group(3), match.group(4)]
 	except:
@@ -31,10 +32,55 @@ def is_consensus_file(filename):
 def get_secction_name(filename):
 	regex = "(\w+)\."
 	match = re.search(regex,filename)
+	return match.group(0).replace(".","")
+
+def get_basic_path(filename): 
+	regex = "(.+)/(.+)/(\w+)\."
+	match = re.search(regex,filename)
 	return match.group(0)
 
 def is_empty_primers_output(filename):
 	filesize = os.path.getsize(filename)
 	if filesize <= PRIMERS_OUTPUT_FILE_MIN_SIZE:
 		return True
+
+def exists(filename):
+	return  os.path.exists(filename)
+
+
+def is_current(filaname_list,current_section):
+	filename = "hola"
+	size = len(filaname_list)
+	for i in range(0,size):
+		print "i : " + i
+		print "value: " + filaname_list[i]
+		if "E7" in filaname_list[i]:
+			filename = filaname_list[i]
+	return filename
+
+def get_threshold(data_list):
+	threshold = ""
+	for item in data_list:
+		regex = "(.+)th(\d+)(.+)"
+		match = re.search(regex,item)
+		if match.group(2):
+			threshold = match.group(2)
+	return threshold,item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

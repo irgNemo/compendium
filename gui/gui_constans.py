@@ -27,6 +27,7 @@ PREFIX_CONSENSUS = "_consensus_th"
 FOLDER_SETTINGS_FILENAME = ".main_folder"
 PRIMERS_INPUT_FILENAME = '_primers_input'
 PREFIX_PRIMERS = "_primers_"
+PREFIX_PHILO = "_tree_"
 OS_LINUX = "linux"
 OS_LINUX_SLASH = "/"
 OS_WIN_SLASH = "\\"
@@ -50,7 +51,11 @@ ERROR_CONSENSUS = '\nConsensus Sequence Error!'
 ERROR_FILE_LIST = '\nSorry! There is no filename list'
 ERROR_PRIMERS = '\nPrimers Error!'
 ERROR_NO_PRIMERS = '\n\nSorry! There are not any primer data using the selected parameters in: '
+ERROR_NO_FILE = '\nThere is not any data generated about '
+ERROR_CHECKBOX_NEEDED = '\nYou should check the corresponding checkbox: '
+EMPTY_DOWNLOAD = '\nWe could not find any sequence using the given term!'
 WARNING_CONSENSUS = '\n You should select a file with aln extension'
+
 
 LOAD_SETTINGS_MSJ = '\nLoading settings ...'
 CLUSTALW_SETTINGS_MSJ = '\nGetting ClustalW path ...'

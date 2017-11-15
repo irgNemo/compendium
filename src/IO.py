@@ -64,14 +64,6 @@ def add_split_data(canvas,title,data,page_limit=PAGE_LIMIT):
 			x = POS_TABS
 			canvas.drawText(new_textobject(string,canvas,x,y))
 			x = TEXT_ORIGIN_X
-		elif string.find('|') != -1:
-			x = POS_LINKS
-			canvas.drawText(new_textobject(string,canvas,x,y))
-			x = TEXT_ORIGIN_X
-		elif string.find('0-based') != -1:
-			x = POS_TAB_FIT
-			canvas.drawText(new_textobject(string,canvas,x,y))
-			x = TEXT_ORIGIN_X	
 		else:
 			canvas.drawText(new_textobject(string,canvas,x,y))
 		y = y - 15
@@ -89,7 +81,7 @@ def add_image(canvas,title,image,scale=SCALE):
 	canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
 	w, h = ImageReader(image).getSize()
 	canvas.drawInlineImage(image,IMAGE_ORIGIN_X,IMAGE_ORIGIN_Y,w * scale,h * scale)
-	canvas.showPage()
+	new_page(canvas)
 
 """Adds the consensus sequence data into the report
 	INPUTS: canvas--> A ReportLab canvas
@@ -98,25 +90,35 @@ def add_image(canvas,title,image,scale=SCALE):
 			page_limit--> Integer that defines the number of new lines per page
 			line_limit-->Integer that defines the number of characters contained in each line"""
 def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT):
-	data_lenght = len(data)
+	#data_lenght = len(data)
 	i = 0
 	j = 0
 	y = CONSENSUS_Y
 	x = CONSENSUS_X
 	string = ""
 	canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
+	splited_data = data.split("Consensus")
+	canvas.drawText(new_textobject(splited_data[0],canvas,x,y))
+	second_split = splited_data[1].split("\n")
+	y = y-15
+	canvas.drawText(new_textobject("Consensus " + second_split[0],canvas,x,y))
+	y = y-15
+	data = str(second_split[1])
+	data_lenght = len(data)
 	for i in range(data_lenght):
-		string = string + data[i]
-		if i % line_limit == 0 and i != 0:
-			canvas.drawText(new_textobject(string,canvas,x,y))			
-			y = y - 15
-			string = ""
-			j = j + 1
-		if j % page_limit == 0 and j != 0:
-			canvas.showPage()
-			canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
-			y = CONSENSUS_Y
-			j = 0
+		if data[i] != '\n':
+			string = string + data[i]
+			if i % line_limit == 0 and i != 0:
+				canvas.drawText(new_textobject(string,canvas,x,y))			
+				y = y - 15
+				string = ""
+				j = j + 1
+			if j % page_limit == 0 and j != 0:
+				canvas.showPage()
+				canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
+				y = CONSENSUS_Y
+				j = 0
+				new_page(c)
 	
 """Generates a pdf report based on the alignment, consensus sequence and the philo tree
 	INPUTS: data--> alignment data
@@ -127,13 +129,14 @@ def generate_report(data,consensus_data,image_name,primers_data,blast_data,file_
 	c = canvas.Canvas(file_name)
 	if data != "":
 		title,align = data.split("alignment")
-		title = title + "alignment"
+		title = title + "Alignment"
 		add_split_data(c,title,align)
 	if image_name != "":
 		add_image(c,TREE_TITLE,image_name)
 	if consensus_data != "":
-		add_consensus(c,CONSENSUS_TITLE,consensus_data)
-		new_page(c)
+		add_split_data(c,CONSENSUS_TITLE,consensus_data)
+		#add_consensus(c,CONSENSUS_TITLE,consensus_data)
+		#new_page(c)
 	if primers_data != "":
 		add_split_data(c,PRIMERS_TITLE,primers_data)
 	if blast_data != "":

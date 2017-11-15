@@ -28,7 +28,7 @@ class Filter_tab(Basic_tab):
 
 	def add_btn_filter(self,pos_x,pos_y):
 		btn_filter = Button(self.get_top_panel(), text ="Filter",command = self.btn_filter_call_back)
-		btn_filter.pack()
+		btn_filter.pack(expand=True)
 		btn_filter.place(x=pos_x,y=pos_y)
 
 	def btn_filter_call_back(self):
@@ -54,7 +54,6 @@ class Filter_tab(Basic_tab):
 									self.get_main_window().get_main_informer().insert(INSERT,key + " sequences are not contained in the file")
 								else:
 									file_path = writeFile(orfs[key],new_file_name + "_" + key , FASTA_EXTENSION);
-									print file_path
 									update_selected_file(self.get_main_window(),file_path)
 									if validate_not_none(file_path):
 										self.get_main_window().add_to_filename_list(file_path)

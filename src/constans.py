@@ -1,4 +1,29 @@
-DEFAULT_RETMAX = 50; # Total number of UID from the retrieved set to be shown
+DEFAULT_RETMAX = 20; # Total number of UID from the retrieved set to be shown
+CONSENSUS_THRESHOLD = 0.7
+
+EXP_REG_RNA = '[A|C|G|T]{4,}|[a|c|g|t]{4,}'#{4,}filtra que la longitud de la cadena sea mayor a 4 caracteres
+SEQUENCE_ID = "SEQUENCE_ID"
+SEQUENCE_TEMPLATE = "SEQUENCE_TEMPLATE"
+SEQUENCE_TARGET = "SEQUENCE_TARGET"
+PRIMER_PRODUCT_SIZE_RANGE = "PRIMER_PRODUCT_SIZE_RANGE"
+P3_FILE_FLAG = "P3_FILE_FLAG=1"
+EQUAL_SIGN = "="
+NEW_LINE = '\n'
+SEPARATOR = '------------------------------------------------'
+DEFAULT_PRODUCT_SIZE = "100-300"
+PRIMERS_FOLDER = "/primers/"
+LEFT_PRIMERS_EXT = ".for"
+RIGHT_PRIMERS_EXT = ".rev"
+INTERNAL_PRIMERS_EXT = ".int"
+BLAST_PROGRAM = "blastn"
+BLAST_DATABASE = "nt"
+BLAST_OUT_FORMAT = "text"
+ERROR_PRIMERS = '\nPrimers Error!'
+IO_ERROR = '\nSorry! There is an IO error'
+
+
+
+
 
 ##PRIMERS PREFIX
 PREFIX_PRIMER_NUMBER = "PRIMER_NUM_RETURN" #v/
@@ -20,7 +45,6 @@ PREFIX_MAX_POLY_X = "PRIMER_MAX_POLY_X"
 PREFIX_SEQUENCE_ID = "SEQUENCE_ID"  #v/
 PREFIX_SEQUENCE_TEMPLATE = "SEQUENCE_TEMPLATE" #v/
 PREFIX_P3_FILE_FLAG = "P3_FILE_FLAG" #v/
-
 
 ##PRIMER DEFAULT VALUES
 PRIMER_NUMBER = 5

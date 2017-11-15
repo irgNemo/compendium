@@ -10,7 +10,7 @@ class Basic_frame:
 		self.informer = informer
 		self.add_top_panel(self.frame)
 
-	def add_field(self,field_label,spaces,pos_x,pos_y,field_height,field_width):
+	def add_field(self,field_label,spaces,pos_x,pos_y,field_height,field_width,value=EMPTY_STRING):
 		panel = self.get_top_panel()
 		lbl_1 = Label(panel, text=field_label)
 		panel.add(lbl_1)
@@ -18,6 +18,7 @@ class Basic_frame:
 		txt = Text(self.get_top_panel(),height=field_height,width=field_width)#state='disabled',background="gray75")
 		txt.pack()
 		txt.place(x=pos_x+(BLANK_SPACE_X*spaces),y=pos_y)
+		txt.insert(INSERT,str(value))
 		return txt
 
 	def add_chooser(self,option_list,chooser_label,spaces,pos_x,pos_y):

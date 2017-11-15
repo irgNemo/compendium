@@ -16,15 +16,15 @@ class Align_tab(Basic_tab):
 	def __init__(self,tab,main_window):
 		Basic_tab.__init__(self,tab,main_window,ALIGN_INFORMER_HEIGHT,ALIGN_INFORMERS_WIGTH)
 		self.cmb_align_tool = self.add_chooser(ALIGNERS_OPTIONS,"Select an alignment tool:",2,200,10)
-		self.add_btn_align(800,50)
+		self.add_btn_align(480,50)
 		self.chkbox_align_seq = self.add_combobox("Align sequence",10,10)
 		self.chkbox_philo_tree = self.add_combobox("Philo tree",10,30)
 		self.chkbox_consensus_seq= self.add_combobox("Consensus sequence",10,50)
-		self.txt_threshold = self.add_field("Threshold",1,200,50,DEFAULT_TXTBOX_HEIGHT,TXTBOX_THRESHOLD_WIGTH)
+		self.txt_threshold = self.add_field("Threshold",1,200,50,DEFAULT_TXTBOX_HEIGHT,TXTBOX_THRESHOLD_WIGTH,CONSENSUS_THRESHOLD)
 
 	def add_btn_align(self,pos_x,pos_y):
 		btn_align = Button(self.get_top_panel(), text ="Align",command = self.run_btn_align)
-		btn_align.pack()
+		btn_align.pack(expand=True)
 		btn_align.place(x=pos_x,y=pos_y)
 
 	def run_btn_align(self):
@@ -44,7 +44,6 @@ class Align_tab(Basic_tab):
 					new_file_name = writeFile(file_data,get_basic_filename(filename_item),FASTA_EXTENSION)
 					update_selected_file(self.get_main_window(), new_file_name)
 					filename_item = new_file_name
-					print "es gb"
 			
 				self.get_main_window().println("\n\n---Working with "+get_secction_name(filename_item)+"---")
 				update_selected_file(self.get_main_window(), filename_item)
@@ -100,7 +99,7 @@ class Align_tab(Basic_tab):
 		try:
 			self.get_main_window().println(PHILO_MSJ)
 			aling_tree = get_tree(based_filename + PHILO_EXTENSION)
-			tree_filename = based_filename + "_tree_" + IMAGE_EXTENSION
+			tree_filename = based_filename + PREFIX_PHILO + IMAGE_EXTENSION
 			self.get_main_window().println("\nSaving phylo tree in "+tree_filename)
 			save_tree(tree_filename,aling_tree)
 		except:
@@ -114,7 +113,9 @@ class Align_tab(Basic_tab):
 			self.get_main_window().println(CONSENSUS_MSJ)
 			threshold = float(self.txt_threshold.get("1.0","end-1c"))
 			consensus_seq = get_consensus(alignment,threshold)
-			consensus_seq_record = SeqRecord(consensus_seq, id =based_filename, description = " Consensus sequence threshold=" + str(threshold))
+			main_folder = self.main_window.get_main_folder()
+			consensus_id = based_filename.replace(main_folder, "")
+			consensus_seq_record = SeqRecord(consensus_seq, id =consensus_id, description = "\nConsensus threshold=" + str(threshold))
 			threshold_prefix = str(threshold).split('.')[1]
 			self.get_main_window().println(SAVING_CONSENSUS_MSJ)
 			return writeFile(consensus_seq_record,based_filename +PREFIX_CONSENSUS+threshold_prefix, FASTA_EXTENSION)			 

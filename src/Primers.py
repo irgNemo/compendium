@@ -2,9 +2,11 @@ import os
 import os.path
 import re
 from Bio.Blast import NCBIWWW
+from constans import *
+
 #from gui.gui_utils import *;
 #Constants
-EXP_REG_RNA = '[A|C|G|T]{4,}|[a|c|g|t]{4,}'#{4,}filtra que la longitud de la cadena sea mayor a 4 caracteres
+"""EXP_REG_RNA = '[A|C|G|T]{4,}|[a|c|g|t]{4,}'#{4,}filtra que la longitud de la cadena sea mayor a 4 caracteres
 SEQUENCE_ID = "SEQUENCE_ID"
 SEQUENCE_TEMPLATE = "SEQUENCE_TEMPLATE"
 SEQUENCE_TARGET = "SEQUENCE_TARGET"
@@ -22,7 +24,7 @@ BLAST_PROGRAM = "blastn"
 BLAST_DATABASE = "nt"
 BLAST_OUT_FORMAT = "text"
 ERROR_PRIMERS = '\nPrimers Error!'
-IO_ERROR = '\nSorry! There is an IO error'
+IO_ERROR = '\nSorry! There is an IO error'"""
 #################
 
 def make_primers_dir(based_path):

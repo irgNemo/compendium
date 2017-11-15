@@ -17,10 +17,10 @@ class Download_frame(Basic_frame):
 	def __init__(self,informer,main_window):
 		Basic_frame.__init__(self,main_window.get_window(),SEARCH_FRAME_SIZE,informer)
 		self.main_window = main_window
-		self.txt_mail = self.add_field("e-mail:",1,400,16,DEFAULT_TXTBOX_HEIGHT,TXTBOX_MAIL_WIGTH)
-		self.txt_term = self.add_field("Term:",1,10,40,DEFAULT_TXTBOX_HEIGHT,TXTBOX_TERM_WIGTH)
+		self.txt_mail = self.add_field("e-mail:",1,400,16,DEFAULT_TXTBOX_HEIGHT,TXTBOX_MAIL_WIGTH,DEFAULT_MAIL)
+		self.txt_term = self.add_field("Term:",1,10,40,DEFAULT_TXTBOX_HEIGHT,TXTBOX_TERM_WIGTH,DEFAULT_TERM)
 		self.txt_filename = self.add_field("Filename:",1,10,70,DEFAULT_TXTBOX_HEIGHT,TXTBOX_FILENAME_WIGTH)
-		self.txt_retmax = self.add_field("Retmax: ",1,400,70,DEFAULT_TXTBOX_HEIGHT,TXTBOX_RETMAX_WIGTH)
+		self.txt_retmax = self.add_field("Retmax: ",1,400,70,DEFAULT_TXTBOX_HEIGHT,TXTBOX_RETMAX_WIGTH,DEFAULT_RETMAX)
 		self.cmb_database = self.add_chooser(DATABASES,"Database:",1,10,16)
 		self.cmb_format = self.add_chooser(FORMATS,"Format: ",1,600,70)
 		self.add_btn_search(780,100)
@@ -49,9 +49,12 @@ class Download_frame(Basic_frame):
 						term = self.txt_term.get("1.0","end-1c")
 						filename_path = downloadSequences(self.main_window.get_main_informer()
 ,db, term, filename, format, mail, main_folder, retmax);	
-						update_selected_file(self.main_window, filename_path)
-						assing_job(self.main_window,filename_path)
-						open_file(self.main_window,self.main_window.filter_frame.get_informer(),filename_path)
+						if filename_path ==  main_folder:
+							tkMessageBox.showerror("Error", EMPTY_DOWNLOAD)
+						else:
+							update_selected_file(self.main_window, filename_path)
+							assing_job(self.main_window,filename_path)
+							open_file(self.main_window,self.main_window.filter_frame.get_informer(),filename_path)
 						self.get_frame().destroy()
 					else:
 						tkMessageBox.showerror("Error", ERROR_RETMAX)

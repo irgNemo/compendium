@@ -134,17 +134,18 @@ def downloadSequences(informer,database, term, file_name, file_format, email, sa
 	informer.insert(INSERT,"\nSearching ...");
 	records = search(database, term, email, retmax);
 	informer.insert(INSERT,"\nSearch finished");
-	informer.insert(INSERT,"\nDownloading " + str(len(records)) + " sequences ...");
-	records_str = format(records);
-	record_handler = download(database, records_str, file_format, email, retmax);
-	file_name_extension = file_name + '.' + file_format;
-	if not os.path.exists(saving_path):
-		os.makedirs(saving_path);
-	if not os.path.exists(saving_path + "/" + file_name):
-		os.makedirs(saving_path + "/" + file_name);
-	saving_path += "/" + file_name + "/" + file_name_extension;
-	save(informer,saving_path, record_handler);
-	informer.insert(INSERT,"\nSequences stored in file " + saving_path + "\n");
+	if len(records) != 0:
+		informer.insert(INSERT,"\nDownloading " + str(len(records)) + " sequences ...");
+		records_str = format(records);
+		record_handler = download(database, records_str, file_format, email, retmax);
+		file_name_extension = file_name + '.' + file_format;
+		if not os.path.exists(saving_path):
+			os.makedirs(saving_path);
+		if not os.path.exists(saving_path + "/" + file_name):
+			os.makedirs(saving_path + "/" + file_name);
+		saving_path += "/" + file_name + "/" + file_name_extension;
+		save(informer,saving_path, record_handler);
+		informer.insert(INSERT,"\nSequences stored in file " + saving_path + "\n");
 	return saving_path;
 
 def save_new_file(informer,filename,data):

@@ -35,11 +35,9 @@ class Blast_tab(Basic_tab):
 			blast_data = ""
 			self.get_main_window().println("\n\n---Working with "+primer_id+"---\n")
 			primers_list = get_primers_list(primer_id,self.get_main_window())
-			print primers_list
 			self.get_main_window().println("\n\nGetting blast data...")
 			for seq in primers_list[0:2]:
 				blast_data = blast_data + run_blast(self.get_main_window(),seq)
-				print blast_data
 			self.get_main_window().println("\n\nSaving blast file")
 			save_new_file(self.get_main_window(),primer_id+"blast",blast_data)
 			self.get_main_window().println("\n\nBlast file was save in "+ primer_id+"blast")

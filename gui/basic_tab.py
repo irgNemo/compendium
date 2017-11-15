@@ -27,7 +27,7 @@ class Basic_tab:
 
 	def add_top_panel(self,tab,panel_height=TOP_PANEL_TAB_HEIGHT):
 		self.top_panel = PanedWindow(tab, height=panel_height)
-		self.top_panel.pack(fill=BOTH,expand=PANELS_EXPAND)
+		self.top_panel.pack(fill=BOTH,expand=True)
 
 	def add_separator(self,widget,pos_x,pos_y,sep_orient):
 		separator = Separator(widget, orient='horizontal').pack(fill=X,pady=140)
@@ -38,7 +38,7 @@ class Basic_tab:
 		panel.add(lbl_1)
 		lbl_1.place(x=pos_x,y=pos_y)
 		txt = Text(self.get_tab(),height=field_height,width=field_width)#state='disabled',background="gray75")
-		txt.pack()
+		txt.pack(expand=True)
 		txt.place(x=pos_x+(BLANK_SPACE_X*spaces),y=pos_y)
 		txt.insert(INSERT,str(value))
 		return txt
@@ -50,15 +50,15 @@ class Basic_tab:
 		lbl_1.place(x=pos_x,y=pos_y)
 		cmb = Combobox(self.get_tab(),values=option_list,state='readonly')
 		cmb.current(0)
-		cmb.pack();
+		cmb.pack(expand=True);
 		cmb.place(x=pos_x+(BLANK_SPACE_X*spaces),y=pos_y)
 		return cmb
 	
 	def add_combobox(self,cmb_label,pos_x,pos_y):
 		CheckVar1 = IntVar()
 		panel = self.get_top_panel()
-		C1 = Checkbutton(panel, text = cmb_label, variable = CheckVar1,onvalue = 1, offvalue = 0)
-		C1.pack()
+		C1 = Checkbutton(panel, text = cmb_label, variable = CheckVar1,onvalue = 1, offvalue = 0,state=ACTIVE)
+		C1.pack(expand=True)
 		C1.place(x=pos_x,y=pos_y)
 		return CheckVar1
 
