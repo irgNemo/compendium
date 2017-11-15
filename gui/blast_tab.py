@@ -41,7 +41,8 @@ class Blast_tab(Basic_tab):
 			self.get_main_window().println("\n\nSaving blast file")
 			save_new_file(self.get_main_window(),primer_id+"blast",blast_data)
 			self.get_main_window().println("\n\nBlast file was save in "+ primer_id+"blast")
-
+			self.clean_informer(self.get_informer())
+			self.println(self.get_informer(),blast_data)
 		self.get_main_window().println(PROCESS_FINISHED_MSJ)
 
 

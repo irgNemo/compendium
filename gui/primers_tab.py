@@ -100,10 +100,10 @@ class Primers_tab(Basic_tab):
 				self.get_main_window().enable_tab(INDEX_BLAST_TAB)
 				self.get_main_window().println(PROCESS_FINISHED_MSJ)
 			else:
-				#tkMessageBox.showwarning("Warning", ERROR_NO_PRIMERS +primers_id)
+				#tkMessageBox.showinfo("Warning", ERROR_NO_PRIMERS +primers_id)
 				self.get_main_window().println(ERROR_NO_PRIMERS +primers_id+"\n")
 
-		#if len(self.get_main_window().get_primers_id_list()) != 0:
+		if len(self.get_main_window().get_primers_id_list()) != 0:
 			update_selected_file(self.get_main_window(), self.get_main_window().get_primers_id_list()[-1]+".all")					
 		self.get_main_window().println(PROCESS_FINISHED_MSJ)
 
