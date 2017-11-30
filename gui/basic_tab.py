@@ -80,14 +80,15 @@ class Basic_tab:
 	def get_tab(self):
 		return self.tab
 
-	def get_current_slash(self):
+	#Para trabajo futuro: habilitar \ para windows y / para linux
+	"""def get_current_slash(self):
 		return self.slash 
 
 	def get_OS_slash(self):
 		if OS_LINUX in sys.platform:
 			self.slash = OS_LINUX_SLASH
 		else:
-			self.slash = OS_WIN_SLASH
+			self.slash = OS_WIN_SLASH"""
 
 
 

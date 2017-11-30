@@ -93,27 +93,36 @@ class Reports_frame(Basic_frame):
 			if self.primer_checkbox.get() == CHKBOX_ON:
 				self.main_window.println("\nReading Primers data...")
 				for primer in primers_list:
-					if current_section in primer:
-						primers_file = primer+".all"
-						if exists(primers_file):
-							primers_data = get_file_data(primers_file)
-						else:
-							self.main_window.println(ERROR_NO_FILE + primers_file)
+					if primer.find(current_section) == -1 :
+						primer_exist = False
+					else:
+						primer_exist = True
+						primer_file = primer +".all"
+
+				if primer_exist:
+					primers_data = get_file_data(primer_file)
+				else:
+					primers_data = ""
+					self.main_window.println(ERROR_NO_FILE + primer_file)
 			else:
 				primers_data = ""
 				
 			if self.blast_checkbox.get() == CHKBOX_ON:
 				self.main_window.println("\nReading Blast data...")
 				for primer in primers_list:
-					print current_section
-					print primer
-					if current_section in primer:
-						blast_file = primer+"blast"
-						print blast_file
-						if exists(blast_file):
-							blast_data = get_file_data(blast_file)
-						else:
-							self.main_window.println(ERROR_NO_FILE + blast_file)
+					if primer.find(current_section) == -1 :
+						blast_exist = False
+					else:
+						blast_exist = True
+						blast_file = primer
+
+				if blast_exist:
+					blast_file = primer+"blast"
+					print blast_file
+					blast_data = get_file_data(blast_file)
+				else:
+					blast_data = ""
+					self.main_window.println(ERROR_NO_FILE + blast_file)
 			else:
 				blast_data = ""
 			

@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 from Tkinter import *
 from ttk import *
 import tkFileDialog
@@ -212,6 +213,10 @@ class Gui:
 
 	def assing_available_tabs(self,filename,file_extention):
 		self.disable_all_tabs()
+		if self.automatic_setting.get():
+			#self.disable_all_tabs()
+			if file_extention == "gb":
+				self.want_to_filter(filename)
 		if file_extention == "gb":
 			self.enable_tab(INDEX_FILTER_TAB)
 			self.enable_tab(INDEX_ALIGNMENT_TAB)
@@ -235,15 +240,6 @@ class Gui:
 		if file_extention == "all":
 			self.enable_tab(INDEX_BLAST_TAB)
 		
-		if self.automatic_setting.get():
-			self.disable_all_tabs()
-			if file_extention == "gb":
-				self.want_to_filter(filename)
-			if file_extention == "fasta":
-				self.enable_tab(INDEX_ALIGNMENT_TAB)
-				self.focus_tab(INDEX_ALIGNMENT_TAB)
-				#.set(True)
-				self.align_frame.btn_align_call_back()
 
 	def make_download_frame(self):
 		self.download_frame = Download_frame(self.download_informer,self)
@@ -264,6 +260,7 @@ class Gui:
 	def setting_main_folder(self):
 		create_new_main_folder(self)
 		self.main_folder = set_main_folder(self)
+		self.print_settings()
 
 	def setting_automatic(self):
 		if self.automatic_setting.get():
@@ -315,8 +312,6 @@ class Gui:
 
 	def run_automatic(self):
 		self.make_download_frame()
-		
-		
 	
 
 
