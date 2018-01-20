@@ -5,6 +5,7 @@ from Bio.Seq import Seq
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Tkinter import *
+
 """Begins a NCBI connection using your e-mail address.
 	INPUTS: email --> e-mail address"""
 def init(email):
@@ -115,6 +116,7 @@ def newSequence(data,ident,name,description,references):
 def writeFile(sequence_list,file_name,file_format):
 	try:
 		fasta_filename = file_name + "." + file_format;
+		print fasta_filename
 		SeqIO.write(sequence_list, fasta_filename, file_format)
 		return fasta_filename
 	except:

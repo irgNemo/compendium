@@ -11,6 +11,9 @@ from src.utils import *;
 from src.Petitions import *;
 from src.constans import *;
 
+import sys
+print '\n'.join(sys.modules.keys())
+
 class Filter_tab(Basic_tab):
 
 	def __init__(self,tab,main_window):
@@ -74,8 +77,10 @@ class Filter_tab(Basic_tab):
 			self.get_main_window().println(PROCESS_FINISHED_MSJ)
 		except:
 			self.get_main_window().println(ERROR_PROCESSING)
-		#if len(self.get_main_window().get_filename_list()) != 0:
-		#	update_selected_file(self.get_main_window(), self.get_main_window().get_filename_list()[INICIAL])
+			self.println(self.get_informer(),"Prueba print")
+		
+		if len(self.get_main_window().get_filename_list()) != 0:
+			update_selected_file(self.get_main_window(), self.get_main_window().get_filename_list()[INICIAL])
 	
 
 
