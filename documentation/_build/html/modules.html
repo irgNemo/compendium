@@ -54,12 +54,12 @@
   <div class="section" id="modules">
 <h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
 <p>Our Program is based onn 5 modules</p>
-<div class="section" id="module-src.Alignments">
-<span id="alignments"></span><h2>Alignments<a class="headerlink" href="#module-src.Alignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Alignments">
+<span id="alignments"></span><h2>Alignments<a class="headerlink" href="#module-Alignments" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="src.Alignments.clustal_align">
-<code class="descclassname">src.Alignments.</code><code class="descname">clustal_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.clustal_align" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates the aling file (<em>.aln</em>) and the PhyloTree file (<em>.dnd</em>) using ClustalW</p>
+<dt id="Alignments.clustal_align">
+<code class="descclassname">Alignments.</code><code class="descname">clustal_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.clustal_align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the aling file (“*”.aln) and the PhyloTree file (“*”.dnd) using ClustalW</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -70,7 +70,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">aling file (<em>.aln</em>) and PhyloTree file (<em>.dnd</em>) in your directory</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">aling file (“*”.aln) and PhyloTree file (“*”.dnd) in your directory</p>
 </td>
 </tr>
 </tbody>
@@ -78,8 +78,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.get_align">
-<code class="descclassname">src.Alignments.</code><code class="descname">get_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.get_align" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.get_align">
+<code class="descclassname">Alignments.</code><code class="descname">get_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.get_align" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the aling data form the input file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -99,8 +99,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.get_consensus">
-<code class="descclassname">src.Alignments.</code><code class="descname">get_consensus</code><span class="sig-paren">(</span><em>alignment</em>, <em>threshold=0.7</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.get_consensus" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.get_consensus">
+<code class="descclassname">Alignments.</code><code class="descname">get_consensus</code><span class="sig-paren">(</span><em>alignment</em>, <em>threshold=0.7</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.get_consensus" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the consensus sequence from the alignment</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -120,8 +120,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.get_tree">
-<code class="descclassname">src.Alignments.</code><code class="descname">get_tree</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.get_tree" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.get_tree">
+<code class="descclassname">Alignments.</code><code class="descname">get_tree</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.get_tree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the Phylo tree from the input file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -136,9 +136,9 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.muscle_align">
-<code class="descclassname">src.Alignments.</code><code class="descname">muscle_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>output_file</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.muscle_align" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates the aling file (<a href="#id1"><span class="problematic" id="id2">*</span></a>.aln) compatible with ClustalW using Muscle</p>
+<dt id="Alignments.muscle_align">
+<code class="descclassname">Alignments.</code><code class="descname">muscle_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>output_file</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.muscle_align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the aling file (“*”.aln) compatible with ClustalW using Muscle</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -149,7 +149,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">aling file (<em>.aln</em>) in your directory</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">aling file (“*”.aln) in your directory</p>
 </td>
 </tr>
 </tbody>
@@ -157,8 +157,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.save_tree">
-<code class="descclassname">src.Alignments.</code><code class="descname">save_tree</code><span class="sig-paren">(</span><em>file_name</em>, <em>tree</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.save_tree" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.save_tree">
+<code class="descclassname">Alignments.</code><code class="descname">save_tree</code><span class="sig-paren">(</span><em>file_name</em>, <em>tree</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.save_tree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the tree generated by Phylo in an image or pdf (It will depent on the extension used)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -175,8 +175,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.show_align">
-<code class="descclassname">src.Alignments.</code><code class="descname">show_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.show_align" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.show_align">
+<code class="descclassname">Alignments.</code><code class="descname">show_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.show_align" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows the synthesized aling conteined in the input file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -193,8 +193,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.show_complite_align">
-<code class="descclassname">src.Alignments.</code><code class="descname">show_complite_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.show_complite_align" title="Permalink to this definition">¶</a></dt>
+<dt id="Alignments.show_complite_align">
+<code class="descclassname">Alignments.</code><code class="descname">show_complite_align</code><span class="sig-paren">(</span><em>input_file</em>, <em>file_type</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.show_complite_align" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows the complite aling conteined in the input file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -211,9 +211,9 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.show_tree">
-<code class="descclassname">src.Alignments.</code><code class="descname">show_tree</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.show_tree" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shows the tree based in PhyloTree file (<a href="#id3"><span class="problematic" id="id4">*</span></a>.dnd)</p>
+<dt id="Alignments.show_tree">
+<code class="descclassname">Alignments.</code><code class="descname">show_tree</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.show_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the tree based in PhyloTree file (“*”.dnd)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -225,9 +225,9 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.Alignments.tree_to_str">
-<code class="descclassname">src.Alignments.</code><code class="descname">tree_to_str</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Alignments.tree_to_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shows the tree based in PhyloTree file (<a href="#id5"><span class="problematic" id="id6">*</span></a>.dnd) as a String</p>
+<dt id="Alignments.tree_to_str">
+<code class="descclassname">Alignments.</code><code class="descname">tree_to_str</code><span class="sig-paren">(</span><em>input_file</em><span class="sig-paren">)</span><a class="headerlink" href="#Alignments.tree_to_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the tree based in PhyloTree file (“*”.dnd) as a String</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -241,11 +241,365 @@
 </dd></dl>
 
 </div>
-<div class="section" id="petitions">
-<h2>Petitions<a class="headerlink" href="#petitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Petitions">
+<span id="petitions"></span><h2>Petitions<a class="headerlink" href="#module-Petitions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Petitions.close">
+<code class="descclassname">Petitions.</code><code class="descname">close</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes an open handle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> – an open handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.download">
+<code class="descclassname">Petitions.</code><code class="descname">download</code><span class="sig-paren">(</span><em>database</em>, <em>identifier</em>, <em>file_format</em>, <em>email</em>, <em>retmax</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads the data based on sequence identifiers</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>database</strong> – it’s an string that specifies the database where you want to search.  Ex.: “nucleotide”</li>
+<li><strong>identifier</strong> – it’s a string of identifiers separated by commas Ex.: “LC027929,KC470291,FJ237042”</li>
+<li><strong>file_format</strong> – it’s a string that specifies the data format.</li>
+<li><strong>email</strong> – it’s your e-mail address for begining the NCBI connection</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a handle object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.downloadSequences">
+<code class="descclassname">Petitions.</code><code class="descname">downloadSequences</code><span class="sig-paren">(</span><em>informer</em>, <em>database</em>, <em>term</em>, <em>file_name</em>, <em>file_format</em>, <em>email</em>, <em>saving_path</em>, <em>retmax=20</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.downloadSequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches and downloads sequences by the term and database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>informer</strong> – Tkinter Text Object</li>
+<li><strong>database</strong> – specifies the NCBI database. It’s a String.</li>
+<li><strong>term</strong> – a sercheable term in NCBI. It’s a String.</li>
+<li><strong>file_name</strong> – a string that specifies the filename</li>
+<li><strong>file_format</strong> – a string that specifies the file format</li>
+<li><strong>email</strong> – it’s your e-mail address for begining the NCBI connection</li>
+<li><strong>saving_path</strong> – the directory path where the file will be saved. It’s a String.</li>
+<li><strong>retmax</strong> – maximum number of downloaded sequences.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the absolute file path where they were saved.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.format">
+<code class="descclassname">Petitions.</code><code class="descname">format</code><span class="sig-paren">(</span><em>records_list</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes a list of identifier into a string of identifiers separated by commas</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record_list</strong> – a list of identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string of identifiers separated by commas</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.get_ORF">
+<code class="descclassname">Petitions.</code><code class="descname">get_ORF</code><span class="sig-paren">(</span><em>record_list</em>, <em>type_seq</em>, <em>ident</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.get_ORF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Open Reading Frame of a sequence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>record_list</strong> – it’s a list of sequences (they usually are gotten by parse method)</li>
+<li><strong>type_seq</strong> – it’s an string that specifies the search data. Ex.: “gene”</li>
+<li><strong>ident</strong> – it’s an string that specifies the Open Reading Frame. Ex.: “E6</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Bio.Seq object list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.init">
+<code class="descclassname">Petitions.</code><code class="descname">init</code><span class="sig-paren">(</span><em>email</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begins a NCBI connection using your e-mail address.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>email</strong> – e-mail address as String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.is_empty">
+<code class="descclassname">Petitions.</code><code class="descname">is_empty</code><span class="sig-paren">(</span><em>record_list</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a list is empty.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record_list</strong> – a list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a boolean (TRUE if is empty and False if it’s not).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.newSequence">
+<code class="descclassname">Petitions.</code><code class="descname">newSequence</code><span class="sig-paren">(</span><em>data</em>, <em>ident</em>, <em>name</em>, <em>description</em>, <em>references</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.newSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cretes a new sequence based on the data_sequence input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_sequence</strong> – a string data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a new sequence created based the data_sequence input</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.parse">
+<code class="descclassname">Petitions.</code><code class="descname">parse</code><span class="sig-paren">(</span><em>data</em>, <em>type_file</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses a handle data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> – it’s a handle object. (It usually gotten by the download method)</li>
+<li><strong>type_file</strong> – it’s a string that specifies the format of the handle data. Ex.:”genbank”</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of parsed sequnce (SeqIO list)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.save">
+<code class="descclassname">Petitions.</code><code class="descname">save</code><span class="sig-paren">(</span><em>informer</em>, <em>filename</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the handle data into a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> – it’s the name which we want to save the file.</li>
+<li><strong>data</strong> – it’s a handle data</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.save_new_file">
+<code class="descclassname">Petitions.</code><code class="descname">save_new_file</code><span class="sig-paren">(</span><em>informer</em>, <em>filename</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.save_new_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves String data into a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>informer</strong> – Tkinter Text Object</li>
+<li><strong>filename</strong> – a string that specifies the filename</li>
+<li><strong>data</strong> – contains the information that will be saved. It’s a String.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.search">
+<code class="descclassname">Petitions.</code><code class="descname">search</code><span class="sig-paren">(</span><em>database</em>, <em>term</em>, <em>email</em>, <em>retmax=20</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches specific data into de NCBI database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>database</strong> – is an string that specifies the database where you want to search. Ex.: “nucleotide”</li>
+<li><strong>term</strong> – it’s the name of the term that we want to search.          Ex.: “Human papillomavirus”</li>
+<li><strong>email</strong> – it’s your e-mail address for begining the NCBI connection as String</li>
+<li><strong>retmax</strong> – Total number of UIDs from the retrieved set to be shown in the output.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of sequence identifiers</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.show_info">
+<code class="descclassname">Petitions.</code><code class="descname">show_info</code><span class="sig-paren">(</span><em>records_list</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.show_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows some information of a sequences list like: identifier, sequence and size.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>records_list</strong> – a sequences list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Petitions.writeFile">
+<code class="descclassname">Petitions.</code><code class="descname">writeFile</code><span class="sig-paren">(</span><em>sequence_list</em>, <em>file_name</em>, <em>file_format</em><span class="sig-paren">)</span><a class="headerlink" href="#Petitions.writeFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a SeqRecord list into a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sequence_list</strong> – SeqRecord list</li>
+<li><strong>filename</strong> – a string that specifies the filename</li>
+<li><strong>format</strong> – a string that specifies the format of the file.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a filename as String</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
-<div class="section" id="primers">
-<h2>Primers<a class="headerlink" href="#primers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Primers">
+<span id="primers"></span><h2>Primers<a class="headerlink" href="#module-Primers" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Primers.add_parameter_to">
+<code class="descclassname">Primers.</code><code class="descname">add_parameter_to</code><span class="sig-paren">(</span><em>primers_input_filename</em>, <em>prefix</em>, <em>value</em>, <em>gui_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#Primers.add_parameter_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Addes an specific parameter to the basic primer3_core’s input settings file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>primers_input_filename</strong> – the basic primer3_core’s input settings filename as String.</li>
+<li><strong>prefix</strong> – specific constant string that describes an input.</li>
+<li><strong>value</strong> – an String. The value of an spacific parameter at the input settings.</li>
+<li><strong>gui_obj</strong> – gui object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Primers.generate_basic_primers_input">
+<code class="descclassname">Primers.</code><code class="descname">generate_basic_primers_input</code><span class="sig-paren">(</span><em>filename</em>, <em>seq_id</em>, <em>seq</em>, <em>seq_target</em>, <em>product_size='100-300'</em><span class="sig-paren">)</span><a class="headerlink" href="#Primers.generate_basic_primers_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a basic primer3_core’s input settings file that will be used for getting primers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> – </li>
+<li><strong>seq_id</strong> – </li>
+<li><strong>seq</strong> – </li>
+<li><strong>seq_target</strong> – </li>
+<li><strong>product_size</strong> – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Primers.get_primers">
+<code class="descclassname">Primers.</code><code class="descname">get_primers</code><span class="sig-paren">(</span><em>input_filename</em>, <em>gui_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#Primers.get_primers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the primer3_core program using the primer3_core’s input file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_filename</strong> – an String that tell us the full filename.</li>
+<li><strong>gui_obj</strong> – gui object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Primers.make_primers_dir">
+<code class="descclassname">Primers.</code><code class="descname">make_primers_dir</code><span class="sig-paren">(</span><em>based_path</em><span class="sig-paren">)</span><a class="headerlink" href="#Primers.make_primers_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new folder into an specific path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>based_path</strong> – the basic path where this action will take place. It’s an String.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the full new path</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Primers.read_primers_file">
+<code class="descclassname">Primers.</code><code class="descname">read_primers_file</code><span class="sig-paren">(</span><em>filename</em>, <em>gui_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#Primers.read_primers_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the files that was generated by primer3_core.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gui_obj</strong> – gui object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="reports">
 <h2>Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h2>

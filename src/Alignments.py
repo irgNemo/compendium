@@ -10,13 +10,13 @@ from Bio.Align.Applications import ClustalwCommandline
 
 def clustal_align(input_file, path):
 	"""
-	Generates the aling file (*.aln*) and the PhyloTree file (*.dnd*) using ClustalW
+	Generates the aling file ("*".aln) and the PhyloTree file ("*".dnd) using ClustalW
 	
 	:param input_file: it's the name of a FASTA sequence(s) file.	Ex.:"opuntia.fasta"
 	
 	:param path: it's the ubication of ClustalW CommanLine Ex.:"/home/user/Desktop/clustalw2"
 	
-	:returns: aling file (*.aln*) and PhyloTree file (*.dnd*) in your directory
+	:returns: aling file ("*".aln) and PhyloTree file ("*".dnd) in your directory
 	"""
 	assert os.path.isfile(path), "Clustal W executable missing"
 	cline = ClustalwCommandline(path, infile=input_file)
@@ -24,13 +24,13 @@ def clustal_align(input_file, path):
 
 def muscle_align(input_file,output_file):
 	"""
-	Generates the aling file (*.aln) compatible with ClustalW using Muscle
+	Generates the aling file ("*".aln) compatible with ClustalW using Muscle
 
 	:param input_file: it's the name of a FASTA sequence(s) file.	Ex.:"opuntia.fasta"
 
 	:param output_file: it's the file name used for the MULSCLE output with "aln" extension. 	Ex.:"opuntia.aln" 
 
-	:returns: aling file (*.aln*) in your directory
+	:returns: aling file ("*".aln) in your directory
 	"""
 	cline = MuscleCommandline(input=input_file, out=output_file,clw=True)
 	cline()
@@ -73,7 +73,7 @@ def get_align(input_file,file_type):
 
 def show_tree(input_file):
 	"""
-	Shows the tree based in PhyloTree file (*.dnd) 
+	Shows the tree based in PhyloTree file ("*".dnd) 
 
 	:param input_file: it's the name of a PhyloTree file. Ex.: "opuntia.dnd" 
 	"""
@@ -116,7 +116,7 @@ def get_consensus(alignment,threshold = 0.7):
 
 def tree_to_str(input_file):
 	"""
-	Shows the tree based in PhyloTree file (*.dnd) as a String
+	Shows the tree based in PhyloTree file ("*".dnd) as a String
 
 	:param input_file: it's the name of a PhyloTree file. Ex.: "opuntia.dnd" 
 	
