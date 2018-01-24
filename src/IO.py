@@ -28,30 +28,47 @@ LINE_LIMIT = 80
 POS_TABS = 247
 POS_LINKS = 95
 POS_TAB_FIT = 215
-"""Creates a new canvas page
-	INPUTS: canvas --> canvas object"""
+
 def new_page(canvas):
+	"""
+	Creates a new canvas page
+	:param canvas : canvas object
+	"""
 	canvas.showPage()
 
-"""Creates a  new ReportLab text object
-	INPUTS: data--> it's a string 
-			canvas --> A ReportLab canvas
-			pos_x --> It's the x position where the text is gonna be written
-			pos_y --> It's the y position where the text is gonna be written
-	OUTPUTS: textobject --> A ReportLab text object"""
+
 def new_textobject(data,canvas,pos_x,pos_y):
+	"""
+	Creates a  new ReportLab text object
+
+ 	:param data: it's a string 
+
+	:param canvas: A ReportLab canvas
+
+	:param pos_x: It's the x position where the text is gonna be written
+
+	:param pos_y: It's the y position where the text is gonna be written
+
+	:returns: a ReportLab text object
+	"""
 	textobject = canvas.beginText()
 	textobject.setTextOrigin(pos_x,pos_y)
 	textobject.setFont(FONT,FONT_SIZE)
 	textobject.textLines(data,TRIM)
 	return textobject
 
-"""Splits and adds the alignment data into the report
-	INPUTS: canvas--> A ReportLab canvas
-			title--> A string that describes the report section at the page's beginning
-			data--> Alignment data to be save as MultipleSeqAlignment
-			page_limit--> Integer that defines the number of new lines per page"""
 def add_split_data(canvas,title,data,page_limit=PAGE_LIMIT):
+	"""
+	Splits and adds the alignment data into the report
+
+	:param canvas: A ReportLab canvas
+
+	:param title: A string that describes the report section at the page's beginning
+
+	:param data: Alignment data to be save as MultipleSeqAlignment
+
+	:param page_limit: Integer that defines the number of new lines per page
+	"""
 	data_list = data.split('\n')
 	data_list_lenght = len(data_list)
 	i = 0	
@@ -72,23 +89,23 @@ def add_split_data(canvas,title,data,page_limit=PAGE_LIMIT):
 			y = TEXT_ORIGIN_Y
 	canvas.showPage()
 
-"""Adds an image into the report
-	INPUTS: canvas--> A ReportLab canvas
-			title--> A string that describes the report section at the page's beginning
-			image--> It's the Image filename
-			scale--> A number that defines the image scale. Default is 0.7 that means 70% of the original image size"""
 def add_image(canvas,title,image,scale=SCALE):
+	"""Adds an image into the report
+	INPUTS: canvas: A ReportLab canvas
+			title: A string that describes the report section at the page's beginning
+			image: It's the Image filename
+			scale: A number that defines the image scale. Default is 0.7 that means 70% of the original image size"""
 	canvas.drawText(new_textobject(title,canvas,TITLE_X,TITLE_Y))
 	w, h = ImageReader(image).getSize()
 	canvas.drawInlineImage(image,IMAGE_ORIGIN_X,IMAGE_ORIGIN_Y,w * scale,h * scale)
 	new_page(canvas)
 
 """Adds the consensus sequence data into the report
-	INPUTS: canvas--> A ReportLab canvas
-			title--> A string that describes the report section at the page's beginning
-			data--> Consensus sequence data to be save as Seq Object
-			page_limit--> Integer that defines the number of new lines per page
-			line_limit-->Integer that defines the number of characters contained in each line"""
+	INPUTS: canvas: A ReportLab canvas
+			title: A string that describes the report section at the page's beginning
+			data: Consensus sequence data to be save as Seq Object
+			page_limit: Integer that defines the number of new lines per page
+			line_limit:Integer that defines the number of characters contained in each line"""
 def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT):
 	#data_lenght = len(data)
 	i = 0
@@ -121,10 +138,10 @@ def add_consensus(canvas,title,data,page_limit=PAGE_LIMIT,line_limit=LINE_LIMIT)
 				new_page(c)
 	
 """Generates a pdf report based on the alignment, consensus sequence and the philo tree
-	INPUTS: data--> alignment data
-			consensus_data --> consensus sequence by Seq object
-			image_name--> It's the image filename
-			file_name--> A string that specifies the report filename"""
+	INPUTS: data: alignment data
+			consensus_data : consensus sequence by Seq object
+			image_name: It's the image filename
+			file_name: A string that specifies the report filename"""
 def generate_report(data,consensus_data,image_name,primers_data,blast_data,file_name):
 	c = canvas.Canvas(file_name)
 	if data != "":
